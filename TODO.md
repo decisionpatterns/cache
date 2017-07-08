@@ -1,15 +1,29 @@
 # TODO
 
- - Make an S3 Method so that different objects can have different caching mechanisms; for example table structure
+ - Make an S3 Method so that different objects can have different caching mechanisms; for example table structure. This could require an internal method .cache
    can use feather where as other structures might use RDS (DEFAULT)
  
- - Support non-local persistence; Sharable persistence
+ - Support non-local persistence; Sharable persistence, e.g. REDIS
  
  - Support timestamp / versioning / tagging 
    - Support file system extened attributes for those items that need access, but not 
-   - Do tags become attributes of an object (?)   
+ - Do tags become attributes of an object (?)  
+ - In some ways this would be equivalent to a bigtable and why might consider
+     making this analogous to uber's schemaless
+ - [ ] use lazyeval 
 
 
+## uncahce
+
+ - Should return TRUE if object exists and was loaded successfully 
+ - [x] Use lazyeval::expr_find %>% as.character
+ - [ ] Support timestamps and identifies most recent timestamp
+ - [-] `try_uncache_` to return TRUE/FALSE on success/failure to test if uncaching is successful.
+   - 
+ - [ ] use rprojroot to find `cache/` 
+ - [ ] support timestamp to un/cache if newer. 
+ - [ ] support multiple cache mechanisms such as rds, feather, write_table, etc. 
+ - [ ] tie into rsync package ... 
 ## File Methods 
    - Text (delim; xlsx; txt)
      Imagine this ... where automated analysis and files are intermingled
