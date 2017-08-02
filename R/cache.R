@@ -106,7 +106,7 @@ uncache <- function(
   file = file_path(cache, paste0(name, timestamp, ".rds") )
 
   # assign( name, loadRDS(file), pos=1 )
-  base.tools::loadRDS( file, envir=envir )
+  file.tools::loadRDS( file, envir=envir )
 
   return( invisible(TRUE) )
   # warning( "This function is likely to be renamed.")
@@ -149,7 +149,7 @@ uncache_ <- function(...) {
 #   file = file_path(cache, paste0(name, timestamp, ".rds") )
 #
 #   # assign( name, loadRDS(file), pos=1 )
-#   base.tools::loadRDS( file, envir=envir )
+#   file.tools::loadRDS( file, envir=envir )
 #
 # }
 
@@ -160,7 +160,7 @@ uncache_ <- function(...) {
 
 uncache_all <- function( cache=getOption('cache', 'cache'), envir=parent.frame() ) {
 
- base.tools::loadRDSdir(cache, envir = envir )
+ file.tools::loadRDSdir(cache, envir = envir )
 
 }
 
