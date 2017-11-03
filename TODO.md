@@ -1,6 +1,6 @@
 # TODO
 
- - Make an S3 Method so that different objects can have different caching mechanisms; for example table structure. This could require an internal method .cache
+ - Make cache an S3 Method so that different objects can have different caching mechanisms; for example table structure. This could require an internal method .cache
    can use feather where as other structures might use RDS (DEFAULT)
  
  - Support non-local persistence; Sharable persistence, e.g. REDIS
@@ -12,8 +12,10 @@
      making this analogous to uber's schemaless
  - [ ] use lazyeval 
 
+ - [ ] Support cache non-op for turning off saving of cache. This might be achievable through the specification of a cache function such as `cache.nonop` 
 
-## uncahce
+
+## uncache
 
  - Should return TRUE if object exists and was loaded successfully 
  - [x] Use lazyeval::expr_find %>% as.character
