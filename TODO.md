@@ -1,5 +1,18 @@
 # TODO
 
+ - Create `cache_ls` as an alias for `cache_dir`
+ - Change default cache to
+   - use rprojroot
+   - .cache? ~/.cache?  
+   - The cache should be part of the project by default
+   - It should be .gitignore'd
+   - It can be part of packrat (really no choice)
+   - `use_cache()`
+
+  - cache_mv ?
+    - to move cache?
+    - to move objects within cache?  cache_rename 
+  
  - Make cache an S3 Method so that different objects can have different caching mechanisms; for example table structure. This could require an internal method .cache
    can use feather where as other structures might use RDS (DEFAULT)
  
