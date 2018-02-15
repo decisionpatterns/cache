@@ -20,9 +20,10 @@
 
 cache_path <- function(x=NULL) {
 
-  if( ! is.NULL(x) )
+  if( ! is.null(x) )
     options( cache = x[[1]] )
 
   getOption('cache', 'cache')
 
 }
+

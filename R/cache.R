@@ -47,6 +47,7 @@
 #'   }
 #'
 #' @md
+#' @import file.tools
 #' @export
 
 cache <- function(
