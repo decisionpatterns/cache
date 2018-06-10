@@ -3,8 +3,8 @@
 #' Caches or uncaches and object in a cache directory
 #'
 #' @param object object to cache
-# @param object_name string; name for the object
-#' @param name string; name for the object
+#' @param name string; name for the object defaults to the
+#'   `default(substitute(object))`
 #' @param cache character; path to cache directory. The default is
 #'        `getOption('cache')` or else simply `cache`
 #' @param timestamp string or function (of 0 arguments); timestamp to add to
@@ -52,12 +52,11 @@
 
 cache <- function(
       object
+    , name = deparse( substitute(object) )
     , cache = getOption('cache', 'cache' )
     , timestamp = getOption('timestamp')
     , envir = parent.frame()
 ) {
-
-  name <- deparse( substitute(object) )
 
   cache_(name, cache, timestamp, envir )
 
@@ -85,83 +84,8 @@ cache_ <- function(
       dir.create( cache, recursive = TRUE )
     }
 
-    saveRDS( object, file = file_path( cache, paste0( name, timestamp, ".rds")) )
+    save_rds( object, file = file_path( cache, paste0( name, timestamp, ".rds")) )
 
-}
-
-
-#' @rdname cache
-#' @import lazyeval
-#' @export
-
-uncache <- function(
-  name, cache=getOption('cache','cache'), timestamp = getOption('timestamp'), envir=parent.frame(), overwrite=TRUE
-) {
-
-  name <- as.character( expr_find(name) )
-
-  if( ! dir.exists(cache) ) {
-    stop("Cache, ", cache, " does not exist")
-  }
-
-  file = file_path(cache, paste0(name, timestamp, ".rds") )
-
-  # assign( name, loadRDS(file), pos=1 )
-  file.tools::loadRDS( file, envir=envir )
-
-  return( invisible(TRUE) )
-  # warning( "This function is likely to be renamed.")
-  # object_name <- lazyeval::expr_find(name) %>% as.character  # e.g. deparse(substitute(name))
-
-  # uncache_(object_name, ... )
-
-}
-
-
-#' @rdname cache
-#' @export
-
-cache_all <- function( ... ) {
-
-  warning("Not implemented yet.")
-
-}
-
-
-
-
-#' @rdname cache
-#' @export
-
-uncache_ <- function(...) {
-
-  warning( "'uncache_' is deprecated. Use 'uncache' instead." )
-
-  uncache(...)
-
-}
-
-# uncache_ <- function( name, cache=getOption('cache','cache'), timestamp = getOption('timestamp'), envir=parent.frame() ) {
-#
-#   if( ! dir.exists(cache) ) {
-#     stop("Cache, ", cache, " does not exist")
-#   }
-#
-#   file = file_path(cache, paste0(name, timestamp, ".rds") )
-#
-#   # assign( name, loadRDS(file), pos=1 )
-#   file.tools::loadRDS( file, envir=envir )
-#
-# }
-
-
-
-#' @rdname cache
-#' @export
-
-uncache_all <- function( cache=getOption('cache', 'cache'), envir=parent.frame() ) {
-
- file.tools::loadRDSdir(cache, envir = envir )
 
 }
 

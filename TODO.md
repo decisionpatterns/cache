@@ -1,6 +1,53 @@
 # TODO
 
- - Create `cache_ls` as an alias for `cache_dir`
+
+`
+ - [ ] All cache to be used in pipe chain 
+   - [ ] use `name` or `file` or argument
+   - [?] cache to return object invisibly so that this is possible
+      dat <- con %>% dbGetQuery(sql) %>% cache
+   
+
+ - [ ] cache data.frames using feather by default 
+
+ - Functions for: 
+    - (un)cache_local | cache_project
+    - (un)cache_user (~/.rcache)
+    - (un)cache_global 
+    - Also for `_git`, `_package`, etc.
+
+ - [ ] cache asynchronously. 
+       When cache is called, this should return -okay- invisible object 
+       before writing
+
+ - [ ] cache to memory using a cache environmen
+       this just does an assignment when the cache is a environment
+       
+ - [ ] cache:::store, cache:::restore for explicit calling
+   How does packrat work it so that packrat::XDX works but XDX does not?
+   It doesn't
+
+ - [ ] Would it be possible to have cache emulate an on-disk **environment**
+       such that an access to an object would recall it from disk and 
+       write it back there.
+
+       A environment object could be directly tied to an on-disk object.
+       
+       Assignment back to the object .... or any change to the object would
+       write it back to disk. In fact, we can have a valid REPL, invalidate
+       objects and free resources, swapping them out to disk.  
+
+       WAIT. Isn't that just swapping. No. It isn't. It's more intelligent, 
+       you are swapping based on ....
+       
+
+ - [ ] Change cache to a `.predicate` style interface 
+
+    cache( all_tables() ) 
+    cache( all_data.frames() ) 
+
+ - [?] Create `cache_ls` as an alias for `cache_dir`; cache::ls() 
+
  - Change default cache to
    - use rprojroot
    - .cache? ~/.cache?  
