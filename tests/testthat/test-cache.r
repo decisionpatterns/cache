@@ -6,7 +6,7 @@ test_that( "cache", {
 
 context('cache')
 
-  expect_null( getOption('cache') ) # %>% expect_null
+  expect_null( getOption('cache_name') ) # %>% expect_null
 
   test   <- "test"
   tmpdir <- tempdir()

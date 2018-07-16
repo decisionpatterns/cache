@@ -1,7 +1,8 @@
 # TODO
 
-
-`
+ - Should a .Rprofile be created and added to the project to setup the cache?
+   - If it is an rstudio project?
+ 
  - [ ] All cache to be used in pipe chain 
    - [ ] use `name` or `file` or argument
    - [?] cache to return object invisibly so that this is possible

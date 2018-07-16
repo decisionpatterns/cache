@@ -1,19 +1,3 @@
-#' cache_set
-#'
-#' Set the cache set the cache path
-#'
-#' @param x string; path of the cache directory
-#' @details
-#'
-#' If `x` is `NULL`, returns the `getOption('cache','cache')`. Otherwise, the
-#' cache path is set to `x`.
-#'
-#' While `getOption('cache','cache')` can be used, this provides an interface
-#' that can allow the cache path information to change in one place
-
-
-
-
 #' Set or Get Cache Directory
 #'
 #' Set or gets the cache directory
@@ -51,7 +35,6 @@ cache_get <- function() getOption('cache')
 
 
 #' @rdname cache_set
-#' @aliases CACHE
 #' @export
 cache_path <- function(path=NULL) {
 

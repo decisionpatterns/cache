@@ -12,5 +12,4 @@ cache_rm <- function(...) {
 
    stop("Not implemented yet.")
 
-
 }

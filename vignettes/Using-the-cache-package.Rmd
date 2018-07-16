@@ -1,0 +1,37 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+## What is a cache?
+
+A cache is a place to (usually) persistently store objects that can be easily 
+and quickly be restored to your working environment.
+
+ * sharable
+ * Generally not included as part git repository
+ 
+
+
+## If a cache is just a directory, where is it located.
+
+ * If this is a git project, the cache is located in the root of the git projects 
+   and cache is added to gitignore 
+ * If this is a rpackage project, the cache is {{package_root}}/data
+ * If this is neither, the cache is ~/.r-cache
+ * user-level cache : ~/.cache
+ * share cache:  /path/to/location
+ * project level cache 
+ 
+ ## Comparison to other packages
+ 
+  * sqlite
+  * df-file
+  * etc.

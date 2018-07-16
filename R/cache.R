@@ -47,7 +47,6 @@
 #'   }
 #'
 #' @md
-#' @import file.tools
 #' @export
 
 cache <- function(
@@ -63,6 +62,7 @@ cache <- function(
 }
 
 #' @rdname cache
+#' @import fs
 #' @export
 
 cache_ <- function(
@@ -79,14 +79,11 @@ cache_ <- function(
     if( is.function(timestamp) ) timestamp <- timestamp()
     if( ! is.null(timestamp) ) timestamp <- paste0("-", timestamp[[1]] )
 
-    if ( ! dir.exists(cache) ) {
+    if ( ! dir_exists(cache) ) {
       message( "Creating cache ... ", cache)
-      dir.create( cache, recursive = TRUE )
+      dir_create( cache, recursive = TRUE )
     }
 
-    save_rds( object, file = file_path( cache, paste0( name, timestamp, ".rds")) )
-
+    save_rds( object, file = fs::path( cache, paste0( name, timestamp, ".rds")) )
 
 }
-
-
