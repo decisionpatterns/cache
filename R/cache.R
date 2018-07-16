@@ -87,3 +87,14 @@ cache_ <- function(
     save_rds( object, file = fs::path( cache, paste0( name, timestamp, ".rds")) )
 
 }
+
+
+#' @rdname cache
+#' @export
+
+cache_all <- function( ... ) {
+
+  warning("Not implemented yet.")
+
+}
+

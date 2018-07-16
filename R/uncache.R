@@ -1,5 +1,5 @@
 #' @rdname cache
-#' @import lazyeval
+#' @import lazyeval fs file.tools
 #' @export
 
 uncache <- function(
@@ -12,26 +12,12 @@ uncache <- function(
     stop("Cache, ", cache, " does not exist")
   }
 
-  file = file_path(cache, paste0(name, timestamp, ".rds") )
+  file = fs::path(cache, paste0(name, timestamp, ".rds") )
 
   # assign( name, loadRDS(file), pos=1 )
   object <- file.tools::loadRDS( file, envir=envir )
 
   return( invisible(object) )
-  # warning( "This function is likely to be renamed.")
-  # object_name <- lazyeval::expr_find(name) %>% as.character  # e.g. deparse(substitute(name))
-
-  # uncache_(object_name, ... )
-
-}
-
-
-#' @rdname cache
-#' @export
-
-cache_all <- function( ... ) {
-
-  warning("Not implemented yet.")
 
 }
 
@@ -39,6 +25,7 @@ cache_all <- function( ... ) {
 
 
 #' @rdname cache
+#' @import file.tools
 #' @export
 
 uncache_ <- function(...) {
@@ -48,20 +35,6 @@ uncache_ <- function(...) {
   uncache(...)
 
 }
-
-# uncache_ <- function( name, cache=getOption('cache','cache'), timestamp = getOption('timestamp'), envir=parent.frame() ) {
-#
-#   if( ! dir.exists(cache) ) {
-#     stop("Cache, ", cache, " does not exist")
-#   }
-#
-#   file = file_path(cache, paste0(name, timestamp, ".rds") )
-#
-#   # assign( name, loadRDS(file), pos=1 )
-#   file.tools::loadRDS( file, envir=envir )
-#
-# }
-
 
 
 #' @rdname cache

@@ -3,8 +3,8 @@
 \name{cache}
 \alias{cache}
 \alias{cache_}
-\alias{uncache}
 \alias{cache_all}
+\alias{uncache}
 \alias{uncache_}
 \alias{uncache_all}
 \title{Cache and uncache an object}
@@ -15,11 +15,11 @@ cache(object, name = deparse(substitute(object)), cache = getOption("cache",
 cache_(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame())
 
+cache_all(...)
+
 uncache(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame(),
   overwrite = TRUE)
-
-cache_all(...)
 
 uncache_(...)
 
@@ -39,9 +39,6 @@ the filename.}
 
 \item{envir}{where to uncache the object. Defaults to the caller's environment}
 
-\item{overwrite}{logical; whether to overwrite if it \code{name} already exists
-on the environment.}
-
 \item{...}{additional arguments
 
 \code{cache}/\code{cache_} and \code{uncache}/\code{uncache_} save and restore single objects to
@@ -58,6 +55,9 @@ option \code{timestamp}. This can either be a character vector or a function
 of zero arguments that returns an unary length character vector. (Only the
 first value is used.)  Common practice is to use \code{Sys.Date} or
 \code{Sys.time} for creating the timestamp.}
+
+\item{overwrite}{logical; whether to overwrite if it \code{name} already exists
+on the environment.}
 }
 \description{
 Caches or uncaches and object in a cache directory
