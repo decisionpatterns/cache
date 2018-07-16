@@ -1,6 +1,6 @@
-#' cache_path
+#' cache_set
 #'
-#' Get or set the cache path
+#' Set the cache set the cache path
 #'
 #' @param x string; path of the cache directory
 #' @details
@@ -10,20 +10,54 @@
 #'
 #' While `getOption('cache','cache')` can be used, this provides an interface
 #' that can allow the cache path information to change in one place
+
+
+
+
+#' Set or Get Cache Directory
 #'
-#' @return string; path to the cache directory
+#' Set or gets the cache directory
+#'
+#' @param path string; path to the cache directory
+#'
+#' @details
+#'
+#' `cache_set` sets the cache directory, creating it if it doesn't exist.
+#'
+#' 'cache_get' returns the cache directory.
+#'
+#' `cache_path` will get or set the cache path depending on whether `path` is
+#' provided.
+#'
+#' @return string; path to the cache directory. `set_path`` does this invisibly
 #' @seealso
 #'  - [cache()], [uncache()]
-#'
-#' @md
 #' @export
 
-cache_path <- function(x=NULL) {
+cache_set <- function( path ) {
 
-  if( ! is.null(x) )
-    options( cache = x[[1]] )
+  if( ! dir.exists(path) ) dir.create(path)
+
+  options( cache = path )
+
+  invisible(path)
+
+}
+
+
+#' @rdname cache_set
+#' @export
+cache_get <- function() getOption('cache')
+
+
+#' @rdname cache_set
+#' @aliases CACHE
+#' @export
+cache_path <- function(path=NULL) {
+
+  if( ! is.null(path) )
+    options( cache = path[[1]] )
 
   getOption('cache', 'cache')
 
 }
-

@@ -12,7 +12,7 @@ save_rds(object, ...)
 \item{...}{additional arguments passed to saveRDS}
 }
 \value{
-`object`
+\code{object}
 }
 \description{
 A wrapper around saveRDS that returns the object invisibly for use in pipes
@@ -21,5 +21,7 @@ A wrapper around saveRDS that returns the object invisibly for use in pipes
 Saves an object as an RDS file
 }
 \seealso{
-- [base::saveRDS()]
+\itemize{
+\item \code{\link[base:saveRDS]{base::saveRDS()}}
+}
 }
