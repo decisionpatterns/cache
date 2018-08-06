@@ -8,8 +8,9 @@
 #' @md
 #' @export
 
-cache_rm <- function(...) {
+cache_rm <- function( cache=cache_find() ) {
 
+   # fs::dir_rm(cache)
    stop("Not implemented yet.")
 
 }

@@ -17,4 +17,7 @@
       , domain = NA
     )
 
+  if( require(future) )future::plan(multiprocess)
+
 }
+

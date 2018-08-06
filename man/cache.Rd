@@ -10,16 +10,18 @@
 \title{Cache and uncache an object}
 \usage{
 cache(object, name = deparse(substitute(object)), cache = getOption("cache",
-  "cache"), timestamp = getOption("timestamp"), envir = parent.frame())
+  "cache"), timestamp = getOption("timestamp"), envir = parent.frame(),
+  fun = getOption("cache.write", cache_write_rds))
 
 cache_(name, cache = getOption("cache", "cache"),
-  timestamp = getOption("timestamp"), envir = parent.frame())
+  timestamp = getOption("timestamp"), envir = parent.frame(),
+  fun = cache_write_rds)
 
 cache_all(...)
 
 uncache(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame(),
-  overwrite = TRUE)
+  overwrite = TRUE, fun = getOption("cache.read", cache_read_rds))
 
 uncache_(...)
 
@@ -37,12 +39,14 @@ uncache_all(cache = getOption("cache", "cache"), envir = parent.frame())
 \item{timestamp}{string or function (of 0 arguments); timestamp to add to
 the filename.}
 
-\item{envir}{where to uncache the object. Defaults to the caller's environment}
+\item{envir}{environment .. where object to cache or to where object should
+be uncached. Defaults to the caller's environment}
 
-\item{...}{additional arguments
+\item{fun}{functiontion for writing or reading the objects. Defaults to
+\code{\link[=cache_write_rds]{cache_write_rds()}}
 
 \code{cache}/\code{cache_} and \code{uncache}/\code{uncache_} save and restore single objects to
-the a \code{cache} directory with \code{saveRDS}.
+the a \code{cache} directory.
 
 The \code{cache} defaults to the global option 'cache' otherwise
 the \code{cache} in the working directory is used. This follows the behavior
@@ -54,7 +58,11 @@ in the \emph{ProjectTemplate} package.
 option \code{timestamp}. This can either be a character vector or a function
 of zero arguments that returns an unary length character vector. (Only the
 first value is used.)  Common practice is to use \code{Sys.Date} or
-\code{Sys.time} for creating the timestamp.}
+\code{Sys.time} for creating the timestamp.
+
+The writing of files is delegated to \code{cache_write_x} functions ...}
+
+\item{...}{additional arguments}
 
 \item{overwrite}{logical; whether to overwrite if it \code{name} already exists
 on the environment.}
@@ -63,17 +71,19 @@ on the environment.}
 Caches or uncaches and object in a cache directory
 }
 \examples{
+
   \dontrun{
-     cache( myfile )                      # cache/myfile.rds
-     cache( myfile, "mycache" )           # mycache/myfile.rds
-     cache( myfile, "mycache", Sys.Date ) # mycache/myfile-YYYY-MM-DD.rds
+     data(mtcars)
+     cache(mtcars)                      # cache/mtcars.rds
+     # cache( mtcars, "mycache" )           # mycache/mtcars.rds
+     # cache( mtcars, "mycache", Sys.Date ) # mycache/mtcars-YYYY-MM-DD.rds
 
      # EXPLICIT USE OF timestamp
-     options( timestamp = Sys.Date )
-     cache( myfile, "mycache" )          # mycache/myfile-YYYY-MM-DD.rds
+     # options( timestamp = Sys.Date )
+     # cache( mtcars, "mycache" )          # mycache/mtcars-YYYY-MM-DD.rds
 
-     uncache(myfile)
-     uncache_("myfile")
+     uncache(mtcars)
+     # uncache_("mtcars")
   }
 
 }

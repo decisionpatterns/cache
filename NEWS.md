@@ -1,3 +1,11 @@
+# cache 0.2.0 
+
+*cache* has been refactored to be more generic in how it handles file types. It
+now depends on the fs package and supports RDS and AES formats.
+ 
+ -
+
+
 # cache 0.1.7 
  
  - `use_cache` added ... and now does the right thing for all project types

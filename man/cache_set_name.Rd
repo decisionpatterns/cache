@@ -20,9 +20,9 @@ Get and set the default name for the cache directory (not the path)
 }
 \details{
 \code{cache_set_name} can be used provide an alternative name other than \code{cache}.
-Some examples are '.cache' (hidden) or '.rcache' (possibly avoiding conflicts).
+Some useful names are '.cache' (hidden) or '.rcache' (possibly avoiding conflicts).
 
-\code{cache_get_name} or \code{cache_name} return this value.
+\code{\link[=cache_name]{cache_name()}} is an alieas for \code{\link[=cache_get_name]{cache_get_name()}} or \code{cache_name} return this value.
 }
 \seealso{
 \itemize{

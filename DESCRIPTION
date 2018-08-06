@@ -1,7 +1,7 @@
 Package: cache
 Title: Intuitive and Comprehensive Cache
-Version: 0.1.8
-Date: 2018-07-16
+Version: 0.2.0
+Date: 2018-08-06
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
@@ -19,7 +19,9 @@ Imports:
 Suggests: 
     testthat (>= 1.0.2), 
     knitr (>= 1.18), 
-    rmarkdown (>= 1.8)
+    rmarkdown (>= 1.8),
+    sodium (>= 1.1),
+    future (>= 1.6.2)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true

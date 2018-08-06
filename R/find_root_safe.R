@@ -8,5 +8,4 @@ find_root_safe <- function(...) {
  x <- NULL
  try( x <- find_root(...), silent=TRUE )
  return(x)
-
 }

@@ -1,5 +1,69 @@
 # TODO
 
+ - [ ] Use `bg` to support async saving of files. It is already written but 
+       unused. Can we support `bg` caching as an option/directive 
+ 
+ - [ ] Support compound file extensions, e.g. `tsv.gz` or `aes.rds`
+ 
+ - [ ] Support multiple caches (?)
+ 
+ - [ ] Factor out `cache.aes` and `cache.rds` packages.
+   - [ ] Core `cache` package to handle cache path, dispatch and metadata 
+   - [ ] Create `cache.odbc`, `cache.dbi`, `cache.feather`, packages.
+   
+ - [ ] Decide on whether `uncache` should be a load/restore or read function. 
+   Currently it does both.
+ 
+ - [ ] Object should have a save type
+ 
+ - [ ] Support extensions through methods. 
+   For example `cache_write.aesrds()` would be used for files with  
+   A potential problem is that the writer will not no the class.
+   - [ ] Create `file_type()`/`write_method`/`cache_method()`
+     for declaring the method of caching the file. 
+     
+     name %>% cache_method() %>% uncache
+     name %>% uncache_aes() 
+     
+     object %>% cache_method('aes') %>% cache() *or* 
+     object %>% cache_aes() *or*
+     object %>% cache( method = 'aes')
+
+     
+     
+   > fs::path('.') %>% class()
+   [1] "fs_path"   "character"
+ 
+ - [ ] Remove dependency on file.tools in favor of fs
+   - [ ] loadRDS
+   - [ ] file_basename
+   
+ - [ ] Seperate encryption from saving
+ 
+ - [ ] Add `cache_read` and `cache_write` which do not do assignment
+   The relative merits of load/save vs read/write
+   load/save encapsulates assignment to an environment
+   read/write allow specification of object name
+   - [ ] change to `cache_read.aes` and `cache_write.aes`
+   
+ - [ ]
+ 
+ - [ ] Redraft with rlang for NSE 
+ 
+ - Delineate the difference between 
+   - cache_name : basename 
+   - cache_get / cache_get : 
+   - cache_path 
+   - cache_find # search 
+   
+ - [ ] `use_cache()` should set-up .Rprofile to specify a project specific 
+   cache directory if it is different from the default.   
+   - git projects
+   - ProjectTemplate projects
+   - R packages
+ 
+ - Tests 
+ 
  - Should a .Rprofile be created and added to the project to setup the cache?
    - If it is an rstudio project?
  
@@ -19,14 +83,14 @@
 
  - [ ] cache asynchronously. 
        When cache is called, this should return -okay- invisible object 
-       before writing
+       before writing. 
 
- - [ ] cache to memory using a cache environmen
+ - [ ] cache to memory using a cache environment
        this just does an assignment when the cache is a environment
        
  - [ ] cache:::store, cache:::restore for explicit calling
    How does packrat work it so that packrat::XDX works but XDX does not?
-   It doesn't
+   Tested. It doesn't.
 
  - [ ] Would it be possible to have cache emulate an on-disk **environment**
        such that an access to an object would recall it from disk and 

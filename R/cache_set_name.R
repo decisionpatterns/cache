@@ -7,9 +7,9 @@
 #' @details
 #'
 #' `cache_set_name` can be used provide an alternative name other than `cache`.
-#' Some examples are '.cache' (hidden) or '.rcache' (possibly avoiding conflicts).
+#' Some useful names are '.cache' (hidden) or '.rcache' (possibly avoiding conflicts).
 #'
-#' `cache_get_name` or `cache_name` return this value.
+#' [cache_name()] is an alieas for [cache_get_name()] or `cache_name` return this value.
 #'
 #' @seealso
 #'  * [cache_set()], [cache_get()], [cache_path()]

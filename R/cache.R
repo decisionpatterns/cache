@@ -9,13 +9,16 @@
 #'        `getOption('cache')` or else simply `cache`
 #' @param timestamp string or function (of 0 arguments); timestamp to add to
 #'        the filename.
-#' @param envir where to uncache the object. Defaults to the caller's environment
+#' @param envir environment .. where object to cache or to where object should
+#'        be uncached. Defaults to the caller's environment
 #' @param overwrite logical; whether to overwrite if it `name` already exists
 #'        on the environment.
 #' @param ... additional arguments
+#' @param fun functiontion for writing or reading the objects. Defaults to
+#' [cache_write_rds()]
 #'
 #' `cache`/`cache_` and `uncache`/`uncache_` save and restore single objects to
-#' the a `cache` directory with `saveRDS`.
+#' the a `cache` directory.
 #'
 #' The `cache` defaults to the global option 'cache' otherwise
 #' the `cache` in the working directory is used. This follows the behavior
@@ -29,21 +32,30 @@
 #' first value is used.)  Common practice is to use `Sys.Date` or
 #' `Sys.time` for creating the timestamp.
 #'
+#' The writing of files is delegated to `cache_write_x` functions ...
+#'
 #' @seealso
 #'   `base::saveRDS` \cr
 #'
 #' @examples
+#'
 #'   \dontrun{
-#'      cache( myfile )                      # cache/myfile.rds
-#'      cache( myfile, "mycache" )           # mycache/myfile.rds
-#'      cache( myfile, "mycache", Sys.Date ) # mycache/myfile-YYYY-MM-DD.rds
+#'      data(mtcars)
+#'      cache(mtcars)                      # cache/mtcars.rds
+#'      # cache( mtcars, "mycache" )           # mycache/mtcars.rds
+#'      # cache( mtcars, "mycache", Sys.Date ) # mycache/mtcars-YYYY-MM-DD.rds
 #'
 #'      # EXPLICIT USE OF timestamp
-#'      options( timestamp = Sys.Date )
-#'      cache( myfile, "mycache" )          # mycache/myfile-YYYY-MM-DD.rds
+#'      # options( timestamp = Sys.Date )
+#'      # cache( mtcars, "mycache" )          # mycache/mtcars-YYYY-MM-DD.rds
 #'
-#'      uncache(myfile)
-#'      uncache_("myfile")
+#'      uncache(mtcars)
+#'      # uncache_("mtcars")
+#'
+#'      cache_use_rds()
+#'      cache(mtcars)
+#'      if( exists('mtcars') ) rm(mtcars)
+#'      uncache(mtcars)
 #'   }
 #'
 #' @md
@@ -51,13 +63,14 @@
 
 cache <- function(
       object
-    , name = deparse( substitute(object) )
+    , name = deparse(substitute(object))
     , cache = getOption('cache', 'cache' )
     , timestamp = getOption('timestamp')
     , envir = parent.frame()
+    , fun = getOption( 'cache.write', cache_write_rds )
 ) {
 
-  cache_(name, cache, timestamp, envir )
+  cache_(name, cache, timestamp, envir, fun=fun )
 
 }
 
@@ -70,6 +83,7 @@ cache_ <- function(
   , cache = getOption('cache', 'cache' )
   , timestamp = getOption('timestamp')
   , envir = parent.frame( )
+  , fun = cache_write_rds
 ) {
 
     object <- get( name, envir )
@@ -84,7 +98,11 @@ cache_ <- function(
       dir_create( cache, recursive = TRUE )
     }
 
-    save_rds( object, file = fs::path( cache, paste0( name, timestamp, ".rds")) )
+    # path <- fs::path( cache, paste0( name, timestamp, ".rds") )
+    path_extensionless <- fs::path( cache, paste0( name, timestamp ) )
+
+    # save_rds( object, fileme = path )
+    fun( object, name=name, cache=cache )
 
 }
 

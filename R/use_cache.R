@@ -46,7 +46,7 @@ use_cache <- function(
     root <- fs::path_dir(path)
   } else {
     root <- find_root( is_git_root | is_rstudio_project | is_r_package )
-    path <- file.path( root, cache_name() )
+    path <- fs::path( root, cache_name() )
   }
 
   if( ! dir_exists(path) ) {
