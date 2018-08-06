@@ -11,7 +11,7 @@
 #' @examples
 #'
 #' dontrun{
-#'  cache_use_aes()
+#'  cache_use_sodium()
 #'  cache(mtcars)
 #'  if( exists('mtcars') ) rm(mtcars)
 #'  uncache(mtcars)
@@ -20,8 +20,21 @@
 #'
 #' @export
 
-cache_use_aes <- function()
+cache_use_sodium <- function() {
+  if( is.null(getOption("cache.aes_key") ) )
+    set_option( cache.aes_key = readline("AES Encryption Key? ") )
+
   options( cache.write = cache_write_aes, cache.read = cache_read_aes )
+}
+
+
+#' @rdname cache_use_sodium
+#' @export
+
+cache_use_aes <- function(...) {
+  .Deprecated("cache_use_sodium", "cache")
+  cache_use_sodium(...)
+}
 
 
 #' @param object object to store.
@@ -47,7 +60,7 @@ cache_use_aes <- function()
 #'
 #' @importFrom sodium data_encrypt
 #' @importFrom sodium data_decrypt
-#' @rdname cache_use_aes
+#' @rdname cache_use_sodium
 #' @export
 
 cache_write_aes <- function(
@@ -82,7 +95,7 @@ cache_write_aes <- function(
 #' @importFrom sodium data_decrypt
 #' @importFrom fs path
 #' @importFrom fs path_ext_set
-#' @rdname cache_use_aes
+#' @rdname cache_use_sodium
 #' @export
 
 cache_read_aes <- function(

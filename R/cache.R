@@ -83,7 +83,7 @@ cache_ <- function(
   , cache = getOption('cache', 'cache' )
   , timestamp = getOption('timestamp')
   , envir = parent.frame( )
-  , fun = cache_write_rds
+  , fun = getOption( 'cache.write', cache_write_rds )
 ) {
 
     object <- get( name, envir )

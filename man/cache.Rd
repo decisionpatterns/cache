@@ -15,7 +15,7 @@ cache(object, name = deparse(substitute(object)), cache = getOption("cache",
 
 cache_(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame(),
-  fun = cache_write_rds)
+  fun = getOption("cache.write", cache_write_rds))
 
 cache_all(..., envir = parent.frame())
 

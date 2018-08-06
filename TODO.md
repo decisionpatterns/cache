@@ -1,5 +1,9 @@
 # TODO
 
+ - [?] Use `secure` package for making sure that data is sharable
+ 
+ - [ ] Securely get password from terminal, cf. *getPass* package
+ 
  - [ ] Use `bg` to support async saving of files. It is already written but 
        unused. Can we support `bg` caching as an option/directive 
  
