@@ -4,7 +4,7 @@
 \alias{cache_rm}
 \title{cache_rm}
 \usage{
-cache_rm(...)
+cache_rm(cache = cache_find())
 }
 \arguments{
 \item{...}{character; names of cached objects to permanently remove from

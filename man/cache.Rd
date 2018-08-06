@@ -17,7 +17,7 @@ cache_(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame(),
   fun = cache_write_rds)
 
-cache_all(...)
+cache_all(..., envir = parent.frame())
 
 uncache(name, cache = getOption("cache", "cache"),
   timestamp = getOption("timestamp"), envir = parent.frame(),
@@ -84,6 +84,11 @@ Caches or uncaches and object in a cache directory
 
      uncache(mtcars)
      # uncache_("mtcars")
+
+     cache_use_rds()
+     cache(mtcars)
+     if( exists('mtcars') ) rm(mtcars)
+     uncache(mtcars)
   }
 
 }

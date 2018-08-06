@@ -110,9 +110,10 @@ cache_ <- function(
 #' @rdname cache
 #' @export
 
-cache_all <- function( ... ) {
+cache_all <- function( ..., envir=parent.frame() ) {
 
-  warning("Not implemented yet.")
+  for( nm in ls( envir=envir ) )
+    cache_(nm,...)
 
 }
 
