@@ -19,7 +19,7 @@ cache_(name, cache = getOption("cache", "cache"),
 
 cache_all(..., envir = parent.frame())
 
-uncache(name, cache = getOption("cache", "cache"),
+uncache(name, cache = getOption("cache", "cache"), ...,
   timestamp = getOption("timestamp"), envir = parent.frame(),
   overwrite = TRUE, fun = getOption("cache.read", cache_read_rds))
 

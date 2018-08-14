@@ -67,9 +67,9 @@ cache_read_rds <- function( name, cache=find_cache(), ... ) {
 
   path <- {
     fs::path( cache, name ) ->.;
-    fs::path_ext_set(".rds")
+    fs::path_ext_set(. , "rds")
   }
 
-  file.tools::loadRDS(path)
+  readRDS(path)
 
 }

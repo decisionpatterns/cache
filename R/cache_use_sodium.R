@@ -21,10 +21,19 @@
 #' @export
 
 cache_use_sodium <- function() {
+
+  if( ! require(sodium) )
+    stop("\n`cache_use_sodium` requires the sodium packages. Install it with:\n\tinstall.packages('sodium')")
+
   if( is.null(getOption("cache.aes_key") ) )
     set_option( cache.aes_key = readline("AES Encryption Key? ") )
 
-  options( cache.write = cache_write_aes, cache.read = cache_read_aes )
+  options(
+      cache.write    = cache_write_aes
+    , cache.read     = cache_read_aes
+    , cache.file_ext = sodium_extension
+  )
+
 }
 
 
@@ -100,8 +109,8 @@ cache_write_aes <- function(
 
 cache_read_aes <- function(
     name
-  , key = getOption("cache.aes_key", set_option( cache.aes_key = readline("AES Encryption Key? ") ) )
   , cache = cache_find()
+  , key = getOption("cache.aes_key", set_option( cache.aes_key = readline("AES Encryption Key? ") ) )
 ) {
 
   if( ! require(sodium) ) stop("The sodium is required for decrypting data sets.")
@@ -109,7 +118,7 @@ cache_read_aes <- function(
   path <- {
     cache ->.;
       fs::path( ., name ) ->.;
-      fs::path_ext_set( ., aes_extension )
+      fs::path_ext_set( ., sodium_extension )
     }
 
   path  ->.;
@@ -124,7 +133,7 @@ cache_read_aes <- function(
 
 # Utilities (Not exported)
 
-aes_extension = 'aesrds'
+sodium_extension = 'aesrds'
 
 make_aes_key <- function(key) {
 

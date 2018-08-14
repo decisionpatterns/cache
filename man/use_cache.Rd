@@ -2,9 +2,14 @@
 % Please edit documentation in R/use_cache.R
 \name{use_cache}
 \alias{use_cache}
+\alias{cache_use}
 \title{use_cache}
 \usage{
 use_cache(path = NULL, ignore = TRUE, criterion = is_git_root |
+  is_r_package | is_rstudio_project, ..., git_ignore = ignore,
+  rbuild_ignore = ignore)
+
+cache_use(path = NULL, ignore = TRUE, criterion = is_git_root |
   is_r_package | is_rstudio_project, ..., git_ignore = ignore,
   rbuild_ignore = ignore)
 }
@@ -42,6 +47,9 @@ to commit the cache data to git as the cache is seen as a working directory.
 
 \code{rbuild_ignore} controls whether the cache is incorporated into the package
 build. The default is not to include them.
+
+\code{cache_use} is an alias for \code{use_cache} that has the conventions of this
+package rather than \code{devtools}.
 }
 \seealso{
 \code{\link[rprojroot:find_root]{rprojroot::find_root()}}

@@ -1,3 +1,7 @@
+# cache 0.2.2
+
+ - Fix `uncache` to use *sodium* and other generic backends
+
 # cache 0.2.0 
 
 *cache* has been refactored to be more generic in how it handles file types. It

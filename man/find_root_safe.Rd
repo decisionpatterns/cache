@@ -2,6 +2,7 @@
 % Please edit documentation in R/find_root_safe.R, R/utils.R
 \name{find_root_safe}
 \alias{find_root_safe}
+\alias{find_root_safe}
 \title{Find Root or  NULL}
 \usage{
 find_root_safe(...)

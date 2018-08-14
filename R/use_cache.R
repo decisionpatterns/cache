@@ -27,6 +27,8 @@
 #' `rbuild_ignore` controls whether the cache is incorporated into the package
 #' build. The default is not to include them.
 #'
+#' `cache_use` is an alias for `use_cache` that has the conventions of this
+#' package rather than `devtools`.
 #'
 #' @seealso [rprojroot::find_root()]
 #' @import rprojroot fs
@@ -86,3 +88,9 @@ use_cache <- function(
   invisible(TRUE)
 
 }
+
+
+#' @rdname use_cache
+#' @export
+
+cache_use <- use_cache
