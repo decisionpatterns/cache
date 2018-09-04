@@ -7,7 +7,7 @@
 \alias{cache_read_sodium}
 \title{Cache objects using sodium (Sodium) encryption}
 \usage{
-cache_use_sodium()
+cache_use_sodium(key = NULL)
 
 cache_use_aes(...)
 
@@ -20,13 +20,16 @@ cache_read_sodium(name, cache = cache_find(),
   readline("sodium Encryption Key? "))))
 }
 \arguments{
-\item{object}{object to store.}
+\item{key}{string; sets the en/decryption key \code{cache.sodium_key}.
+The default (NULL) does not set a key.}
 
-\item{key}{string; encrypton key. Defaults to option cache.sodium_key}
+\item{object}{object to store.}
 
 \item{name}{string; name of object}
 
 \item{cache}{string; path to cache directory. Defaults to \code{\link[=cache_find]{cache_find()}}}
+
+\item{key}{string; encrypton key. Defaults to option cache.sodium_key}
 
 \item{name}{string; name of object in the cache}
 
@@ -40,7 +43,9 @@ Caches objects with sodium encryption using the \emph{sodium} package
 }
 \details{
 Encrypts cached datasets using sodium256 encryption provided by the \emph{sodium}
-package
+package.
+
+If \code{key} is provided, this is used as the encryption/decrytion key.
 
 \code{cache_write_sodium} and \code{cache_read_sodium} are functions for
 reading and writing sodium encrypted objects to/from the cache. In most cases,

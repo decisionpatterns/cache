@@ -1,3 +1,6 @@
+
+ - Add `key` argument to `cache_use_sodium()`
+
 # cache 0.2.3 
 
  - Fix `uncache`: file extensions work correctly now -- '.' is permitted.
