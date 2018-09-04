@@ -1,3 +1,7 @@
+# cache 0.2.3 
+
+ - Fix `uncache`: file extensions work correctly now -- '.' is permitted.
+
 # cache 0.2.2
 
  - Fix `uncache` to use *sodium* and other generic backends
@@ -8,7 +12,6 @@
 now depends on the fs package and supports RDS and AES formats.
  
  -
-
 
 # cache 0.1.7 
  

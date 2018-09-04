@@ -3,25 +3,26 @@
 \name{cache_use_sodium}
 \alias{cache_use_sodium}
 \alias{cache_use_aes}
-\alias{cache_write_aes}
-\alias{cache_read_aes}
-\title{Cache objects using AES encryption}
+\alias{cache_write_sodium}
+\alias{cache_read_sodium}
+\title{Cache objects using sodium (Sodium) encryption}
 \usage{
 cache_use_sodium()
 
 cache_use_aes(...)
 
-cache_write_aes(object, key = getOption("cache.aes_key",
-  set_option(cache.aes_key = readline("AES Encryption Key? "))), ...,
+cache_write_sodium(object, key = getOption("cache.sodium_key",
+  set_option(cache.sodium_key = readline("sodium Encryption Key? "))), ...,
   name = deparse(substitute(object)), cache = cache_find())
 
-cache_read_aes(name, cache = cache_find(), key = getOption("cache.aes_key",
-  set_option(cache.aes_key = readline("AES Encryption Key? "))))
+cache_read_sodium(name, cache = cache_find(),
+  key = getOption("cache.sodium_key", set_option(cache.sodium_key =
+  readline("sodium Encryption Key? "))))
 }
 \arguments{
 \item{object}{object to store.}
 
-\item{key}{string; encrypton key. Defaults to option cache.aes_key}
+\item{key}{string; encrypton key. Defaults to option cache.sodium_key}
 
 \item{name}{string; name of object}
 
@@ -35,19 +36,19 @@ cache_read_aes(name, cache = cache_find(), key = getOption("cache.aes_key",
 \code{object} (In order to be pipe-able, the object must be returned)
 }
 \description{
-Caches objects with AES encryption using the \emph{sodium} package
+Caches objects with sodium encryption using the \emph{sodium} package
 }
 \details{
-Encrypts cached datasets using AES256 encryption provided by the \emph{sodium}
+Encrypts cached datasets using sodium256 encryption provided by the \emph{sodium}
 package
 
-\code{cache_write_aes} and \code{cache_read_aes} are functions for
-reading and writing AES encrypted objects to/from the cache. In most cases,
-\code{\link[=cache]{cache()}} and \code{\link[=uncache]{uncache()}} should be used with \code{\link[=cache_set_aes]{cache_set_aes()}} instead.
+\code{cache_write_sodium} and \code{cache_read_sodium} are functions for
+reading and writing sodium encrypted objects to/from the cache. In most cases,
+\code{\link[=cache]{cache()}} and \code{\link[=uncache]{uncache()}} should be used with \code{\link[=cache_set_sodium]{cache_set_sodium()}} instead.
 
-The extension given to AES encrypted files is \code{aesrds}.
+The extension given to sodium encrypted files is \code{sodiumrds}.
 
-\code{cache_read_aes} reads an AES encrypted object from the cache. \code{AES}
+\code{cache_read_sodium} reads an AES encrypted object from the cache. \code{AES}
 encrypted objects are
 }
 \examples{
@@ -60,7 +61,7 @@ dontrun{
  fs::dir_ls( cache_find() )
 }
 
-  cache_write_aes( iris, "my key" )
-  cache_read_aes( 'iris', "my key" )
+  cache_write_sodium( iris, "my key" )
+  cache_read_sodium( 'iris', "my key" )
 
 }
