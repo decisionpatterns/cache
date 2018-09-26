@@ -1,6 +1,15 @@
 # TODO
 
- - [?] Use `secure` package for making sure that data is sharable
+ - [ ] When rprojroot is a package, set the cache to be the data directory.
+   - cache then is equivalent to `devtools::use_data()`
+
+ - [ ] Create `cache_use_fst` -> refactor to 
+
+ - [X] Rename `cache_write_aes` -> `cache_write_sodium`, etc.s
+ 
+ - [X] Rename `tidycache` - No.
+ 
+ - [?] Use `secure` package for making sure that data is sharable `cache.secure`
  
  - [ ] Securely get password from terminal, cf. *getPass* package
  
@@ -11,14 +20,18 @@
  
  - [ ] Support multiple caches (?)
  
- - [ ] Factor out `cache.aes` and `cache.rds` packages.
+ - [ ] Factor out `cache.sodium` and `cache.rds` packages.
    - [ ] Core `cache` package to handle cache path, dispatch and metadata 
    - [ ] Create `cache.odbc`, `cache.dbi`, `cache.feather`, packages.
    
  - [ ] Decide on whether `uncache` should be a load/restore or read function. 
    Currently it does both.
  
- - [ ] Object should have a save type
+ - [ ] Object should have a save type attribute
+ 
+ - [ ] Implement metadata (as `cache_find()/.metadata` )
+ 
+ - [ ] Use `.Rprofile` for ...
  
  - [ ] Support extensions through methods. 
    For example `cache_write.aesrds()` would be used for files with  

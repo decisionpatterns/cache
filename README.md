@@ -1,6 +1,7 @@
 # cache 
 
-The **cache** package is designed to make saving and restoring R objects 
+The **cache** package provides a consistent interface for writing to and
+restoring data. It is designed to make saving and restoring R objects 
 easy, functional, extensible and consistent.  
 
   - **easy**: there are two functions that you need, `cache` and `uncache`

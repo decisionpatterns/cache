@@ -17,3 +17,8 @@ This package delineates the difference between `write`/`read`` and
 
   mtcars %>% cache %>% nrows
 
+
+## files
+
+Writing and files should be uniquely described by their file extension. This
+might be true of other repositories as well, e.g. 'my_file.sql'
