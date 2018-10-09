@@ -52,7 +52,7 @@ cache_write_rds <- function(
 
   path <- {
     fs::path( cache, name ) ->.;
-    fs::path_ext_set( ., "rds")
+    paste0( . , ".rds")             # can't use path_set_ext because it modifies last .xyz
   }
 
   save_rds( object, file=path, ... )

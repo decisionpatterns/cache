@@ -1,5 +1,8 @@
+# cache 0.2.4
 
  - Add `key` argument to `cache_use_sodium()`
+ - Fix `cache_write_rds` so that it doesn't use fs::path_set_ext. That messed 
+   with valid R objects with a `.` in the name.
 
 # cache 0.2.3 
 
