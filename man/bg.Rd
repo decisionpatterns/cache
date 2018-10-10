@@ -23,7 +23,6 @@ Performs function according to future::plan()
   f <- 5 \%>\% future({Sys.sleep(.)})
   t <- 5 \%>\% bg(Sys.sleep)
 
-
 }
 \seealso{
 \itemize{

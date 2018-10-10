@@ -17,7 +17,6 @@
 #'   f <- 5 %>% future({Sys.sleep(.)})
 #'   t <- 5 %>% bg(Sys.sleep)
 #'
-#'
 #' @importFrom future future
 
 bg <- function( x, fun, ... ) {

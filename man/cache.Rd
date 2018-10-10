@@ -9,8 +9,9 @@
 \alias{uncache_all}
 \title{Cache and uncache an object}
 \usage{
-cache(object, name = deparse(substitute(object)), cache = getOption("cache",
-  "cache"), timestamp = getOption("timestamp"), envir = parent.frame(),
+cache(object, name = deparse(substitute(object)),
+  cache = getOption("cache", "cache"),
+  timestamp = getOption("timestamp"), envir = parent.frame(),
   fun = getOption("cache.write", cache_write_rds))
 
 cache_(name, cache = getOption("cache", "cache"),
@@ -25,7 +26,8 @@ uncache(name, cache = getOption("cache", "cache"), ...,
 
 uncache_(...)
 
-uncache_all(cache = getOption("cache", "cache"), envir = parent.frame())
+uncache_all(cache = getOption("cache", "cache"),
+  envir = parent.frame())
 }
 \arguments{
 \item{object}{object to cache}

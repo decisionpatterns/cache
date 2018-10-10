@@ -1,5 +1,7 @@
 # TODO
 
+ - [ ] Support files and paths esp fs_path objects from `fs` package
+ 
  - [ ] When rprojroot is a package, set the cache to be the data directory.
    - cache then is equivalent to `devtools::use_data()`
 
@@ -51,19 +53,18 @@
    > fs::path('.') %>% class()
    [1] "fs_path"   "character"
  
- - [ ] Remove dependency on file.tools in favor of fs
-   - [ ] loadRDS
-   - [ ] file_basename
+ - [x] Remove dependency on file.tools in favor of fs
+   - [x] loadRDS
+   - [x] `file_basename` -> `fs::path_ext_remove()`
    
  - [ ] Seperate encryption from saving
  
- - [ ] Add `cache_read` and `cache_write` which do not do assignment
+ - [x] Add `cache_read` and `cache_write` which do not do assignment
    The relative merits of load/save vs read/write
    load/save encapsulates assignment to an environment
    read/write allow specification of object name
-   - [ ] change to `cache_read.aes` and `cache_write.aes`
-   
- - [ ]
+   - [x] change to `cache_read.aes` and `cache_write.aes` --> cache_[*]_sodium
+
  
  - [ ] Redraft with rlang for NSE 
  
@@ -73,7 +74,7 @@
    - cache_path 
    - cache_find # search 
    
- - [ ] `use_cache()` should set-up .Rprofile to specify a project specific 
+ - [x] `use_cache()` should set-up .Rprofile to specify a project specific 
    cache directory if it is different from the default.   
    - git projects
    - ProjectTemplate projects
