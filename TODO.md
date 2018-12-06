@@ -1,6 +1,12 @@
 # TODO
 
- - [ ] Support files and paths esp fs_path objects from `fs` package
+ - [x] Support files and paths esp fs_path objects from `fs` package
+ 
+ - [ ] loadr
+   Load a file based on extension, includes readr.
+   load vs. read (?)
+   - [ ] 
+   
  
  - [ ] When rprojroot is a package, set the cache to be the data directory.
    - cache then is equivalent to `devtools::use_data()`
