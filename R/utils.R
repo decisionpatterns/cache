@@ -84,3 +84,28 @@ path_glob <- function(path) {
     fs::as_fs_path(.)
 }
 
+
+#
+cache_path_to_basename <- function(path) {
+
+  fs::path_file(path) ->.   # Strip directory
+
+  exts <- cache_extensions()  #
+
+}
+
+
+# path_to_name
+# TO recover the name from the path, we
+# name_to_path
+
+get_backends <- function() getOption('cache.backends')
+
+cache_backends_ls <- function() names( get_backends() )
+cache_exts <- function() {
+
+   backends <- get_backends()
+   sapply( backends, function(x) x$ext )
+
+}
+

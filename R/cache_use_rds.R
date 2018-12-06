@@ -4,7 +4,7 @@
 #'
 #' @details
 #'
-#' This is the default method for caching objects.
+#' This is the *default* method for caching objects.
 #'
 #' `cache_use_rds` sets RDS as the default caching mechanism to use RDS.
 #'
@@ -17,8 +17,10 @@
 #' @rdname cache_use_rds
 #' @export
 
-cache_use_rds <- function()
-  options( cache.write = cache_write_rds, cache.read = cache_read_rds )
+cache_register_rds <- function()
+  cache_register_backend( "rds", write = cache_write_rds, read = cache_read_rds )
+
+  # options( cache.write = cache_write_rds, cache.read = cache_read_rds )
 
 
 #' @param object; object to cache

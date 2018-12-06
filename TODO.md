@@ -175,6 +175,7 @@
  - [ ] support timestamp to un/cache if newer. 
  - [ ] support multiple cache mechanisms such as rds, feather, write_table, etc. 
  - [ ] tie into rsync package ... 
+
 ## File Methods 
    - Text (delim; xlsx; txt)
      Imagine this ... where automated analysis and files are intermingled

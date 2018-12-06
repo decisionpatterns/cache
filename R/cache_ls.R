@@ -17,8 +17,12 @@
 #' @import fs
 #' @export
 
-cache_ls <- function( cache=getOption('cache', 'cache'), ... )
-   fs::dir_ls( path=cache, ... )
+cache_ls <- function( cache=getOption('cache', 'cache'), ... ) {
+  fs::dir_ls( path=cache, ... ) ->.
+    fs::path_file(.) ->.
+    fs::path_ext_remove(.) ->.
+  .
+}
 
 
 

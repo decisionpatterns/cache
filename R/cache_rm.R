@@ -1,20 +1,23 @@
 #' cache_rm
 #'
-#' Remove items from the cache
+#' Remove item(s) from the cache
 #'
 #' @param ... character; names of cached objects to permanently remove from
 #' the cache
+#' @param .cache path; cache directory
 #'
 #' @md
 #' @export
 
-cache_rm <- function( items, cache=cache_find() ) {
+cache_rm <- function( ..., .cache=cache_find() ) {
 
-   # fs::dir_rm(cache)
-   # stop("Not implemented yet.")
+  items <- as.character( substitute( list(...) ))[-1]
 
-
-
-  fs::path( cache, items )
+  fs::path( .cache, items )
 
 }
+
+
+f <- function( item ) as.character( substitute(item))
+f <- function( ... ) as.character( substitute( list(...) ))[-1]
+

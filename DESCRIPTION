@@ -19,12 +19,11 @@ Suggests:
     testthat (>= 1.0.2), 
     knitr (>= 1.18), 
     rmarkdown (>= 1.8),
-    sodium (>= 1.1),
     future (>= 1.6.2)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Repository: CRAN
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate"))

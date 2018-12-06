@@ -4,12 +4,14 @@
 \alias{cache_rm}
 \title{cache_rm}
 \usage{
-cache_rm(items, cache = cache_find())
+cache_rm(..., .cache = cache_find())
 }
 \arguments{
 \item{...}{character; names of cached objects to permanently remove from
 the cache}
+
+\item{.cache}{path; cache directory}
 }
 \description{
-Remove items from the cache
+Remove item(s) from the cache
 }
