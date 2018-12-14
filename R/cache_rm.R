@@ -18,6 +18,7 @@ cache_rm <- function( ..., .cache=cache_find() ) {
 }
 
 
-f <- function( item ) as.character( substitute(item))
-f <- function( ... ) as.character( substitute( list(...) ))[-1]
+#' @rdname cache_rm
+#' @export
 
+cache_delete <- cache_rm

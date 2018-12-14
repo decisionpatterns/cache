@@ -5,11 +5,11 @@
 #' @param ... arguments passed to [rprojroot::find_root()]
 #'
 #' @note this function is not exported
-#' @import rprojroot
+#' @importFrom rprojroot find_root
 
 find_root_safe <- function(...) {
   x <- NULL
-  try( x <- find_root(...), silent=TRUE )
+  try( x <- rprojroot::find_root(...), silent=TRUE )
   return(x)
 }
 
@@ -85,27 +85,4 @@ path_glob <- function(path) {
 }
 
 
-#
-cache_path_to_basename <- function(path) {
-
-  fs::path_file(path) ->.   # Strip directory
-
-  exts <- cache_extensions()  #
-
-}
-
-
-# path_to_name
-# TO recover the name from the path, we
-# name_to_path
-
-get_backends <- function() getOption('cache.backends')
-
-cache_backends_ls <- function() names( get_backends() )
-cache_exts <- function() {
-
-   backends <- get_backends()
-   sapply( backends, function(x) x$ext )
-
-}
-
+`%!in%` <- function(e1, e2) ! e1 %in% e2

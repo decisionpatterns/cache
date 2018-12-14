@@ -1,38 +1,55 @@
 #' cache_ls
 #'
-#' List contents of the cache directory
+#' List cached files
 #'
-#' @param cache string; cache directory
+#' @param cache string; cache directory (Default: [cache_path()] )
 #' @param ... additional arguments passed to [fs::dir_ls()]
 #'
 #' @details
 #'
-#' Similar to `ls` but defaults to viewing the cache directory.
+#' Similar to `ls` but lists the objects in the cache directory that can be
+#' loaded.
+#'
+#' @return
+#'
+#' character vector (names of objects)
 #'
 #' @seealso
-#'
+#'  - [unsupported_paths()] and [unsupported_files()]
 #'  - [cache()], [uncache()]
-#'  - [fs::dir_ls() ]
+#'  - [fs::dir_ls()]
 #'
 #' @import fs
 #' @export
 
-cache_ls <- function( cache=getOption('cache', 'cache'), ... ) {
+cache_ls <- function( cache=cache_path(), ... ) {
+
   fs::dir_ls( path=cache, ... ) ->.
     fs::path_file(.) ->.
-    fs::path_ext_remove(.) ->.
+    path_to_name(.) -> .
+    unname(.) -> .
+    unique(.) -> .
+    na.omit(.) -> .
+    sort(.) -> .
+    # fs::path_ext_remove(.) ->.
+
   .
 }
 
 
+#' @details
+#'
+#' [cache_dir()] lists all files in the cache, supported or not.
+#'
+#' @export
+#' @rdname cache_ls
+
+cache_dir <- function(path=cache_path(), ...)
+  fs::dir_ls(path, ...) %>% fs::path_file()
+
 
 #' @export
 #' @rdname cache_ls
 
-cache_dir <- cache_ls
-
-
-#' @export
-#' @rdname cache_ls
 cache_info <- function( cache=getOption('cache', 'cache'), ... )
   fs::dir_info( cache )

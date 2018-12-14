@@ -4,7 +4,7 @@
 #'
 #' @param path string; path to cache directory (DEFAULT:NULL)
 #' @param ignore logical; whether to ignore both .gitignore and rbuildignore
-#' @param criterion *rprojroot* criterion.  See [rprojroot::find_root()]
+# @param criterion *rprojroot* criterion.  See [rprojroot::find_root()]
 #' @param ... unused -- requires explicit naming for `git_ignore` and `rbuild_ignore`
 #' @param git_ignore logical; whether to put `cache` in `.gitignore` (DEFAULT: `TRUE`)
 #' @param rbuild_ignore logical; whether to put `cache` is `.Rbuildignore` (DEFAULT: `TRUE`)
@@ -30,42 +30,46 @@
 #' `cache_use` is an alias for `use_cache` that has the conventions of this
 #' package rather than `devtools`.
 #'
-#' @seealso [rprojroot::find_root()]
+#' @seealso
+#'  - [here::here()]
+#'
 #' @import rprojroot fs
+#' @importFrom here here
 #' @export
 
 use_cache <- function(
-    path=NULL
-  , ignore=TRUE
-  , criterion=is_git_root | is_r_package | is_rstudio_project
+    path = here::here() %>% fs::path( cache_name() )
+  , ignore = TRUE
+  # , criterion=is_git_root | is_r_package | is_rstudio_project
   , ...
   , git_ignore = ignore
   , rbuild_ignore = ignore
 ) {
 
+  # if( ! is.null(path) ) {
+  #   root <- fs::path_dir(path)
+  # } else {
+  #   root <- find_root( is_git_root | is_rstudio_project | is_r_package )
+  #   path <- fs::path( root, cache_path() )
+  # }
+  #
+  # if( ! dir_exists(path) ) {
+  #   message("creating cache directory at: ", path)
+  #   fs::dir_create(path)  # ...?
+  # } else {
+  #   message("using existing directory: ", path)
+  # }
 
-  if( ! is.null(path) ) {
-    root <- fs::path_dir(path)
-  } else {
-    root <- find_root( is_git_root | is_rstudio_project | is_r_package )
-    path <- fs::path( root, cache_name() )
-  }
+  cache_create(path)
 
-  if( ! dir_exists(path) ) {
-    message("creating cache directory at: ", path)
-    fs::dir_create(path)  # ...?
-  } else {
-    message("using existing directory: ", path)
-  }
-
-  cache_set( path )
+  cache_set(path)
   cache_set_name( fs::path_file(path) )
 
   # If this is a part of a git project ... ignore the cache's relative path
   if( git_ignore ) {
     git_root <- find_root_safe( is_git_root )
     if( ! is.null(git_root) )
-      # path <- file.path( root, cache_name() )
+      # path <- file.path( root, cache_path() )
       git_ignore_path <- file.path( git_root, ".gitignore" )
       cache_path_rel <- fs::path_rel( path, git_root )
       message( "Adding '", cache_path_rel, "' to '", git_ignore_path, "'" )
@@ -90,7 +94,7 @@ use_cache <- function(
 }
 
 
-#' @rdname use_cache
-#' @export
-
-cache_use <- use_cache
+# #' @rdname use_cache
+# #' @export
+#
+# cache_use <- use_cache

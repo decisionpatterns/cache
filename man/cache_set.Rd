@@ -2,13 +2,13 @@
 % Please edit documentation in R/cache_path.R
 \name{cache_set}
 \alias{cache_set}
-\alias{cache_get}
+\alias{cache_path_set}
 \alias{cache_path}
 \title{Set or Get Cache Directory}
 \usage{
 cache_set(path)
 
-cache_get()
+cache_path_set(path)
 
 cache_path(path = NULL)
 }

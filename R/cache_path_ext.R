@@ -62,13 +62,14 @@ cache_path_cache_ext_remove <- function() {
 }
 
 
-path_cached_name <- function(path) {
+# path_cached_name <- function(path) {
+#
+#
+#
+# }
+#
+# cache_ext_remove <- function() {
+#
+#
+# }
 
-
-
-}
-
-cache_ext_remove <- function() {
-
-
-}

@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.*.sw*
 inst/doc
 cache
 
-.*.sw*

@@ -1,28 +1,127 @@
+
+#' @param reader function for reading from the cache. Defaults to `cache_reader()`
+#'
+#' @details
+#'
+#' `uncache` restores an object from disk. It restores based on the name. It
+#' looks in the cache
+#'
 #' @rdname cache
 #' @import lazyeval fs
 #' @export
 
 uncache <- function(
     name
-  , cache=getOption('cache','cache')
   , ...
-  , timestamp = getOption('timestamp')
-  , envir=parent.frame()
-  , overwrite=TRUE
-  , fun = getOption( 'cache.read', cache_read_rds )
+  , envir = parent.frame()
+  , overwrite = getOption('uncache.overwrite', TRUE)
+  , reader = cache_reader()
 ) {
 
-  name <- as.character( expr_find(name) )
+  name <- as.character(substitute(name))
 
-  if( ! fs::dir_exists(cache) ) stop("Cache, ", cache, " does not exist")
+  cached <- cache_dir()
 
-  object <- fun(name, cache, ...)
+  object <- cache_read(name, ..., reader=reader )
+
+  # OVERWRITE! CHECK EXISTENCE
+  if( ! overwrite &&  exists(name,envir=envir) ) {
+    stop("Object already exists in environment. To overwrite set overwrite=TRUE.")
+  }
+
   assign( name, object, envir = envir )  # side-effect
 
   return( invisible(object) )
 
 }
 
+
+#' @details
+#'
+#'  `cache_read()` is a functional, no side-affect version of `uncache`. It
+#'  reads and returns the object. Given a name, [cache_read()] will:
+#'
+#'  - read the object with the default backend/extension warning if there are
+#'    any alternate files.
+#'  - read alternate (non-default) files with backends/extensions
+#'  - alert and matching but unsupported files.
+#'
+#' @rdname cache
+#' @export
+
+cache_read <- function(
+    name
+  , cache = cache_path()
+  , ...
+  , reader = cache_reader()
+  # , timestamp = getOption('timestamp')
+) {
+
+  name. <- as.character( expr_find(name) )
+  if( ! is.character(name) ) name <- name.
+
+  if( ! fs::dir_exists(cache) )
+    stop( "cache does not exist: '", cache, "'" )
+
+  # CHECK CONFLICTS
+  if( has_conflict(name) ) {
+    warning(
+      "'", name, "'"
+      , " is used more than once in the cache. All cache names should be unique."
+      , "\n  Used: ", name_to_path(name) %>% sQuote()
+      , "\n  Maybe remove: "
+      , name %>% conflicts() %>% path( cache_path(), . ) %>% sQuote() %>% collapse_comma()
+    )
+  }
+
+  default_path <- default_path(name)
+
+  if( fs::file_exists( default_path ) ) {    # 1. Default Path (?)
+
+    path <- default_path
+    reader <- cache_reader()
+                                             # 2. Alternate Paths
+  } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
+
+    alt_paths <- alternate_paths(name)
+
+    if( length(alt_paths) > 1 )
+      stop("multiple files match: \n"
+           , alt_paths %>% sort() %>% sQuote() %>% paste0( " - ", . , "\n")
+          )
+
+    path <- alt_paths
+    reader <- path %>%         # Look up reader from path
+      path_to_ext() %>%
+      ext_to_backend() %>%
+      backend_get() %>%
+      .$reader
+
+  } else {                                  # 3. Unsupported paths?
+
+    unsupported <- unsupported_paths( path = cache )
+
+    wh <-
+      unsupported %>%
+        fs::path_file() %>%
+        str_detect( paste0("^", name))
+
+    unsuppored <- unsupported[ wh ]
+
+    if( length(unsupported) == 0 )
+      stop("There is no file associated with '", name, "'") else
+      stop(
+          "\nThere is no supported files associated with '", name, "'"
+        , "\n  perhaps you need to load backend(s) for:"
+        , unsupported %>% fs::path_file() %>% base.tools::squote() %>% collapse_comma()
+        )
+
+  }
+
+  # Find reader ...
+  reader(path, cache, ...)
+
+}
 
 
 #' @rdname cache
@@ -33,25 +132,5 @@ uncache_ <- function(...) {
   warning( "'uncache_' is deprecated. Use 'uncache' instead." )
 
   uncache(...)
-
-}
-
-
-#' @rdname cache
-#' @export
-
-uncache_all <- function( cache=getOption('cache', 'cache'), envir=parent.frame() ) {
-
-  stop("`uncache_all()`` is not implemented.")
-  # THE PROBLEM HERE IS THAT WE NEED A BETTER WAY TO RESOLVE METHODS FROM
-
-  if( ! dir.exists(cache)) stop( "Cache", cache, "does not exist." )
-
-  files <- dir( cache, full.names=FALSE )
-  for( f in files ) {
-    if( getOption('verbose') ) message( "Loading ...", f )
-    f <-f %>% fs::path_ext_remove() %>% as.characte
-    uncache(f)
-  }
 
 }

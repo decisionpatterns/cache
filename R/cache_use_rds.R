@@ -17,61 +17,72 @@
 #' @rdname cache_use_rds
 #' @export
 
+cache_use_rds <- function()
+  cache::backend_set("rds")
+
+
+#' @rdname cache_use_rds
+#' @export
+
 cache_register_rds <- function()
-  cache_register_backend( "rds", write = cache_write_rds, read = cache_read_rds )
+  backend_register( "rds", writer = write_rds, reader = read_rds )
 
   # options( cache.write = cache_write_rds, cache.read = cache_read_rds )
 
-
-#' @param object; object to cache
-#' @param name string; name of object.
-#' @param cache path to the cache directory
-#' @param ... additional arguments passed to [save_rds()] / [base::saveRDS()]
-#'
-#' @details
-#'
-#' The `cache_write_rds` writes objects to the cache using RDS
-#'
-#' @examples
-#'
-#' dontrun{
-#'    cache_use_rds()
-#'    cache(mtcars)
-#'    if( exists('mtcars') ) rm(mtcars)
-#'    uncache(mtcars)
-#'    fs::dir_ls( cache_find() )
-#' }
-#'
-#' @rdname cache_use_rds
-#' @export
-
-cache_write_rds <- function(
-    object
-  , name = deparse(substitute(object))
-  , cache=cache_find()
-  , ...
-) {
-
-  path <- {
-    fs::path( cache, name ) ->.;
-    paste0( . , ".rds")             # can't use path_set_ext because it modifies last .xyz
-  }
-
-  save_rds( object, file=path, ... )
-
+write_rds <- function( object, path, ... ) {
+  saveRDS( object, file=path, ... )
+  object
 }
 
+# write_rds <- save_rds
 
-#' @rdname cache_use_rds
-#' @export
+read_rds <- readRDS
 
-cache_read_rds <- function( name, cache=find_cache(), ... ) {
 
-  path <- {
-    fs::path( cache, name ) ->.;
-    fs::path_ext_set(. , "rds")
-  }
 
-  readRDS(path)
-
-}
+#' #' @param object; object to cache
+#' #' @param name string; name of object.
+#' #' @param cache path to the cache directory
+#' #' @param ... additional arguments passed to [write_rds()] / [base::saveRDS()]
+#' #'
+#' #' @details
+#' #'
+#' #' The `cache_write_rds` writes objects to the cache using RDS
+#' #'
+#' #' @examples
+#' #'
+#' #' dontrun{
+#' #'    cache_use_rds()
+#' #'    cache(mtcars)
+#' #'    if( exists('mtcars') ) rm(mtcars)
+#' #'    uncache(mtcars)
+#' #'    fs::dir_ls( cache_find() )
+#' #' }
+#' #'
+#' #' @rdname cache_use_rds
+#' #' @export
+#'
+#' cache_write_rds <- write_rds
+#'
+#' # function(
+#' #     object
+#' #   , path
+#' #   # , name = deparse(substitute(object))
+#' #   # , cache=cache_find()
+#' #   , ...
+#' # ) {
+#' #
+#' #   save_rds( object, path, ... )
+#' #
+#' # }
+#'
+#'
+#' #' @rdname cache_use_rds
+#' #' @export
+#'
+#' cache_read_rds <- read_rds
+#' # function(path, ...) { # name, cache=find_cache(), ... ) {
+#' #
+#' #   readRDS(path, ...)
+#' #
+#' # }

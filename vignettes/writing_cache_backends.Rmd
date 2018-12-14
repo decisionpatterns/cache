@@ -1,0 +1,61 @@
+---
+title: "Writing Cache Backends"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Cache backends are drivers for saving and restoring data to R. There should be
+one backend for each type of file/data store.
+
+They should exist
+in their own package.  By conventions the package should be named 
+*cache.[backend]*. The default backend is `cache.rds` and is used to read and 
+write RDS files. 
+
+Backends are easy to create.   They need only X things:
+
+ - a `name`
+ - one or more `extensions`
+ - a `reader()` function
+ - a `writer()` function
+ 
+## name
+
+The `name` is a name associated with the extensions for example `rds` is 
+
+
+## extension
+
+Is the file extensions associated with the backend. You can supply one or more.
+
+
+## reader 
+
+The `reader` is a function the reads/loads/restores data or an object 
+into memory. It is called by `cache::cache_read( name, ... )`. `cache_read` will
+pass a path to your `reader` function which is supposed to return an object.
+
+
+
+It:  
+ - should be named `reader` or `cache_read_[backend]`, e.g. `cache_read_rds`.
+ - accept a path argument `fs::path()` associating 
+ - does not need to be exported 
+ - can allow additional arguments will be passed by `...`.
+
+
+## writer 
+
+The writer should return the object.  
+
+## commands
+
+
+## Multiple Backends in a Package
+
+A package is not limited to a single backend. 

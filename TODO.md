@@ -1,5 +1,31 @@
 # TODO
 
+ - [ ] If `sodium.rds` is not registered and `rds`, cache thinks `iris.sodium.rds`
+       is a `rds` file 
+       
+ - [ ] Support multiple extentions per backend, e.g. `.tgz` and `.tar.gz`
+ 
+ - [ ] Allow `cache.x` to supply multiple backends. 
+ 
+ - [ ] List files for a given backend/extension?
+
+ - [ ] When registering a backend; check for file conflicts.
+
+ - [ ] cache/uncache by glob or regex
+   These may be functions `cache_glob()` or `cache_regex()`
+
+    cache( "dat*" )
+    cache( "dat.+" )
+ 
+ - Use *crayon* or *pillar* to add color 
+   - cache items without backend (red)
+   - cache items without loaded backend (grey)
+   - cache item with loaded backend (normal)
+
+ - [?] dot-dot
+   It may be advisable to use `..` as a filename separator for the extensions
+   rather than rely on the extensions that are registered.
+
  - [x] Support files and paths esp fs_path objects from `fs` package
  
  - [ ] loadr
@@ -7,7 +33,6 @@
    load vs. read (?)
    - [ ] 
    
- 
  - [ ] When rprojroot is a package, set the cache to be the data directory.
    - cache then is equivalent to `devtools::use_data()`
 
@@ -24,16 +49,22 @@
  - [ ] Use `bg` to support async saving of files. It is already written but 
        unused. Can we support `bg` caching as an option/directive 
  
- - [ ] Support compound file extensions, e.g. `tsv.gz` or `aes.rds`
+ - [x] Support compound file extensions, e.g. `tsv.gz` or `aes.rds`
+       This is supported in the backend.
  
  - [ ] Support multiple caches (?)
+   - Generally, this is supported `cache_set()` or `cache_path_set()`
+   - Other functions explicitly take a `cache=` argument
  
- - [ ] Factor out `cache.sodium` and `cache.rds` packages.
+ - [ ] Factor out 
+   - [x] `cache.sodium`
+   - [ ] `cache.rds` package.
    - [ ] Core `cache` package to handle cache path, dispatch and metadata 
    - [ ] Create `cache.odbc`, `cache.dbi`, `cache.feather`, packages.
    
  - [ ] Decide on whether `uncache` should be a load/restore or read function. 
    Currently it does both.
+   
  
  - [ ] Object should have a save type attribute
  

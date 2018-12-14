@@ -1,4 +1,4 @@
-#' cache_get_reader, cache_get_writer
+#' cache_reader, cache_writer
 #'
 #' Get the read or write function for a path.
 #'
@@ -6,25 +6,26 @@
 #'
 #' @details
 #'
-#' [cache_get_reader{}] and [cache_get_writer()] return the function for reading
+#' [cache_reader{}] and [cache_writer()] return the function for reading
 #' and writing based on a given path.
 #'
 #' @seealso
 #'  - [cache_path_ext()]
 #'
 #' @importFrom stringr str_detect
-#' @rdname cache_path_ext
+#' @rdname cache_reader
 #' @export
 
 
-cache_get_reader <- function(path)
- cache_path_ext(path)$reader
+cache_reader <- function()
+  backend_get( backend() )$reader
 
-#' @rdname cache_path_ext
+
+#' @rdname cache_reader
 #' @export
 
-cache_get_writer <- function(path)
-  cache_path_ext(path)$writer
+cache_writer <- function()
+  backend_get( backend() )$writer
 
 
 #' @rdname cache_path_ext
@@ -55,29 +56,16 @@ cache_path_ext <- function(path) {
 }
 
 
-
-
-
-
-cache_exts <- cache_extensions <- function() {
-  names( getOption('cache.extensions') )
-}
-
-
-cache_path_cache_ext_remove <- function() {
-
-  exts <- cache_exts()
-  exts_regex <- ext_to_regex(exts)
-
-  cache_ls()
-
-}
-
-
-path_cached_name <- function(path) {
-
-}
-
-cache_ext_remove <- function() {
-
-}
+# cache_exts <- cache_extensions <- function() {
+#   names( getOption('cache.extensions') )
+# }
+#
+#
+# cache_path_cache_ext_remove <- function() {
+#
+#   exts <- cache_exts()
+#   exts_regex <- ext_to_regex(exts)
+#
+#   cache_ls()
+#
+# }

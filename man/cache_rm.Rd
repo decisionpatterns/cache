@@ -2,9 +2,12 @@
 % Please edit documentation in R/cache_rm.R
 \name{cache_rm}
 \alias{cache_rm}
+\alias{cache_delete}
 \title{cache_rm}
 \usage{
 cache_rm(..., .cache = cache_find())
+
+cache_delete(..., .cache = cache_find())
 }
 \arguments{
 \item{...}{character; names of cached objects to permanently remove from

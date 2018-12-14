@@ -6,26 +6,30 @@
 \alias{cache_info}
 \title{cache_ls}
 \usage{
-cache_ls(cache = getOption("cache", "cache"), ...)
+cache_ls(cache = cache_path(), ...)
 
-cache_dir(cache = getOption("cache", "cache"), ...)
+cache_dir(path = cache_path(), ...)
 
 cache_info(cache = getOption("cache", "cache"), ...)
 }
 \arguments{
-\item{cache}{string; cache directory}
+\item{cache}{string; cache directory (Default: \code{\link[=cache_path]{cache_path()}} )}
 
 \item{...}{additional arguments passed to \code{\link[fs:dir_ls]{fs::dir_ls()}}}
 }
+\value{
+character vector (names of objects)
+}
 \description{
-List contents of the cache directory
+List cached files
 }
 \details{
-Similar to \code{ls} but defaults to viewing the cache directory.
+Similar to \code{ls} but lists the objects in the cache directory that can be
+loaded.
 }
 \seealso{
 \itemize{
 \item \code{\link[=cache]{cache()}}, \code{\link[=uncache]{uncache()}}
-\item \link[fs:dir_ls() ]{fs::dir_ls() }
+\item \code{\link[fs:dir_ls]{fs::dir_ls()}}
 }
 }

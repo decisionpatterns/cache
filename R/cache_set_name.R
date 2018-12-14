@@ -1,6 +1,7 @@
-#' cache_set_name, cache_get_name
+#' cache_name
 #'
-#' Get and set the default name for the cache directory (not the path)
+#' Get or set the default *name* for the cache directory (not the path). The
+#' default is 'cache'.
 #'
 #' @param name string; name for the cache
 #'
@@ -12,19 +13,26 @@
 #' [cache_name()] is an alieas for [cache_get_name()] or `cache_name` return this value.
 #'
 #' @seealso
-#'  * [cache_set()], [cache_get()], [cache_path()]
+#'  * [cache_path()]
 #'
 #' @export
 
-cache_set_name <- function(name) options( cache_name = name )
+cache_name <- function() {
+  getOption('cache.name','cache')
+}
 
-
-#' @rdname cache_set_name
+#' @rdname cache_name
 #' @export
 
-cache_get_name <- function() getOption('cache_name', 'cache')
+cache_get_name <- cache_name
 
-#' @rdname cache_set_name
+
+#' @rdname cache_name
 #' @export
 
-cache_name <- cache_get_name
+cache_set_name <- function(name) {
+  options( cache_name = name )
+}
+
+
+

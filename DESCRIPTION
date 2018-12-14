@@ -1,7 +1,7 @@
 Package: cache
 Title: Intuitive and Comprehensive Cache
-Version: 0.2.4.1
-Date: 2018-10-08
+Version: 0.2.9.9000
+Date: 2018-12-12
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
@@ -14,11 +14,12 @@ Depends:
 Imports: 
     lazyeval (>= 0.2.0), 
     fs (>= 1.2.0), 
-    rprojroot (>= 1.3.0)
+    rprojroot (>= 1.3.0),
+    stringr (>= 1.3.1)
 Suggests: 
-    testthat (>= 1.0.2), 
-    knitr (>= 1.18), 
-    rmarkdown (>= 1.8),
+    testthat (>= 1.0.2),
+    knitr,
+    rmarkdown,
     future (>= 1.6.2)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8

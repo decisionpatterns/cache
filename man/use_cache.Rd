@@ -2,23 +2,15 @@
 % Please edit documentation in R/use_cache.R
 \name{use_cache}
 \alias{use_cache}
-\alias{cache_use}
 \title{use_cache}
 \usage{
-use_cache(path = NULL, ignore = TRUE, criterion = is_git_root |
-  is_r_package | is_rstudio_project, ..., git_ignore = ignore,
-  rbuild_ignore = ignore)
-
-cache_use(path = NULL, ignore = TRUE, criterion = is_git_root |
-  is_r_package | is_rstudio_project, ..., git_ignore = ignore,
-  rbuild_ignore = ignore)
+use_cache(path = here::here() \%>\% fs::path(cache_name()),
+  ignore = TRUE, ..., git_ignore = ignore, rbuild_ignore = ignore)
 }
 \arguments{
 \item{path}{string; path to cache directory (DEFAULT:NULL)}
 
 \item{ignore}{logical; whether to ignore both .gitignore and rbuildignore}
-
-\item{criterion}{\emph{rprojroot} criterion.  See \code{\link[rprojroot:find_root]{rprojroot::find_root()}}}
 
 \item{...}{unused -- requires explicit naming for \code{git_ignore} and \code{rbuild_ignore}}
 
@@ -52,5 +44,7 @@ build. The default is not to include them.
 package rather than \code{devtools}.
 }
 \seealso{
-\code{\link[rprojroot:find_root]{rprojroot::find_root()}}
+\itemize{
+\item \code{\link[here:here]{here::here()}}
+}
 }

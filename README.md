@@ -1,12 +1,12 @@
 # cache 
 
-The **cache** package provides a consistent interface for writing to and
-restoring data. It is designed to make saving and restoring R objects 
-easy, functional, extensible and consistent.  
+The **cache** package provides a consistent interface for writing and
+restoring data. It is designed to object permanance easy, functional, 
+extensible and consistent.  
 
   - **easy**: there are two functions that you need, `cache` and `uncache`
   - **functional**: 
-    - functions work well with pipes. 
+    - functions work well with pipes.
     - use for building data marts for analyses
     - replaces `ProjectTemplates` cache functionality
     - encryption built in.
@@ -16,8 +16,12 @@ easy, functional, extensible and consistent.
   - **consistent**
     - standard arguments and meanings
     
-The cache exists on a per-project basis. Together with the 
+It should be noted that the cache exists on a per-project basis.  
+
+Together with the 
 **-tk** package. Those data sets can be saved and easily refreshed.
+
+
 
 **NB**
 This packges is not intended for importing data. Packages such

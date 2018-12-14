@@ -16,22 +16,27 @@
 #' @return string; path to the cache directory. `set_path`` does this invisibly
 #' @seealso
 #'  - [cache()], [uncache()]
+#'
 #' @export
 
-cache_set <- function( path ) {
+cache_set <- function(path) {
 
   if( ! dir.exists(path) ) dir.create(path)
 
-  options( cache = path )
+  options( cache = fs::path(path) )
 
   invisible(path)
 
 }
 
-
 #' @rdname cache_set
 #' @export
-cache_get <- function() getOption('cache')
+
+cache_path_set <- cache_set
+
+# #' @rdname cache_set
+# #' @export
+# cache_get <- function() getOption('cache')
 
 
 #' @rdname cache_set
