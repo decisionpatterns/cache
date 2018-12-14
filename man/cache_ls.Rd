@@ -26,9 +26,12 @@ List cached files
 \details{
 Similar to \code{ls} but lists the objects in the cache directory that can be
 loaded.
+
+\code{\link[=cache_dir]{cache_dir()}} lists all files in the cache, supported or not.
 }
 \seealso{
 \itemize{
+\item \code{\link[=unsupported_paths]{unsupported_paths()}} and \code{\link[=unsupported_files]{unsupported_files()}}
 \item \code{\link[=cache]{cache()}}, \code{\link[=uncache]{uncache()}}
 \item \code{\link[fs:dir_ls]{fs::dir_ls()}}
 }
