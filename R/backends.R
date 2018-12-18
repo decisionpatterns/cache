@@ -10,25 +10,25 @@
 #' retrieving files
 #'
 #' @seealso
-#' [cache::backend_register()]
+#' [cache::cache_register()]
 
 
 #' @details
-#' `get_backends` returns the list of registered backends
+#' `backends` returns the list of registered backends
 #'
 #' @return
-#' `get_backends` returns a list of backends cache backends stored in the
+#' `backends` returns a list of backends cache backends stored in the
 #' option `cache.backends`
 #'
 #' @rdname backends
 # @export
 
-get_backends <- function() getOption('cache.backends')
+backends <- function() getOption('cache.backends')
 
 
 #' @details
 #' `backend_get` retrieves the definition for the cache backend. The definition
-#' is a list that was created by [backend_register()].
+#' is a list that was created by [cache_register()].
 #'
 #' @return
 #' `backend_get` returns a list for the backend.
@@ -51,7 +51,7 @@ backend_get <- function( backend ) {
 #' @rdname backends
 #' @export
 
-backend_ls <- function() names( get_backends() )
+backend_ls <- function() backends() %>% names()
 
 
 
@@ -65,4 +65,4 @@ backend_ls <- function() names( get_backends() )
 #' @export
 
 backend_exts <- function()
-  sapply( get_backends(), function(x) structure( x$ext, names=x$names ) )
+  sapply( backends(), function(x) structure( x$ext, names=x$names ) )
