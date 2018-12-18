@@ -6,12 +6,11 @@
 #'
 #' @details
 #'
-#' [cache_path_ext()] gets the entire extension from the cache path, either a
-#' full path or simply a filename. The extension has to be known and registered
-#' using [cache_add_ext()].
+#' [cache_path_ext()] gets the entire extension from the cache path or filename.
+#' The extension has to be known and registered using [cache_register()]
 #'
 #' @seealso
-#'  - [cache_add_ext()]
+#'  - [cache_register()]
 #'  - [fs::path_ext()]
 #'
 #' @importFrom stringr str_detect
