@@ -2,8 +2,6 @@
 
 S3method(collapse,character)
 S3method(collapse,default)
-export(add_class)
-export(add_superclass)
 export(backend)
 export(backend_exts)
 export(backend_get)

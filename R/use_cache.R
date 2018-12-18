@@ -63,7 +63,7 @@ use_cache <- function(
   cache_create(path)
 
   cache_set(path)
-  cache_set_name( fs::path_file(path) )
+  options( cache.name = fs::path_file(path) )
 
   # If this is a part of a git project ... ignore the cache's relative path
   if( git_ignore ) {

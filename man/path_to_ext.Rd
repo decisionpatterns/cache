@@ -4,7 +4,7 @@
 \alias{path_to_ext}
 \title{path_to_ext}
 \usage{
-path_to_ext(paths = fs::dir_ls(cache_path()), exts = backend_exts())
+path_to_ext(path = fs::dir_ls(cache_path()), exts = backend_exts())
 }
 \description{
 path_to_ext

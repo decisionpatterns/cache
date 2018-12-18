@@ -1,51 +1,32 @@
-#' Set or Get Cache Directory
+#' cache_path
 #'
-#' Set or gets the cache directory
-#'
-#' @param path string; path to the cache directory
+#' Get/set the cache path
 #'
 #' @details
 #'
-#' `cache_set` sets the cache directory, creating it if it doesn't exist.
+#' Without a `path` argument or `path=NULL`, `cache_path()` returns the
+#' (relative) path to the cache directory. This is provided by
+#' `options(cache.path)` or [cache_find()]
 #'
-#' 'cache_get' returns the cache directory.
+#' With a `path` argument specified, `cache_path` set the path for the cache
+#' directory.
 #'
-#' `cache_path` will get or set the cache path depending on whether `path` is
-#' provided.
+#' @return [fs::path()] object of the *relative* path to the cache directory.
+#' Use [fs::path_abs()] to get the absolute path.
 #'
-#' @return string; path to the cache directory. `set_path`` does this invisibly
 #' @seealso
-#'  - [cache()], [uncache()]
+#'  - [cache_name()]
+#'  - [cache_find()]
 #'
 #' @export
 
-cache_set <- function(path) {
-
-  if( ! dir.exists(path) ) dir.create(path)
-
-  options( cache = fs::path(path) )
-
-  invisible(path)
-
-}
-
-#' @rdname cache_set
-#' @export
-
-cache_path_set <- cache_set
-
-# #' @rdname cache_set
-# #' @export
-# cache_get <- function() getOption('cache')
-
-
-#' @rdname cache_set
-#' @export
 cache_path <- function(path=NULL) {
 
   if( ! is.null(path) )
-    options( cache = path[[1]] )
+    options( cache.path = path[[1]] )
 
-  getOption('cache', 'cache')
+  getOption( 'cache.path'
+             , fs::path_rel( cache_find() ) ) %>%
+    fs::path()
 
 }

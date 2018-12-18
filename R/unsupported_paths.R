@@ -53,36 +53,3 @@ unsupported_paths <- function( path=cache_path() ) {
 
 unsupported_files <- function(...)
   unsupported_paths(...) %>% fs::path_file()
-
-# unsupported_names <- function(name, path=cache_path() ) {
-#
-#
-#
-# }
-
-
-# unsupported_file <- function(name, path=cache_path() ) {
-#
-#   if( fs::is_dir(path) )
-#     paths <- fs::dir_ls(path) else
-#     paths <- path
-#
-#   files <- paths %>%
-#     fs::path_file()
-#
-#   which_names <- files %>% str_detect( paste0("^", name) )
-#
-#   exts.re <-
-#     backend_exts() %>% # ext_to_regex()
-#     str_replace( fixed("."), "\\." ) %>%
-#     collapse("|") %>%
-#     # base.tools::parenthesize() %>%
-#     paste0( "\\.(", ., ")$" )
-#
-#   which_ext <- ! files %>% str_detect( exts.re )  #
-#
-#   files[ which_names & which_ext ]
-#
-# }
-
-

@@ -15,8 +15,7 @@
 #'  - [fs::path_ext()]
 #'
 #' @importFrom stringr str_detect
-#' @rdname cache_path_ext
-#' @export
+# @export
 
 cache_path_ext <- function(path) {
 
@@ -43,23 +42,20 @@ cache_path_ext <- function(path) {
 }
 
 
-ext_to_regex <- function(ext) paste0( "\\.", ext, "$" )
 
 
+# cache_exts <- cache_extensions <- function() {
+#   names( getOption('cache.extensions') )
+# }
 
-cache_exts <- cache_extensions <- function() {
-  names( getOption('cache.extensions') )
-}
-
-
-cache_path_cache_ext_remove <- function() {
-
-  exts <- cache_exts()
-  exts_regex <- ext_to_regex(exts)
-
-  cache_ls()
-
-}
+# cache_path_cache_ext_remove <- function() {
+#
+#   exts <- cache_exts()
+#   exts_regex <- ext_to_regex(exts)
+#
+#   cache_ls()
+#
+# }
 
 
 # path_cached_name <- function(path) {
@@ -72,4 +68,3 @@ cache_path_cache_ext_remove <- function() {
 #
 #
 # }
-

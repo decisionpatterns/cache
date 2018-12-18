@@ -11,15 +11,12 @@
 #' @param ... additional name/value pairs to be stored in the backend.
 #'
 #' @details
-#' `backend_register()` associated an extension with functions for reading and
-#' writing that file type.
 #'
-#'  - `name` is simply a label by which the backend is referred.
-#'  - `reader` is the function used for reading/loading the file into R
-#'  - `writer` is the function used for storing the file (to the filesystem)
-#'  - `ext` argument should not include the period.
+#' `cache_register()` defines a backend for storing and retrieving data using
+#' cache.  Ultimately, it associated an filename extension with functions for
+#' reading and writing cache files with that extension.
 #'
-#' It is mostly for writing extensions writing different types of files.
+#' Unless you are writing a new backend, you will not need to use this function.
 #'
 #' @return
 #'
@@ -27,13 +24,13 @@
 #'
 #' @examples
 #'
-#' \dontrun{
-#'   cache_add_ext( 'csv', readr::read_csv, readr::write_csv )
-#' }
+#'   \dontrun{
+#'     cache_register( 'csv', readr::read_csv, readr::write_csv )
+#'   }
 #'
 #' @export
 
-backend_register <- function(
+cache_register <- function(
     name
   , reader = get( paste0('cache_read_' , name ) )
   , writer = get( paste0('cache_write_', name ) )
@@ -52,24 +49,4 @@ backend_register <- function(
 
   options( `cache.backends` = backends )
 
-}
-
-
-## DEPRECATED FUNCTIONS
-
-#' @rdname backend_register
-#' @export
-
-cache_add_extension <- function(...) {
-  .Deprecated( "cache_backend_register", old="cache_add_extension" )
-   cache_backend_register(...)
-}
-
-
-#' @rdname backend_register
-#' @export
-
-cache_add_ext <- function(...) {
-  .Deprecated( "cache_backend_register", old="cache_add_ext" )
-  cache_backend_register(...)
 }

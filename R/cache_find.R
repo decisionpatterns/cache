@@ -1,13 +1,28 @@
 #' cache_find
 #'
-#' Finds cache by searching up the directory structure
+#' Finds the cache path by searching up the directory structure for a directory
+#' named by `cache_name()`.
 #'
+#' @param path to look for cache in. Default is the PWD.
+#'
+#' @details
+#'
+#' The default name of the cache directory is `cache`, but can be changed with:
+#' `options(cache.name=*name*)`.
+#'
+#' @return a [fs::path()] pointing to the cache directory
 #' @seealso
 #'   [rprojroot::find_root()]
 #'
+#' @import fs
 #' @export
 
-cache_find <- function(path = ".") {
-    find_root_safe( criterion=has_dir('cache'), path=path )  ->.;
-      file.path( ., cache_name() )
-}
+cache_find <- function(path = ".", relative=FALSE ) {
+    find_root_safe( criterion=has_dir( cache_name() ), path=path )  ->.
+      fs::path( ., cache_name() ) ->.
+
+    if( relative )
+      fs::path_rel(.) ->.
+
+    .
+  }

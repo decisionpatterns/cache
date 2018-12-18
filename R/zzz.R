@@ -18,6 +18,7 @@
     )
 
   if( require(future) )future::plan(multiprocess)
+  # cache_register_rds()
 
 }
 

@@ -4,10 +4,10 @@
 \alias{path_to_name}
 \title{path_to_name}
 \usage{
-path_to_name(paths = fs::dir_ls(cache_path()))
+path_to_name(path = fs::dir_ls(cache_path()))
 }
 \arguments{
-\item{paths}{character; fs paths to convert to object names}
+\item{path}{character; one or more paths to convert to object names}
 }
 \value{
 named character vector; filename => object name

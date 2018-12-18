@@ -12,6 +12,8 @@
 
 cache_check <- function( cache=cache_path() ) {
 
+  message("This functionality is still under development.")
+
    # Check Unsupported files
   unsupported <- unsupported_paths(cache)
   if( length(unsupported) > 0 )

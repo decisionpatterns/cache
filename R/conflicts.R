@@ -6,12 +6,13 @@
 #'
 #' @details
 #'
-#' *cache* does not multiple files with the same name within a single cache.
-#' For example, you cannot have `iris.rds` and `iris.csv`. This enforces a best
-#' practice of uniquely naming your data set.
+#' *cache* does not permit multiple files with the same name within a single
+#' cache.  For example, you cannot have both `iris.rds` and `iris.csv`.
+#' This enforces a best practice of uniquely naming your data set.
 #'
-#' Uniqueness is enforced among files with a registered backend. Thus is there
-#' is no backend for a `.txt` file, these will not be identified as conflicts.
+#' This uniqueness is enforced among files with registered backends.
+#' Thus, if there is no backend for a `.txt` file,
+#' it will not be identified as conflict.
 #'
 #' @examples
 #'
@@ -92,37 +93,3 @@ alternate_paths <- function(name) {
     alternate_files() %>%
     fs::path( cache_path(), . )
 }
-
-
-# conflicts("iris")
-# has_conflict("iris")
-#
-#
-# f <- function(x) {
-#   x <- enquo(x)
-#   has_conflict(x)
-# }
-#
-# f("iris")
-
-#' #' Check for naming conflicts for the cache
-#' #'
-#' check_conflicts <- function(name) {
-#'
-#'   ext <- backend_ext()
-#'   exts <- backend_exts()
-#'   exts <- setdiff( exts, ext )
-#'
-#'   exts.re <- paste0( '^', name, '.', exts, '$' )
-#'   files <- cache_ls()
-#'   conflicts <- str_detect( files, exts.re )
-#'   if( any(conflicts) ) {
-#'     stop( name
-#'         , " already is saved in the cache with a different backend: "
-#'         , files[conflicts] %>% collapse(", ")
-#'     )
-#'
-#'   }
-#' }
-
-

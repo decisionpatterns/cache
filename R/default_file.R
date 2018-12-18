@@ -20,7 +20,5 @@ default_file <- function(name) {
 #' @export
 
 default_path <- function(name) {
-  name %>%
-    default_file() %>%
-    fs::path( cache_path(), . )
+    fs::path( cache_path(), default_file(name) )
 }
