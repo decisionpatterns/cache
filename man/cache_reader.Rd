@@ -9,11 +9,8 @@ cache_reader()
 
 cache_writer()
 }
-\arguments{
-\item{path}{string; path to file.}
-}
 \description{
-Get the read or write function for a path.
+Get the read or write function for a path
 }
 \details{
 \link{cache_reader{}} and \code{\link[=cache_writer]{cache_writer()}} return the function for reading
@@ -21,6 +18,6 @@ and writing based on a given path.
 }
 \seealso{
 \itemize{
-\item \code{\link[=cache_path_ext]{cache_path_ext()}}
+\item \code{\link[=cache_backend]{cache_backend()}}
 }
 }

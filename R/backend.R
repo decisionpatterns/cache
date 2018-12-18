@@ -90,7 +90,7 @@ backends <- function() getOption('cache.backends')
 #' @rdname backends
 #' @export
 
-backend_get <- function( backend ) {
+backend_get <- function( backend=cache_backend() ) {
   getOption('cache.backends')[[ backend ]]
 }
 

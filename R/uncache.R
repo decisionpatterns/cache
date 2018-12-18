@@ -119,7 +119,7 @@ cache_read <- function(
   }
 
   # Find reader ...
-  reader(path, cache, ...)
+  reader(path, ...)
 
 }
 

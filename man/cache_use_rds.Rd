@@ -3,7 +3,7 @@
 \name{cache_use_rds}
 \alias{cache_use_rds}
 \alias{cache_register_rds}
-\title{Cache object using RDS Files}
+\title{Set the default cache method to rmat \code{RDS}.`}
 \usage{
 cache_use_rds()
 
@@ -20,7 +20,7 @@ This is the \emph{default} method for caching objects.
 \examples{
 
 \dontrun{
-  cache_use_rds
+  cache_use_rds()
 }
 
 }

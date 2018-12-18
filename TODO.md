@@ -1,10 +1,22 @@
 # TODO
-
+ - [ ] Allow *name* or *character* for backend reader and writer; this makes it
+       more transparent as what is happening.
+       
+ - [ ] supported_paths(), supported_files() 
+ 
  - [ ] If `sodium.rds` is not registered and `rds`, cache thinks `iris.sodium.rds`
-       is a `rds` file 
+       is a `rds` file. Perhaps it might be better to create a `.metadata` file
+       that contains (among other things) a mapping from object/name to backend
+       and ensure. One limitation of this approach is that the file can be 
+       deleted from the filesystems without being captured in `.metadata`.
+       Having the `.metadata` file or directory would mean that we always 
+       know the backend associated with a file and it can be loaded by 
+       `uncache()` or `cache_read()`
        
  - [ ] Support multiple extentions per backend, e.g. `.tgz` and `.tar.gz`
- 
+       This can also be handled as two separate backends and thus keep the 
+       mapping of extension to backend as one-to-one.
+       
  - [ ] Allow `cache.x` to supply multiple backends. 
  
  - [ ] List files for a given backend/extension?

@@ -6,6 +6,12 @@
 \usage{
 path_to_ext(path = fs::dir_ls(cache_path()), exts = backend_exts())
 }
+\arguments{
+\item{path}{path filepath}
+}
 \description{
+path_to_ext
+}
+\details{
 path_to_ext
 }

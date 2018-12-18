@@ -123,7 +123,7 @@ cache_write <- function(
   # , timestamp = getOption('timestamp')
   , overwrite = getOption('cache.overwrite', TRUE )
   , envir = parent.frame()
-  , backend = getOption("cache.backend")
+  , backend = cache_backend() # getOption('cache.backend')
   # , writer = cache_writer() # getOption( 'cache.write', cache_write_rds )
 ) {
 

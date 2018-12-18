@@ -2,10 +2,52 @@
 % Please edit documentation in R/backend.R
 \name{backend}
 \alias{backend}
-\title{backend}
+\alias{print.backend}
+\alias{backend_ext}
+\title{cache backend}
 \usage{
-backend()
+backend(name, reader, writer, ext, ...)
+
+\method{print}{backend}(x, ...)
+
+backend_ext(backend = getOption("cache.backend"))
+}
+\arguments{
+\item{name}{string; name of backend.}
+
+\item{reader}{function for reading from the cache}
+
+\item{writer}{function for writing to the cache}
+
+\item{ext}{string extension associated with this file without the period.}
+
+\item{...}{other name-value pairs that are stored as part of the definitions}
+}
+\value{
+list with subclass \code{backend}
+
+A \code{ext()} object for the \code{backend}
 }
 \description{
-List the cache backend
+An backend definitions
+}
+\details{
+A backend is the way cache reads and writes from the cache. This simply
+collects all the information associated with the backend in one list.
+
+\code{backend_ext()} gives the extensions associated with a backend.
+}
+\examples{
+
+  backend( name="rds", reader=function() NULL, writer=function() NULL, ext="rds" )
+
+}
+\seealso{
+\itemize{
+\item \code{\link[cache:cache_register]{cache::cache_register()}}
+}
+
+\itemize{
+\item \code{\link[=cache_backend]{cache_backend()}}
+}
 }

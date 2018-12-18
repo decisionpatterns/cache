@@ -4,10 +4,21 @@
 \alias{cache_find}
 \title{cache_find}
 \usage{
-cache_find(path = ".")
+cache_find(path = ".", relative = FALSE)
+}
+\arguments{
+\item{path}{to look for cache in. Default is the PWD.}
+}
+\value{
+a \code{\link[fs:path]{fs::path()}} pointing to the cache directory
 }
 \description{
-Finds cache by searching up the directory structure
+Finds the cache path by searching up the directory structure for a directory
+named by \code{cache_name()}.
+}
+\details{
+The default name of the cache directory is \code{cache}, but can be changed with:
+\code{options(cache.name=*name*)}.
 }
 \seealso{
 \code{\link[rprojroot:find_root]{rprojroot::find_root()}}

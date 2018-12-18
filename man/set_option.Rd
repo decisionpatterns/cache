@@ -7,7 +7,7 @@
 set_option(...)
 }
 \value{
-The options value, invisibly
+The option value(s), invisibly
 }
 \description{
 (Pipeable) set single options

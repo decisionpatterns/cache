@@ -45,8 +45,8 @@ path_to_name <- function( path= fs::dir_ls( cache_path() ) ) {
 }
 
 
-name_to_file <- function(name)
-  paste0(name, ".", backend_get(backend())$ext )
+name_to_file <- function(name, backend=cache_backend() )
+  paste0(name, ".", backend_get( backend )$ext )
 
 
 name_to_path <- function(name) {

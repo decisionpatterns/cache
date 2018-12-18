@@ -16,12 +16,13 @@ character vector of filenames -- conflicts
 List filenames that conflict with name
 }
 \details{
-\emph{cache} does not multiple files with the same name within a single cache.
-For example, you cannot have \code{iris.rds} and \code{iris.csv}. This enforces a best
-practice of uniquely naming your data set.
+\emph{cache} does not permit multiple files with the same name within a single
+cache.  For example, you cannot have both \code{iris.rds} and \code{iris.csv}.
+This enforces a best practice of uniquely naming your data set.
 
-Uniqueness is enforced among files with a registered backend. Thus is there
-is no backend for a \code{.txt} file, these will not be identified as conflicts.
+This uniqueness is enforced among files with registered backends.
+Thus, if there is no backend for a \code{.txt} file,
+it will not be identified as conflict.
 }
 \examples{
 

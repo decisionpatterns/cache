@@ -14,7 +14,7 @@ Get backend name(s) from extension(s)
 }
 \examples{
 
- ext_to_backend("rds")  # rds
+ ext_to_backend("rds")  # 'rds'
  ext_to_backend("none") # NULL
 
  ext_to_backend( c('rds','sodium.rds') )
