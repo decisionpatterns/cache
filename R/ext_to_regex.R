@@ -24,3 +24,27 @@ ext_to_regex <- function(ext) {
   # regex <-str_replace( regex, ".", "\\.")
   regex
 }
+
+#' Convert to a regular expressions
+#'
+#' Converts an object to a regular expression for matching
+#'
+#' @param x an object to convert to a regular expression
+#'
+#' @details
+#' [as.regex()] converts `pattern`
+#'
+#' @importFrom stringr regex
+#' @export
+as.regex <- function(x, ...) UseMethod('as.regex')
+
+#' @rdname as,regex
+#' @export
+as.regex.default <- function(x, ... ) regex( pattern=x, ...)
+
+#' @rdname as,regex
+#' @export
+as.regex.ext <- function(x, ...) {
+  pattern <- paste0( "\\.", x, "$" )
+  stringr::regex(pattern, ...)
+}

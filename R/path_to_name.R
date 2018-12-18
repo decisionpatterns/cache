@@ -58,18 +58,20 @@ name_to_path <- function(name) {
 
 
 
-#' Filter/grep files by exts
-
-filter_exts <- function( name, ext=backend_exts() )  {
-  x <- path_to_name()
-  path <- x[ x == name ] %>% na.omit %>% names()
-}
-
+# #' Filter/grep files by exts
+#
+# filter_exts <- function( name, ext=backend_exts() )  {
+#   x <- path_to_name()
+#   path <- x[ x == name ] %>% na.omit %>% names()
+# }
 
 
 #' path_to_ext
 #'
-#' @param path
+#' @param path path filepath
+#' @details
+#'
+#' path_to_ext
 
 path_to_ext <- function( path=fs::dir_ls(cache_path()), exts=backend_exts() ) {
 

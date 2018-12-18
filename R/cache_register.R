@@ -50,3 +50,12 @@ cache_register <- function(
   options( `cache.backends` = backends )
 
 }
+
+
+#' @details
+#' `cache_backend_register` is an alias for `cache_register`.
+#'
+#' @rdname cache_register
+#' @export
+
+cache_backend_register <- cache_register

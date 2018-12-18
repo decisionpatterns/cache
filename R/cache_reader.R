@@ -10,6 +10,7 @@
 #' and writing based on a given path.
 #'
 #' @seealso
+#'  - [cache_backend()]
 #'
 #' @importFrom stringr str_detect
 #' @rdname cache_reader

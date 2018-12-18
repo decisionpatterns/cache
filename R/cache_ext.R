@@ -1,27 +1,24 @@
-#' cache_ext
+#' extension for cache files
 #'
-#' A extension object for a cached object
+#' The filename extension used for the current backend.
 #'
-#' @param x character; values to be converted to extensions omitting the leading
-#'        `.`
+#' @details
+#'
+#' `cache_ext()` returns the extensions associated with the default cache
+#' backend. The difference between a *fs* and *cache* extension is that the
+#' *cache* extension may contain the `.`.
+#'
+#' @return
+#'   An [ext()] object for the current backend.
+#'
+#' @seealso
+#'  - [cache_backend()]
+#'
 #' @examples
-#'
-#'   cache_ext( qw(one, two, three) )
+#'   cache_ext()
 #'
 #' @export
 
-cache_ext <- function(x)
-  add_class( as.character(x), "cache_ext" )
-
-#' @rdname cache_ext
-#' @import crayon
-#' @export
-print.cache_ext <- function(x, ...) {
-  cat( "cache_ext: " )
-  x %>%
-    unclass() %>%
-    crayon::red() %>%
-    # squote() %>%
-    collapse_comma() %>%
-    cat()
+cache_ext <- function() {
+  ext( backend_ext( cache_backend() ) )
 }
