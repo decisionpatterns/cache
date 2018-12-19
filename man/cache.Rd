@@ -15,7 +15,7 @@ cache(object, name = deparse(substitute(object)), cache = cache_path(),
 
 cache_write(name, cache = getOption("cache", "cache"), ...,
   overwrite = getOption("cache.overwrite", TRUE),
-  envir = parent.frame(), backend = getOption("cache.backend"))
+  envir = parent.frame(), backend = cache_backend())
 
 uncache(name, ..., envir = parent.frame(),
   overwrite = getOption("uncache.overwrite", TRUE),

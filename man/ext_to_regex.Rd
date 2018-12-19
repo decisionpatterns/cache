@@ -10,7 +10,7 @@ ext_to_regex(ext)
 \item{ext}{string}
 }
 \description{
-Converts an ext to regex
+Converts an ext to regex; an extension to \code{\link[stringr:regex]{stringr::regex()}}
 }
 \details{
 Creates a regular expression out of an extension. This will match the end
