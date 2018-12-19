@@ -18,7 +18,10 @@
     )
 
   if( require(future) )future::plan(multiprocess)
-  # cache_register_rds()
+  if( is.null( cache_backend() ) ) {
+    cache_register_rds()
+    cache_use_rds()
+  }
 
 }
 

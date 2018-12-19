@@ -1,4 +1,13 @@
 # TODO
+
+ - [ ] Reorganize how packages are loaded.
+       cache_use(sodium) -- should:
+       - load cache.sodium package
+       - register the sodium backend
+       - cache_default(sodium)
+       cache_register(sodium)
+       
+
  - [ ] Allow *name* or *character* for backend reader and writer; this makes it
        more transparent as what is happening.
        
@@ -16,25 +25,26 @@
  - [ ] Support multiple extentions per backend, e.g. `.tgz` and `.tar.gz`
        This can also be handled as two separate backends and thus keep the 
        mapping of extension to backend as one-to-one.
-       
  - [ ] Allow `cache.x` to supply multiple backends. 
  
- - [ ] List files for a given backend/extension?
+ - [ ] List files for a given backend/extension? `cache_ls('rds')`
 
  - [ ] When registering a backend; check for file conflicts.
 
- - [ ] cache/uncache by glob or regex
+ - [ ] cache/uncache by 
+   - [ ] glob or
+   - [ ] regex
    These may be functions `cache_glob()` or `cache_regex()`
 
-    cache( "dat*" )
-    cache( "dat.+" )
+    cache( regex(name) )
+    cache( glob(name) )  # use glob2rx
  
  - Use *crayon* or *pillar* to add color 
    - cache items without backend (red)
    - cache items without loaded backend (grey)
    - cache item with loaded backend (normal)
 
- - [?] dot-dot
+ - [X] dot-dot
    It may be advisable to use `..` as a filename separator for the extensions
    rather than rely on the extensions that are registered.
 
@@ -48,7 +58,7 @@
  - [ ] When rprojroot is a package, set the cache to be the data directory.
    - cache then is equivalent to `devtools::use_data()`
 
- - [ ] Create `cache_use_fst` -> refactor to 
+ - [X] Create `cache_use_fst` -> refactor to 
 
  - [X] Rename `cache_write_aes` -> `cache_write_sodium`, etc.s
  

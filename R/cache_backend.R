@@ -38,7 +38,7 @@ cache_backend <- function(backend=NULL) {
         , "'", backend, "' is not an available backend."
         , "\n"
         , "Available backends: "
-        , paste( backend_ls() %>% squote(), collapse=", ")
+        , paste( squote( backend_ls() ), collapse=", ")
         , "\n"
         , "Use the available `register` method ("
         , paste0( 'cache_register_', backend, '?' )
