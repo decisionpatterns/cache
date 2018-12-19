@@ -4,8 +4,8 @@
 \alias{use_cache}
 \title{use_cache}
 \usage{
-use_cache(path = here::here() \%>\% fs::path(cache_name()),
-  ignore = TRUE, ..., git_ignore = ignore, rbuild_ignore = ignore)
+use_cache(path = cache_find(), ignore = TRUE, ...,
+  git_ignore = ignore, rbuild_ignore = ignore)
 }
 \arguments{
 \item{path}{string; path to cache directory (DEFAULT:NULL)}

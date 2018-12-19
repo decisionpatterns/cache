@@ -38,7 +38,7 @@
 #' @export
 
 use_cache <- function(
-    path = here::here() %>% fs::path( cache_name() )
+    path = cache_find()
   , ignore = TRUE
   # , criterion=is_git_root | is_r_package | is_rstudio_project
   , ...
@@ -46,34 +46,26 @@ use_cache <- function(
   , rbuild_ignore = ignore
 ) {
 
-  # if( ! is.null(path) ) {
-  #   root <- fs::path_dir(path)
-  # } else {
-  #   root <- find_root( is_git_root | is_rstudio_project | is_r_package )
-  #   path <- fs::path( root, cache_path() )
-  # }
-  #
-  # if( ! dir_exists(path) ) {
-  #   message("creating cache directory at: ", path)
-  #   fs::dir_create(path)  # ...?
-  # } else {
-  #   message("using existing directory: ", path)
-  # }
+  if( is.null(path) ) {
+    message("Putting cache in current directory: ", getwd() )
+    path = "." %>% fs::path( cache_name() )
+  }
 
   cache_create(path)
 
-  cache_set(path)
+  cache_path(path)
   options( cache.name = fs::path_file(path) )
 
   # If this is a part of a git project ... ignore the cache's relative path
   if( git_ignore ) {
     git_root <- find_root_safe( is_git_root )
-    if( ! is.null(git_root) )
+    if( ! is.null(git_root) ) {
       # path <- file.path( root, cache_path() )
       git_ignore_path <- file.path( git_root, ".gitignore" )
       cache_path_rel <- fs::path_rel( path, git_root )
       message( "Adding '", cache_path_rel, "' to '", git_ignore_path, "'" )
       union_write( git_ignore_path, cache_path_rel )
+    }
   }
 
   if( rbuild_ignore ) {

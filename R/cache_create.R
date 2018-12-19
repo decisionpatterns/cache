@@ -2,7 +2,7 @@
 #'
 #' Create a directory for files
 #'
-#' @param path path to create cache directory
+#' @param path path or sting to create cache directory
 #'
 #' @details
 #'
@@ -12,14 +12,12 @@
 #' @importFrom here here
 #' @export
 
-cache_create <- function(
-  path = here::here() %>% fs::path( cache_name() )
-) {
+cache_create <- function(path) {
 
    path <- fs::path(path)  # If not path
 
    if( ! fs::dir_exists(path) ) {
-     message( "Creating cache ... ", path )
+     message( "Creating cache : ", path )
      fs::dir_create( path, recursive = TRUE )
      options( cache=path )
    } else {

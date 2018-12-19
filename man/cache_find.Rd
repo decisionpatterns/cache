@@ -10,7 +10,8 @@ cache_find(path = ".", relative = FALSE)
 \item{path}{to look for cache in. Default is the PWD.}
 }
 \value{
-a \code{\link[fs:path]{fs::path()}} pointing to the cache directory
+a \code{\link[fs:path]{fs::path()}} pointing to the cache directory or \code{NULL} if the
+path cannot be found.
 }
 \description{
 Finds the cache path by searching up the directory structure for a directory

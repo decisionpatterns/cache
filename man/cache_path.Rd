@@ -7,7 +7,7 @@
 cache_path(path = NULL)
 }
 \value{
-\code{\link[fs:path]{fs::path()}} object of the \emph{relative} path to the cache directory.
+\code{\link[fs:path_rel]{fs::path_rel()}} object of the \emph{relative} path to the cache directory.
 Use \code{\link[fs:path_abs]{fs::path_abs()}} to get the absolute path.
 }
 \description{

@@ -11,7 +11,7 @@
 #' With a `path` argument specified, `cache_path` set the path for the cache
 #' directory.
 #'
-#' @return [fs::path()] object of the *relative* path to the cache directory.
+#' @return [fs::path_rel()] object of the *relative* path to the cache directory.
 #' Use [fs::path_abs()] to get the absolute path.
 #'
 #' @seealso
@@ -26,7 +26,8 @@ cache_path <- function(path=NULL) {
     options( cache.path = path[[1]] )
 
   getOption( 'cache.path'
-             , fs::path_rel( cache_find() ) ) %>%
-    fs::path()
+             , cache_find()
+           ) %>%
+    fs::path_rel()
 
 }

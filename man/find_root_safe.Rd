@@ -7,6 +7,14 @@
 find_root_safe(...)
 }
 \description{
-Find the root or return NULL -- used when you don't know if you are in
-a pack
+Find the root or return `NULL`` -- used when you don't know whether a root
+can be found.
+}
+\examples{
+
+\dontrun{
+  find_root( has_dir("xdx") )      # ERROR!
+}
+  find_root_safe( has_dir("xdx") ) # NULL
+
 }

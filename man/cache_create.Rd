@@ -4,10 +4,10 @@
 \alias{cache_create}
 \title{cache_create}
 \usage{
-cache_create(path = here::here() \%>\% fs::path(cache_name()))
+cache_create(path)
 }
 \arguments{
-\item{path}{path to create cache directory}
+\item{path}{path or sting to create cache directory}
 }
 \description{
 Create a directory for files
