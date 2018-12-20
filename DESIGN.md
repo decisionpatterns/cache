@@ -48,6 +48,13 @@ Examples:
  - `cache_`
  - `backend_`
 
+
+## Accessor method
+
+The packages uses the single-accessor style. Rather than have seperate `get_` 
+and `set_` methods. One method is used. It functions as a getter unless and 
+argument is supplied. This may change in the future.
+
 ## Uniqueness
 
 In order to work properly, cache enforces uniqueness of objects. Since, there 

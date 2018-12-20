@@ -1,5 +1,9 @@
 # TODO
 
+ - [ ] cache_write should support object, name to enable something like:
+       
+       cache_write( iris[1:4,], name='iris' )
+ 
  - [ ] Reorganize how packages are loaded.
        cache_use(sodium) -- should:
        - load cache.sodium package

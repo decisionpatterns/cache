@@ -104,7 +104,7 @@ backend_get <- function( backend=cache_backend() ) {
 #' @rdname backends
 #' @export
 
-backend_ls <- function() backends() %>% names()
+backend_ls <- function() names( backends() )
 
 
 #' @details
@@ -132,7 +132,7 @@ backend_exts <- function()
 #' @rdname backend
 #' @export
 
-backend_ext <- function( backend=getOption('cache.backend') )
+backend_ext <- function( backend=cache_backend() )
   ext( backend_get(backend)$ext )
 
 

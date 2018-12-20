@@ -4,7 +4,7 @@
 \alias{cached_file}
 \title{Create a cached_file}
 \usage{
-cached_file(x, ext = backend_ext())
+cached_file(x, ext = cache_ext())
 }
 \arguments{
 \item{x}{character}

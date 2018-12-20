@@ -7,7 +7,7 @@
 \usage{
 cache_backend(backend = NULL)
 
-cache_default(backend = NULL)
+cache_default(...)
 }
 \arguments{
 \item{backend}{string; name for the backend.  Note this is not

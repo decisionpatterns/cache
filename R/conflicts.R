@@ -28,7 +28,7 @@
 #'
 #  @export
 
-conflicts <- function(name, ext=backend_ext() ) {
+conflicts <- function(name, ext=cache_ext() ) {
 
   name. <- as.character( substitute(name) )
   if( ! is.character(name) ) name <- name.
@@ -49,7 +49,7 @@ conflicts <- function(name, ext=backend_ext() ) {
 #'
 #' @param name string
 
-has_conflict <- function(name, ext=backend_ext() ) {
+has_conflict <- function(name, ext=cache_ext() ) {
 
  if( missing(name) )
    stop("A name must be supplied in order to check conflicts.")
@@ -83,7 +83,7 @@ conflict_msg <- function(x) {
 #'  [conflicts()]
 
 alternate_files <- function(name) {
-  exts <- backend_exts() %>% setdiff( backend_ext() )
+  exts <- backend_exts() %>% setdiff( cache_ext() )
   paste0( name, ".", exts ) %>%
     fs::path()
 }

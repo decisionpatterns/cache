@@ -4,7 +4,7 @@
 \alias{has_conflict}
 \title{Determine if there is any conflicting files}
 \usage{
-has_conflict(name, ext = backend_ext())
+has_conflict(name, ext = cache_ext())
 }
 \arguments{
 \item{name}{string}

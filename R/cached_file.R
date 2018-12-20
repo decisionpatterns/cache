@@ -21,20 +21,20 @@
 # @export
 
 
-cached_file <- function(x, ext=backend_ext() ) {
+cached_file <- function(x, ext=cache_ext() ) {
   x <- as.character( substitute(x) )  # capture as character.
   as_cached_file(x, ext)
 }
 
 
-as_cached_file <- function(x, ext=backend_ext() ) UseMethod("as_cached_file")
+as_cached_file <- function(x, ext=cache_ext() ) UseMethod("as_cached_file")
 
-as_cached_file.default <- function(x, ext=backend_ext() ) {
+as_cached_file.default <- function(x, ext=cache_ext() ) {
   x <- as.character( substitute(x) )    # capture character
   as_cached_file(x, ext )
 }
 
-as_cached_file.character <- function(x, ext=backend_ext() ) {
+as_cached_file.character <- function(x, ext=cache_ext() ) {
 
   if( ! ext %in%  backend_exts() )
     stop( "'", ext, "' is not a registered extension." )

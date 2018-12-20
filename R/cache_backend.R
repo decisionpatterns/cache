@@ -56,4 +56,7 @@ cache_backend <- function(backend=NULL) {
 #' @rdname cache_backend
 #' @export
 
-cache_default <- cache_backend
+cache_default <- function(...) {
+  .Deprecated( "cache_backend" )
+  cache_backend(...)
+}

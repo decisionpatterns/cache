@@ -10,7 +10,7 @@ backend(name, reader, writer, ext, ...)
 
 \method{print}{backend}(x, ...)
 
-backend_ext(backend = getOption("cache.backend"))
+backend_ext(backend = cache_backend())
 }
 \arguments{
 \item{name}{string; name of backend.}

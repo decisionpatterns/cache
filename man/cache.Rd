@@ -13,7 +13,7 @@ cache(object, name = deparse(substitute(object)), cache = cache_path(),
   ..., overwrite = getOption("cache.overwrite", TRUE),
   envir = parent.frame(), backend = getOption("cache.backend"))
 
-cache_write(name, cache = getOption("cache", "cache"), ...,
+cache_write(name, cache = cache_path(), ...,
   overwrite = getOption("cache.overwrite", TRUE),
   envir = parent.frame(), backend = cache_backend())
 
@@ -82,6 +82,8 @@ Caches or uncaches and object in a cache directory
 \details{
 \code{cache_write} is like \code{cache} but takes a name of an object and an
 environment. It is mainly useful for programatic writing to the cache.
+\code{cache_write} will not work unless a cache direcort has been defined. See
+\code{\link[=cache_path]{cache_path()}}.
 
 \code{uncache} restores an object from disk. It restores based on the name. It
 looks in the cache

@@ -109,7 +109,11 @@ cache <- function(
 #' @details
 #'  `cache_write` is like `cache` but takes a name of an object and an
 #'  environment. It is mainly useful for programatic writing to the cache.
+#'  `cache_write` will not work unless a cache direcort has been defined. See
+#'  [cache_path()].
 #'
+#' @seelalso
+#'  - [cache_path()]
 #'
 #' @rdname cache
 #' @import fs
@@ -118,7 +122,7 @@ cache <- function(
 cache_write <- function(
   #  object,
     name
-  , cache = getOption('cache', 'cache' )
+  , cache = cache_path()
   , ...
   # , timestamp = getOption('timestamp')
   , overwrite = getOption('cache.overwrite', TRUE )
@@ -132,7 +136,6 @@ cache_write <- function(
 
   object <- get( name, envir )
   # object <- structure( object, cache_time = Sys.time() )
-
 
   # if( is.function(timestamp) ) timestamp <- timestamp()
   # if( ! is.null(timestamp) ) timestamp <- paste0("-", timestamp[[1]] )

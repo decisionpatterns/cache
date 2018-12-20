@@ -25,9 +25,9 @@ cache_path <- function(path=NULL) {
   if( ! is.null(path) )
     options( cache.path = path[[1]] )
 
-  getOption( 'cache.path'
-             , cache_find()
-           ) %>%
-    fs::path_rel()
+  path <- getOption( 'cache.path', cache_find() )
 
+  if( ! is.null(path) ) path <- fs::path_rel(path)
+
+  path
 }

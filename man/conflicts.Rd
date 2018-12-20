@@ -4,7 +4,7 @@
 \alias{conflicts}
 \title{List cache conflicts}
 \usage{
-conflicts(name, ext = backend_ext())
+conflicts(name, ext = cache_ext())
 }
 \arguments{
 \item{name}{quoted or unquoted name}
