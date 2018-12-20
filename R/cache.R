@@ -112,7 +112,7 @@ cache <- function(
 #'  `cache_write` will not work unless a cache direcort has been defined. See
 #'  [cache_path()].
 #'
-#' @seelalso
+#' @seealso
 #'  - [cache_path()]
 #'
 #' @rdname cache

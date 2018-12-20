@@ -124,4 +124,8 @@ any alternate files.
 \item \code{\link[=cache_all]{cache_all()}} for saving all objects to the cache.
 \item \code{\link[base:saveRDS]{base::saveRDS()}}
 }
+
+\itemize{
+\item \code{\link[=cache_path]{cache_path()}}
+}
 }

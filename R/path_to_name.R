@@ -44,12 +44,13 @@ path_to_name <- function( path= fs::dir_ls( cache_path() ) ) {
 
 }
 
+#' @importFrom stringr str_subset
 
 name_to_file <- function(name, cache=cache_path(), backend=cache_backend() ) {
   exts <- backend_exts()
   re <- paste0( "^", name, "\\.(", collapse(exts, "|"), ")$" )
   files <- cache_dir(cache)
-  file <- files %>% str_grep(re)
+  file <- stringr::str_subset( files, re)
 
   if( length(file) > 1 )
     stop( length(file), " files are matched. This should not be.")

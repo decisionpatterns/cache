@@ -1,5 +1,7 @@
 # cache 
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+
 The **cache** package provides a consistent interface for writing and
 restoring data. It is designed to object permanance easy, functional, 
 extensible and consistent.  

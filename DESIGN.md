@@ -14,6 +14,9 @@ This document records design decisions for the *cache* package.skeleton
  - Create **infrastructure** for update/sync of data
  - Create **infrastructure** for supporting models esp. offline features.
 
+The goal is to have the developer or program work with names and not worry about
+paths, extension, i/o, etc.   
+
 ## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
 
 This package delineates the difference between `write`/`read`` and
