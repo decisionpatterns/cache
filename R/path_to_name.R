@@ -45,9 +45,17 @@ path_to_name <- function( path= fs::dir_ls( cache_path() ) ) {
 }
 
 
-name_to_file <- function(name, backend=cache_backend() )
-  paste0(name, ".", backend_get( backend )$ext )
+name_to_file <- function(name, cache=cache_path(), backend=cache_backend() ) {
+  exts <- backend_exts()
+  re <- paste0( "^", name, "\\.(", collapse(exts, "|"), ")$" )
+  files <- cache_dir(cache)
+  file <- files %>% str_grep(re)
 
+  if( length(file) > 1 )
+    stop( length(file), " files are matched. This should not be.")
+
+  file
+}
 
 name_to_path <- function(name) {
   # name <- as.character(substitute(name))

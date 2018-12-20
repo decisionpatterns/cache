@@ -141,16 +141,17 @@ cache_write <- function(
   # if( ! is.null(timestamp) ) timestamp <- paste0("-", timestamp[[1]] )
 
   if ( is.null(cache) || ! dir_exists(cache)  )
-    stop("cache directory, "
-         , " doesn't exist directory doesn't exist. Try creating it with:"
-         , "\n  cache_create(...)"
+    stop("cache directory doesn't exist directory doesn't exist. Try creating it with:"
+         , "\n  cache_create(path)"
     )
 
   # path <- fs::path( cache, paste0( name, timestamp, ".rds") )
   # path_extensionless <- fs::path( cache, paste0( name, timestamp ) )
 
   # CHECK CONFLICTS: so tat th
-  if( has_conflict(name, ext) ) stop( conflict_msg(name) )
+  if( has_conflict(name, ext) )
+    if( overwrite )
+      cache_rm( conflicts(name,ext)) else stop( conflict_msg(name) )
 
   path <- name %>% paste0(".", ext) %>% fs::path(cache, .)
 

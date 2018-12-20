@@ -1,6 +1,7 @@
 #' cached
 #'
-#' subclass for working with cached objects: path, dir, file, name, ext, etc.
+#' subclass for working with cached objects: `path`, `dir`, `file`, `name`,
+#' `ext`, etc.
 #'
 #' @param x object to subclass
 #'
@@ -10,6 +11,12 @@
 #' their **fs** counterparts.
 #'
 #' The biggest difference is *cached* ext vs a fs extension
+#'
+#' @examples
+#'
+#'   x <- path('cache') %>% cached()
+#'   print(x)   # A cache path(s) at:
+#'
 #'
 #' @export
 

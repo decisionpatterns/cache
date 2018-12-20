@@ -18,10 +18,27 @@
     )
 
   if( require(future) )future::plan(multiprocess)
+
+  # USE rds WHEN NO BACKEND LOADED
   if( is.null( cache_backend() ) ) {
     cache_register_rds()
     cache_use_rds()
   }
+
+  if( is.null( cache_path() ) ) {
+
+    message( "No cache directory is set.")
+
+
+    if( ! is.null( cache_find() ) ) {   # UNSET AND FOUND
+      "But once is found. Set it with:" %>% message()
+      paste0("  cache_path('", cache_find(), "')" ) %>% message()
+      "or" %>% message()
+    }
+    message( "Create one with: cache_create(...)" )
+
+  }
+
 
 }
 

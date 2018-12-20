@@ -21,12 +21,13 @@ cache_create <- function(path) {
    if( ! is.null(existing) && fs::path_abs(path) != existing )
      warning("An existing cache has been found at: ", existing )
 
-   if( ! fs::dir_exists(path) ) {
+   if( fs::dir_exists(path) ) {
+     stop( "Directory ", squote(path), " already exists." )
+   } else {
      message( "Creating cache : ", path )
      fs::dir_create( path, recursive = TRUE )
-     cache_path( path %>% fs::path_rel() )    # Set cache as relative
-   } else {
-     warning( "Directory ", path %>% squote(), " already exists." )
+     cache_path( fs::path_rel(path) )    # Set cache as relative
    }
+
 
 }

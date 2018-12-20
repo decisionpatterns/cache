@@ -116,9 +116,9 @@ backend_ls <- function() names( backends() )
 #' @rdname backends
 #' @export
 
-backend_exts <- function()
-  sapply( backends(), function(x) structure( x$ext, names=x$names ) )
-
+backend_exts <- function() {
+  ext( sapply( backends(), function(x) structure( x$ext, names=x$names ) ) )
+}
 
 #' @details
 #' `backend_ext()` gives the extensions associated with a backend.

@@ -27,6 +27,7 @@ as.regex.ext <- function(x, ...) {
 }
 
 
+
 #' Convert ext to regex
 #'
 #' Converts an ext to regex; an extension to [stringr::regex()]

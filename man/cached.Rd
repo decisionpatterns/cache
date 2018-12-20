@@ -16,11 +16,19 @@ cached(x, ...)
 \item{x}{object to subclass}
 }
 \description{
-subclass for working with cached objects: path, dir, file, name, ext, etc.
+subclass for working with cached objects: \code{path}, \code{dir}, \code{file}, \code{name},
+\code{ext}, etc.
 }
 \details{
 These are essentially used for providing special methods for cache objects vs
 their \strong{fs} counterparts.
 
 The biggest difference is \emph{cached} ext vs a fs extension
+}
+\examples{
+
+  x <- path('cache') \%>\% cached()
+  print(x)   # A cache path(s) at:
+
+
 }

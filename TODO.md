@@ -1,5 +1,95 @@
 # TODO
 
+ - [ ] Use .Rprofile to start-up cache
+ 
+ - [ ] cache_info should include
+       - name
+       - format|backend 
+       - class 
+       - dim 
+       - size
+       - key 
+       - mtime
+       
+ - [ ] Define function by name or expression, e.g.  
+       (quote( cache::cache_ls ) %>% eval )()
+       rlang::quo(cache.sodium::write_sodium) %>% rlang::quo_get_expr()
+ 
+ - [ ] Separate connections (backends) from commands (get).
+       A data set is associated with a command: read -or- write.
+       The command will probably have to be stored with the **metadata** for the 
+       cache. 
+       .cache/metadata
+       .cache/summaries 
+       cache_write(iris, cmd=do_something )
+ 
+ - [ ] `cache_path` should probably be denoted with a .cache file in it, to 
+       clear tell if it is a .cache path -or- a `.cache` directory. 
+       This probably entails changing how `cache_find()` works.
+ 
+ - [ ] What is the proper `path` argument to cache_create().  A path into which 
+       the cache is created -or- the path to the cache directory.  
+       The later.  This is done correctly.
+       
+ - [ ] Autogenerate `README.md` or `README.html` for a cache directory for a
+       group of files.
+ 
+ - [ ] Perhaps we need to be able to mark a directory as a cache.
+ 
+ - [ ] replace `base::save()` with cache mechanism
+ 
+ - [ ] `collapse` method for regex
+ 
+   Turns several regexs into a single regex by finding the lcs 
+   (longest common subsequence)
+   
+   See [lcs](https://stackoverflow.com/a/33384923/1504321)
+   
+    #' @details
+    #'   Collapse a
+    #' @rdname collapse
+    #' @export
+    collapse.regex <- function(x, sep="|") {
+    
+      if( length(x)<=1 ) return(x)
+    
+      ...
+    
+    }
+ 
+ - [ ] (low priority) ext class should be associated with a backend
+
+       ext.backend = 'fst' 
+ 
+ 
+ - [ ] Create `cache(d)` class
+       The class can provide a number of methods for special objects.
+       - See `cached_file.R`
+       - Class has object + attribute `cache_name` for object as an attribute
+       - This should handle i/o. And can be passed around.
+       - See `cached.R` for some idea about developing this around `ext`
+       
+      `cache_write()` will unpack the object with the name attribute for writing.
+      most methdos for `cache(d)` will remove the class and delegate to NextMethod.
+      
+       
+ - [ ] Create `cache_*` method for and `fs::file_*` method:
+       Should a sticky bit be set on the cache to ensure that the same
+        file_access -> cache_access : is the cache readable writable
+        file_chmod ->  cache_chmod : change permissions
+        file_chown -> change owner : cache at a time
+        X file_copy -> no copying
+        X file_create
+        file_delete -> cache_delete / cache_rm 
+        file_exists -> cache_exists(name)
+        file_info -> cache_info() 
+        X file_move 
+        file_show -> cache_show
+        X file_temp -> 
+        X file_temp_pop
+        X file_temp_push
+        file_touch
+
  - [ ] cache_write should support object, name to enable something like:
        
        cache_write( iris[1:4,], name='iris' )

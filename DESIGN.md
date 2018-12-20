@@ -2,6 +2,18 @@
 
 This document records design decisions for the *cache* package.skeleton
 
+
+## Goal(s)
+
+ - Create pragmas for managing data (tables)
+ - Hide complexity of paths and naming
+ - Provide mechanism for all I/O and saving
+ - replace `save`
+ - Provide metadata data
+ - Mimic functions of fs::
+ - Create **infrastructure** for update/sync of data
+ - Create **infrastructure** for supporting models esp. offline features.
+
 ## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
 
 This package delineates the difference between `write`/`read`` and
@@ -18,15 +30,15 @@ Examples:
      cache(x)
      cache('x')
      cache(x, file="cache-file" )
-     cache_rds(x)
+     cache_rds(x)    # If supplied
      cache_sodium(x)
 
      uncache(y)
 
 
-## Relations
+## Relations of Things
 
-     object <==> name <==> filename <==> path ( cache_path / cache_filename )
+     R object (w/ name <==> filename <==> path cache_path()/cache_filename(object)
      fs:       filename <==> fs_path <==> fs_path 
      cache:
        =>      as_cached_name => add_extension => check_conflicts => path( cache_path, . ) 
@@ -52,8 +64,11 @@ Examples:
 ## Accessor method
 
 The packages uses the single-accessor style. Rather than have seperate `get_` 
-and `set_` methods. One method is used. It functions as a getter unless and 
+and `set_` methods, one method is used. These functions getter unless and 
 argument is supplied. This may change in the future.
+
+The problem with the single accessor method is that it only works well on 
+setting/getting simple attributes such as those that are just a string. 
 
 ## Uniqueness
 
@@ -133,6 +148,14 @@ update:
  4. Append records
  5. Save.
  
+## Update: Dimension Table
+
+A dimension table is often small and an update is a full collections
+
+## Update: Slowly Changing Dimension
+ 
+ - Get entire SCD if feasible
+ - Get based on SCD Effective Column
  
 ## Dimension
 

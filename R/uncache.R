@@ -60,7 +60,7 @@ cache_read <- function(
   name. <- as.character( expr_find(name) )
   if( ! is.character(name) ) name <- name.
 
-  if( ! fs::dir_exists(cache) )
+  if( is.null(cache) || ! fs::dir_exists(cache) )
     stop( "cache does not exist: '", cache, "'" )
 
   # CHECK CONFLICTS
@@ -74,11 +74,13 @@ cache_read <- function(
     )
   }
 
-  default_path <- default_path(name)
+  # Find path based on name using registered backends
+  cached_path <- name_to_path(name)
 
-  if( fs::file_exists( default_path ) ) {    # 1. Default Path (?)
 
-    path <- default_path
+  if( fs::file_exists( cached_path ) ) {    # 1. Default Path (?)
+
+    path <- cached_path
     reader <- cache_reader()
                                              # 2. Alternate Paths
   } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
