@@ -14,5 +14,5 @@ Create a directory for files
 }
 \details{
 Create a cache directory at \code{path}. If the path already exists, a warning is
-provided.
+provided. If path does not exist it is created.
 }

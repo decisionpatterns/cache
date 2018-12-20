@@ -140,11 +140,10 @@ cache_write <- function(
   # if( is.function(timestamp) ) timestamp <- timestamp()
   # if( ! is.null(timestamp) ) timestamp <- paste0("-", timestamp[[1]] )
 
-  if ( ! dir_exists(cache) )
-    stop("Directory, "
-         , cache %>% squote
+  if ( is.null(cache) || ! dir_exists(cache)  )
+    stop("cache directory, "
          , " doesn't exist directory doesn't exist. Try creating it with:"
-         , "\n  cache_create(", cache, ")"
+         , "\n  cache_create(...)"
     )
 
   # path <- fs::path( cache, paste0( name, timestamp, ".rds") )
