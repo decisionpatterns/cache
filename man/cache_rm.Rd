@@ -10,11 +10,37 @@ cache_rm(..., .cache = cache_find())
 cache_delete(..., .cache = cache_find())
 }
 \arguments{
-\item{...}{character; names of cached objects to permanently remove from
-the cache}
+\item{...}{single character vector of object names or comma separated list of
+unquoted names.}
 
 \item{.cache}{path; cache directory}
 }
 \description{
 Remove item(s) from the cache
+}
+\details{
+\code{\link[=cache_rm]{cache_rm()}} accepts either a character vector -or- a comma-separated list of
+unquoted names.
+
+\code{\link[=cache_delete]{cache_delete()}} is an alias for \code{\link[=cache_rm]{cache_rm()}}.
+}
+\examples{
+
+\dontrun{
+  cache(iris)
+  cache_rm(iris)
+  cache(iris)
+  cache_rm('iris')
+
+  cache(iris);cache(mtcars)
+  cache_ls()
+  cache_rm(iris,mtcars)
+  cache_ls()
+
+
+  cache(iris);cache(mtcars)
+  cache_rm( c('iris','mtcars') )
+  cache_ls()
+}
+
 }
