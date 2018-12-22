@@ -21,11 +21,23 @@ as.regex.default <- function(x, ... ) regex( pattern=x, ...)
 
 #' @rdname as.regex
 #' @export
-as.regex.ext <- function(x, ...) {
-  pattern <- paste0( "\\.", x, "$" )
-  stringr::regex(pattern, ...)
-}
+#'
 
+# PRODUCE MULTIPLE REGEXS
+# as.regex.ext <- function(x, ...) {
+#
+#   collapse(x,"|")
+#   pattern <- paste0( "\\.", x, "$" )
+#   stringr::regex(pattern, ...)
+# }
+
+# collapse.regex?
+as.regex.ext <- function(x, ...) {
+
+  re <- paste0( "\\.(", collapse(x, "|"), ")$" )
+
+  regex(re, ...)
+}
 
 
 #' Convert ext to regex

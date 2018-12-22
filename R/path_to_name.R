@@ -48,7 +48,7 @@ path_to_name <- function( path= fs::dir_ls( cache_path() ) ) {
 
 name_to_file <- function(name, cache=cache_path(), backend=cache_backend() ) {
   exts <- backend_exts()
-  re <- paste0( "^", name, "\\.(", collapse(exts, "|"), ")$" )
+  re <- as.regex(exts)
   files <- cache_dir(cache)
   file <- stringr::str_subset( files, re)
 

@@ -4,11 +4,13 @@
 \alias{cache_path}
 \title{cache_path}
 \usage{
-cache_path(path = NULL)
+cache_path(path)
+}
+\arguments{
+\item{path}{path or string; location for the cache directory}
 }
 \value{
-\code{\link[fs:path_rel]{fs::path_rel()}} object of the \emph{relative} path to the cache directory.
-Use \code{\link[fs:path_abs]{fs::path_abs()}} to get the absolute path.
+\emph{Relative} path of the cache directory or \code{NULL} if doesn't exist.
 }
 \description{
 Get/set the cache path
@@ -16,14 +18,16 @@ Get/set the cache path
 \details{
 Without a \code{path} argument or \code{path=NULL}, \code{cache_path()} returns the
 (relative) path to the cache directory. This is provided by
-\code{options(cache.path)} or \code{\link[=cache_find]{cache_find()}}
+\code{options(cache.path)}.
 
 With a \code{path} argument specified, \code{cache_path} set the path for the cache
-directory.
+directory. An error is raised if \code{path} does not exist. The cache should be
+initialized with \code{cache_create(...)} first.
 }
 \seealso{
 \itemize{
 \item \code{\link[=cache_name]{cache_name()}}
 \item \code{\link[=cache_find]{cache_find()}}
+\item \code{\link[fs:path_rel]{fs::path_rel()}}
 }
 }

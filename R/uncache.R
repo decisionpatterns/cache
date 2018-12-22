@@ -53,7 +53,7 @@ cache_read <- function(
     name
   , cache = cache_path()
   , ...
-  , reader = cache_reader()
+  , reader = name_to_reader(name)
   # , timestamp = getOption('timestamp')
 ) {
 
@@ -64,7 +64,7 @@ cache_read <- function(
     stop( "cache does not exist: '", cache, "'" )
 
   # CHECK CONFLICTS
-  if( has_conflict(name) ) {
+  if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
     warning(
       "'", name, "'"
       , " is used more than once in the cache. All cache names should be unique."
@@ -81,7 +81,7 @@ cache_read <- function(
   if( fs::file_exists( cached_path ) ) {    # 1. Default Path (?)
 
     path <- cached_path
-    reader <- cache_reader()
+    reader <- path_to_reader(path)
                                              # 2. Alternate Paths
   } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
 

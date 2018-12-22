@@ -21,7 +21,8 @@ uncache(name, ..., envir = parent.frame(),
   overwrite = getOption("uncache.overwrite", TRUE),
   reader = cache_reader())
 
-cache_read(name, cache = cache_path(), ..., reader = cache_reader())
+cache_read(name, cache = cache_path(), ...,
+  reader = name_to_reader(name))
 
 uncache_(...)
 

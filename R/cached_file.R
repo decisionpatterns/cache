@@ -2,43 +2,84 @@
 #'
 #' Create a name for an object.
 #'
-#' @param x character
+#' @param x object
+#' @param ext ext or string used in the cache
+#' @param ... additional arguments
 #'
 #' @details
 #'
-#' A cached_file is an `fs_path` object for the object. It is the filename
-#' without the path information.
+#' A `cached_file` is a subclass of `fs_path` object without the directory.
+#' It is the filename without the path information.
 #'
 #' @examples
-#'  as_cached_file(iris)   # e.g. "iris.rds"
-#'  as_cached_file('iris') # e.g. "iris.rds"
 #'
-#'  cached_file('iris')    # "fs_path"   "character"
+#'  cached_file('iris.rds') # e.g. "iris.rds"
+#'  as_cached_file('iris.rds')
+#'  as_cached_file('iris', 'rds' )
+#'  as_cached_file(iris)
 #'
 #' @return
 #' a `fs::fs_path` object of the filename. The extension
 #'
 # @export
 
-
-cached_file <- function(x, ext=cache_ext() ) {
-  x <- as.character( substitute(x) )  # capture as character.
-  as_cached_file(x, ext)
+cached_file <- function(x)  {
+  x <- as.character(x)
+  re <- backend_exts() %>% as.regex()
+  wh <- x %>% str_grepv(re)
+  if( length(wh)>0 )
+    warning( "Files without registered extensions: ", x %>% squote %>% collapse_comma() )
+  x <- fs::path_file(x)
+  add_subclass(x,'cached_file')
 }
 
+#' @rdname cached_file
+#' @export
+print.cached_file <- function(x,...) NextMethod()
+
+  # print( unclass(x, ...))
+# cached_file <- function(x, ext=cache_ext() ) {
+#   x <- as.character( substitute(x) )  # capture as character.
+#   as_cached_file(x, ext)
+# }
+
+#' @rdname cached_file
+#' @export
 
 as_cached_file <- function(x, ext=cache_ext() ) UseMethod("as_cached_file")
 
+
+#' @rdname cached_file
+#' @export
 as_cached_file.default <- function(x, ext=cache_ext() ) {
   x <- as.character( substitute(x) )    # capture character
-  as_cached_file(x, ext )
+  as_cached_file(x, ext)
 }
 
-as_cached_file.character <- function(x, ext=cache_ext() ) {
+#' @rdname cached_file
+#' @export
+as_cached_file.character <- function(x, ext=NULL ) {
 
-  if( ! ext %in%  backend_exts() )
-    stop( "'", ext, "' is not a registered extension." )
+  # Try and be smart about what is being provided.
+  if( is.null(ext) ) return( cached_file(x) )
+  if( str_detect( x, as.regex(ext) ) )  { # Already has extension
+    warning(
+      squote(x), " already has the extension ", squote(ext), "\n"
+    )
+    return( cached_file(x) )
+  }
 
-  x <- paste0( x, ".", ext )
-  fs::path(x)
+  x <- paste0( name, '.', ext )
+ cached_file(x)
+
 }
+
+#' @rdname cached_file
+#' @export
+
+as_cached_file.fs_path <- function(x, ext=NULL) {
+  x <- fs::path_file(x)
+  cached_file(x)
+}
+
+# as_cached_file.cached_name <- function(x, ext=cache_ext() )

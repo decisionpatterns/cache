@@ -38,6 +38,7 @@ as.ext <- function(x) ext(x)
 #' @import crayon
 #' @rdname ext
 #' @export
+
 print.ext <- function(x, ...) {
   cat( "filename extensions: " )
   x %>%

@@ -151,11 +151,26 @@ backend_ext <- function( backend=cache_backend() )
 
 ext_to_backend <- function(ext) {
 
-  exts <- backend_exts()
-  backends <- exts[ exts == ext ] %>% names()
+  # exts <- backend_exts()
+  backends() %>% Filter( function(x) x$ext == ext, . ) %>% .[[1]] %>% .$name
 
-  if( length(backends) == 0 ) return(NULL)
+  # backends <- exts[ exts == ext ] %>% names()
+  # if( length(backends) == 0 ) return(NULL)
+  # backends
 
-  backends
+}
 
+#' @export
+
+name_to_reader <- function(name) {
+
+  backend <- name %>% name_to_file() %>% file_to_ext() %>% ext_to_backend()
+  backend_get(backend)$reader
+
+}
+
+#' @export
+
+path_to_reader <- function(path) {
+  path %>% path_to_name() %>% name_to_reader()
 }
