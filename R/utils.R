@@ -45,3 +45,6 @@ squote <- function (x) {
 }
 
 is.string <- function (x) is.character(x) && length(x) == 1
+
+
+str_null <- "NULL"

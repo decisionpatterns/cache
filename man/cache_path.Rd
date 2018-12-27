@@ -2,7 +2,7 @@
 % Please edit documentation in R/cache_path.R
 \name{cache_path}
 \alias{cache_path}
-\title{cache_path}
+\title{Get/set the cache path}
 \usage{
 cache_path(path)
 }
@@ -10,7 +10,7 @@ cache_path(path)
 \item{path}{path or string; location for the cache directory}
 }
 \value{
-\emph{Relative} path of the cache directory or \code{NULL} if doesn't exist.
+Always returns the value of \code{getOptions('cache.path')}
 }
 \description{
 Get/set the cache path
@@ -20,14 +20,13 @@ Without a \code{path} argument or \code{path=NULL}, \code{cache_path()} returns 
 (relative) path to the cache directory. This is provided by
 \code{options(cache.path)}.
 
-With a \code{path} argument specified, \code{cache_path} set the path for the cache
-directory. An error is raised if \code{path} does not exist. The cache should be
-initialized with \code{cache_create(...)} first.
+When \code{path} is given, the \code{cache_path} is set.  If \code{path} does not exist,
+an error is thrown. The cache should be initialized with \code{cache_create(...)}
+first. \code{NULL} is allowed and does not throw an error.
 }
 \seealso{
 \itemize{
-\item \code{\link[=cache_name]{cache_name()}}
-\item \code{\link[=cache_find]{cache_find()}}
+\item \code{\link[=cache_create]{cache_create()}}
 \item \code{\link[fs:path_rel]{fs::path_rel()}}
 }
 }

@@ -56,6 +56,7 @@ as_cached_file.default <- function(x, ext=cache_ext() ) {
   as_cached_file(x, ext)
 }
 
+
 #' @rdname cached_file
 #' @export
 as_cached_file.character <- function(x, ext=NULL ) {
@@ -74,12 +75,18 @@ as_cached_file.character <- function(x, ext=NULL ) {
 
 }
 
+
 #' @rdname cached_file
 #' @export
-
 as_cached_file.fs_path <- function(x, ext=NULL) {
   x <- fs::path_file(x)
   cached_file(x)
 }
 
-# as_cached_file.cached_name <- function(x, ext=cache_ext() )
+#' @examples
+#'   cached_name('iris') %>% as_cached_file()
+#' @rdname cached_file
+#' @export
+as_cached_file.cached_name <- function(x, ext=cache_ext() ) {
+   as_cached_file.character(x, ext=ext)
+}

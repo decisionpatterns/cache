@@ -25,8 +25,7 @@
 
 cache_name <- function(name=NULL) {
 
-  if( ! is.null(name) )
-    options( cache.name = name )
+  if( ! is.null(name) ) options( cache.name = name )
 
   getOption('cache.name','cache')
 

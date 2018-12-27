@@ -1,5 +1,8 @@
 # TODO
 
+ - [ ] In memory backend ... 
+       store the data in a different process? sends the data to a different process?
+       
  - [ ] Use .Rprofile to start-up cache
  
  - [ ] cache_info should include

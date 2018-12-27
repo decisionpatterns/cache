@@ -7,6 +7,7 @@
 \alias{as_cached_file.default}
 \alias{as_cached_file.character}
 \alias{as_cached_file.fs_path}
+\alias{as_cached_file.cached_name}
 \alias{as_cached_name.default}
 \title{Create a cached_file}
 \usage{
@@ -21,6 +22,8 @@ as_cached_file(x, ext = cache_ext())
 \method{as_cached_file}{character}(x, ext = NULL)
 
 \method{as_cached_file}{fs_path}(x, ext = NULL)
+
+\method{as_cached_file}{cached_name}(x, ext = cache_ext())
 
 \method{as_cached_name}{default}(x)
 }
@@ -48,4 +51,5 @@ It is the filename without the path information.
  as_cached_file('iris', 'rds' )
  as_cached_file(iris)
 
+  cached_name('iris') \%>\% as_cached_file()
 }

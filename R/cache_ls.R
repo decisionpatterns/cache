@@ -44,9 +44,10 @@ cache_ls <- function( cache=cache_path(), ... ) {
 #' @export
 #' @rdname cache_ls
 
-cache_dir <- function(path=cache_path(), ...)
-  fs::dir_ls(path, ...) %>% fs::path_file()
-
+cache_dir <- function( path=cache_path(), ... ) {
+  fs::dir_ls(path, ...) ->.
+  fs::path_file(.)
+}
 
 #' @export
 #' @rdname cache_ls

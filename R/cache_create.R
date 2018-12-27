@@ -9,6 +9,10 @@
 #' Create a cache directory at `path`. If the path already exists, a warning is
 #' provided. If path does not exist it is created.
 #'
+#' @note
+#'
+#' [cache_create()] is used to create a directory so that
+#'
 #' @importFrom here here
 #' @export
 
@@ -22,11 +26,14 @@ cache_create <- function(path) {
      warning("An existing cache has been found at: ", existing )
 
    if( fs::dir_exists(path) ) {
-     stop( "Directory ", squote(path), " already exists." )
+     stop( "Directory ", squote(path), " already exists. ",
+           "To use this as the cache use: cache_path('", path, "')"
+           )
    } else {
      message( "Creating cache : ", path )
      fs::dir_create( path, recursive = TRUE )
      cache_path( fs::path_rel(path) )    # Set cache as relative
+     cache_name( fs::path_file(path) )
    }
 
 

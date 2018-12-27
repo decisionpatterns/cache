@@ -40,7 +40,8 @@ conflicts <- function(name, ext=cache_ext() ) {
   files <- fs::dir_ls( cache_path() ) %>% fs::path_file()
   conflicts <- str_detect( files, exts.re )
 
-  files[ conflicts ] %>% fs::path()
+  files[ conflicts ] ->.
+  fs::path(.)
 
 }
 

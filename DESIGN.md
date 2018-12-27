@@ -2,6 +2,10 @@
 
 This document records design decisions for the *cache* package.skeleton
 
+## Introduction 
+
+The cache package allows the user to save and restore files with only a few 
+simple commands regardless of the mechanism for doing so.
 
 ## Goal(s)
 
@@ -17,6 +21,7 @@ This document records design decisions for the *cache* package.skeleton
 The goal is to have the developer or program work with names and not worry about
 paths, extension, i/o, etc.   
 
+
 ## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
 
 This package delineates the difference between `write`/`read`` and
@@ -26,10 +31,13 @@ This package delineates the difference between `write`/`read`` and
  - `write` and `read` refers to storing as a human-readable file.
  - `cache`/`uncache` referes to a universal storing of an object.
 
+
 ## Cache usage
 
 Examples:
 
+     create_cache() 
+     
      cache(x)
      cache('x')
      cache(x, file="cache-file" )

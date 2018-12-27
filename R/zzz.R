@@ -31,9 +31,9 @@
 
 
     if( ! is.null( cache_find() ) ) {   # UNSET AND FOUND
-      "But once is found. Set it with:" %>% message()
-      paste0("  cache_path('", cache_find(), "')" ) %>% message()
-      "or" %>% message()
+      "But one is found. Set it with:" ->.; message(.)
+      paste0("  cache_path('", cache_find(), "')" ) ->.; message(.)
+      "or" ->.; message(.)
     }
     message( "Create one with: cache_create(...)" )
 

@@ -16,3 +16,6 @@ Create a directory for files
 Create a cache directory at \code{path}. If the path already exists, a warning is
 provided. If path does not exist it is created.
 }
+\note{
+\code{\link[=cache_create]{cache_create()}} is used to create a directory so that
+}
