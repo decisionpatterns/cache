@@ -25,20 +25,21 @@
     cache_use_rds()
   }
 
-  if( is.null( cache_path() ) ) {
 
-    message( "No cache directory is set.")
-
+  # Inform of cache status/locations
+  if( ! is.null( cache_path() ) ) {
+    "  Using cache at: " %>% packageStartupMessage( cache_path() )
+  } else {
 
     if( ! is.null( cache_find() ) ) {   # UNSET AND FOUND
-      "But one is found. Set it with:" ->.; message(.)
-      paste0("  cache_path('", cache_find(), "')" ) ->.; message(.)
-      "or" ->.; message(.)
+      cache_path( cache_find() )
+      "  Cache found at: " %>% packageStartupMessage( cache_find() )
+      "  Change it with 'cache_path(...)'" %>% packageStartupMessage()
+    } else {
+      "  Create a cache with: cache_create(...)" %>% packageStartupMessage()
     }
-    message( "Create one with: cache_create(...)" )
 
   }
-
 
 }
 

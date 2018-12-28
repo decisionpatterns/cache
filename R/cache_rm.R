@@ -33,7 +33,7 @@
 #' @md
 #' @export
 
-cache_rm <- function( ..., .cache=cache_find() ) {
+cache_rm <- function( ..., .cache=cache_path() ) {
 
   items <- as.character( substitute( list(...) ))[-1]
 

@@ -4,6 +4,7 @@
 #'
 #' @param path path or string; location for the cache directory
 # @param create logical; create path if it does not exist (Default:`FALSE``)
+#' @param verbose whether to announce change of `path` (Default: `FALSE`)
 #'
 #' @details
 #'
@@ -24,7 +25,7 @@
 #'
 #' @export
 
-cache_path <- function(path) {
+cache_path <- function(path, verbose=getOption('verbose', FALSE) ) {
 
   # GET:
   if( missing(path) ) return( getOption('cache.path') )
@@ -32,7 +33,7 @@ cache_path <- function(path) {
   # SET:
   # Warn if path does not exist
   if( !is.null(path) && !fs::dir_exists(path) )
-    stop( "'", path, "' does not exist; create it with: create_cache(", squote(path), ")" )
+    stop( "'", path, "' does not exist; create it with: cache_create(", squote(path), ")" )
 
   # OLD
   old_path <- getOption('cache.path')
@@ -42,14 +43,13 @@ cache_path <- function(path) {
     options( cache.path = NULL ) else
     options( cache.path = fs::path(path) )
 
-  path.str <- ifelse( is.null(path), "NULL", path )
+  path.str     <- ifelse( is.null(path), "NULL", path )
   old_path.str <- ifelse( is.null(old_path), "NULL", old_path )
 
   # MESSAGE
   if(
-     path.str != old_path.str
-     # is.null(path) != is.null(old_path)  ||                           # one null
-     # ( ! is.null(path) && ! is.null(old_path) && path != old_path )   # paths unequal
+     path.str != old_path.str &&
+     verbose
   ) {
     message(
       "cache path changed from "
