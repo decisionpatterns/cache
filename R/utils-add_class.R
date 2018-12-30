@@ -18,9 +18,10 @@
 # @rdname add_class
 # # @export
 
-add_subclass <- function(x, class)
+add_subclass <- function(x=NULL, class) {
+  if ( class %in% class(x) ) return(x)   # Already in that class
   structure( x, class = c(class,class(x)) )
-
+}
 
 #@details
 # `add_superclass` adds classes to the end of the special `class` attribure
@@ -28,9 +29,10 @@ add_subclass <- function(x, class)
 # @rdname add_class
 # @export
 
-add_superclass <- function(x, class)
+add_superclass <- function(x, class) {
+  if ( class %in% class(x) ) return(x)   # Already in that class
   structure( x, class=c(class(x),class) )
-
+}
 
 # @details
 #  `add_class` is an alias for `add_subclass`.

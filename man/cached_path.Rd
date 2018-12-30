@@ -21,12 +21,15 @@ as_cached_path(x, cache = cache_path(), ext = cache_ext())
 \method{as_cached_path}{character}(x, cache = cache_path(),
   ext = cache_ext())
 
-\method{as_cached_path}{cached_file}(x, cache = cache_path())
+\method{as_cached_path}{cached_file}(x, cache = cache_path(),
+  ext = NULL)
 
 \method{as_cached_path}{cached_name}(x, cache = cache_path(),
   ext = cache_ext())
 }
 \arguments{
+\item{x}{string or \code{\link[fs:path]{fs::path()}} object.}
+
 \item{...}{additional arguments}
 
 \item{cache}{string; location of the cache directory. (Default: \code{\link[=cache_path]{cache_path()}})}
@@ -53,9 +56,6 @@ and setting the location of the cache directory.
 }
 \seealso{
 \itemize{
-\item \code{\link[=cached_file]{cached_file()}}
-\item \code{\link[=cached_name]{cached_name()}}
-\item \code{\link[=cached_ext]{cached_ext()}}
 \item \code{\link[=cache_path]{cache_path()}}
 \item \code{\link[fs:path]{fs::path()}}
 }

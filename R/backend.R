@@ -164,7 +164,7 @@ ext_to_backend <- function(ext) {
 
 name_to_reader <- function(name) {
 
-  backend <- name %>% name_to_file() %>% file_to_ext() %>% ext_to_backend()
+  backend <- name %>% as_cached_file() %>% file_to_ext() %>% ext_to_backend()
   backend_get(backend)$reader
 
 }

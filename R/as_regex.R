@@ -13,6 +13,7 @@
 #'
 #' @importFrom stringr regex
 #' @export
+
 as_regex <- function(x, ...) UseMethod('as_regex')
 
 #' @rdname as_regex
@@ -30,6 +31,8 @@ as_regex.default <- function(x, ... ) regex( pattern=x, ...)
 #   pattern <- paste0( "\\.", x, "$" )
 #   stringr::regex(pattern, ...)
 # }
+
+#'
 
 # collapse.regex?
 as_regex.ext <- function(x, ...) {
@@ -56,7 +59,7 @@ as_regex.ext <- function(x, ...) {
 #' @examples
 #'
 #' ext_to_regex("rds")     # "\\.rds$"
-#'
+#' ext_to_regex( c("rds", "fst") )
 # @export
 
 ext_to_regex <- function(ext) {

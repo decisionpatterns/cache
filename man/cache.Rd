@@ -13,7 +13,7 @@ cache(object, name = deparse(substitute(object)), cache = cache_path(),
   ..., overwrite = getOption("cache.overwrite", TRUE),
   envir = parent.frame(), backend = getOption("cache.backend"))
 
-cache_write(name, cache = cache_path(), ...,
+cache_write(object, name, cache = cache_path(), ...,
   overwrite = getOption("cache.overwrite", TRUE),
   envir = parent.frame(), backend = cache_backend())
 

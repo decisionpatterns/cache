@@ -1,9 +1,28 @@
 # TODO
 
+ - [ ] Metadata function for backend similar to `fst::metadata_fst()` but with
+       a consistent interface?
+
+ - [?] Change `ext` to `fs_ext`
+       Make it work with 
+       - a list allowed extensions
+       - everything after the final `.` (fs default)
+       - `NA` if no `.`
+
+ - [ ] cache_rm_all() 
+       Remove all items from the cache
+       
+ - [ ] Add command to backend?
+       Really command is a data-set level thing.
+ 
  - [ ] In memory backend ... 
        store the data in a different process? sends the data to a different process?
+       in a differen environment
        
- - [ ] Use .Rprofile to start-up cache
+ - [ ] Use .Rprofile to start-up cache (if not default)
+   - Locate position of cache
+   
+ - Turn on object tracking for data.frames (i.e. write )
  
  - [ ] cache_info should include
        - name
@@ -26,8 +45,8 @@
        .cache/summaries 
        cache_write(iris, cmd=do_something )
  
- - [ ] `cache_path` should probably be denoted with a .cache file in it, to 
-       clear tell if it is a .cache path -or- a `.cache` directory. 
+ - [ ] `cache_path` should probably be denoted with a `.cache` file in it, to 
+       unambigously tell if it is a .cache path -or- a `.cache` directory. 
        This probably entails changing how `cache_find()` works.
  
  - [ ] What is the proper `path` argument to cache_create().  A path into which 

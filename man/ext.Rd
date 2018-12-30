@@ -2,15 +2,18 @@
 % Please edit documentation in R/ext.R
 \name{ext}
 \alias{ext}
-\alias{as.ext}
 \alias{print.ext}
+\alias{as_ext}
+\alias{as_ext.default}
 \title{filename extension}
 \usage{
-ext(x)
-
-as.ext(x)
+ext(x = NULL)
 
 \method{print}{ext}(x, ...)
+
+as_ext(x, ...)
+
+\method{as_ext}{default}(x, ...)
 }
 \arguments{
 \item{x}{object; values to be converted to character. Character values

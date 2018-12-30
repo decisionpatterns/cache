@@ -120,8 +120,8 @@ cache <- function(
 #' @export
 
 cache_write <- function(
-  #  object,
-    name
+    object
+  , name
   , cache = cache_path()
   , ...
   # , timestamp = getOption('timestamp')
@@ -134,7 +134,7 @@ cache_write <- function(
   writer <- backend_get(backend)$writer
   ext <- backend_get(backend)$ext
 
-  object <- get( name, envir )
+  # object <- get( name, envir )  # Tricky
   # object <- structure( object, cache_time = Sys.time() )
 
   # if( is.function(timestamp) ) timestamp <- timestamp()

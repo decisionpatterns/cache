@@ -12,11 +12,14 @@ cached_name(x)
 
 \method{print}{cached_name}(x, ...)
 
-as_cached_name(x, ...)
+as_cached_name(x)
 
-\method{as_cached_name}{character}(x, ...)
+\method{as_cached_name}{character}(x)
 
 \method{as_cached_name}{fs_path}(x)
+}
+\arguments{
+\item{...}{additional arguments}
 }
 \value{
 a \code{cached_name} object

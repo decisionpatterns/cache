@@ -2,7 +2,7 @@
 #'
 #' Performs function according to future::plan()
 #' @param x; first
-#' @param fun
+#' @param fun functon to execute in the background
 #'
 #' @details
 #'

@@ -27,13 +27,14 @@ cached_name <- function(x) {
   add_subclass(x, 'cached_name')
 }
 
+#' @param ... additional arguments
 #' @rdname cached_name
 #' @export
 print.cached_name <- function(x,...) print( unclass(x), ...)
 
 #' @rdname cached_name
 #' @export
-as_cached_name <- function(x, ...) UseMethod('as_cached_name')
+as_cached_name <- function(x) UseMethod('as_cached_name')
 
 #' @rdname cached_file
 #' @export
@@ -45,7 +46,7 @@ as_cached_name.default <- function(x) {
 
 #' @rdname cached_name
 #' @export
-as_cached_name.character <- function(x, ...) cached_name(x)
+as_cached_name.character <- function(x) cached_name(x)
 
 
 #' @details

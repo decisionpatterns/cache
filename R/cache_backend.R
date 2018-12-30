@@ -50,13 +50,14 @@ cache_backend <- function(backend=NULL) {
   backend
 }
 
-#' @details
-#' `cache_default()` is an alias for `cache_backend()`
-#'
-#' @rdname cache_backend
-#' @export
-
-cache_default <- function(...) {
-  .Deprecated( "cache_backend" )
-  cache_backend(...)
-}
+#
+# #' @details
+# #' `cache_default()` is an alias for `cache_backend()`
+# #'
+# #' @rdname cache_backend
+# #' @export
+#
+# cache_default <- function(...) {
+#   .Deprecated( "cache_backend" )
+#   cache_backend(...)
+# }

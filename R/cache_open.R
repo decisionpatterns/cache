@@ -1,6 +1,6 @@
 #' Open Cache Directory
 #'
-#' Opens the cache directory
+#' Opens the cache directory in file browser
 #'
 #' @param cache string or path to cache directory. (Default: [cache_path()])
 #' @param browser string; name of program to be used as the HTML browser.  See

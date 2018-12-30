@@ -13,7 +13,7 @@ cache_view(cache = cache_path(), browser = getOption("browser"))
 \link[fs:file_show]{fs::file_show}}
 }
 \description{
-Opens the cache directory
+Opens the cache directory in file browser
 }
 \seealso{
 \itemize{

@@ -5,10 +5,13 @@
 #' @param path string; path to cache directory (DEFAULT:NULL)
 #' @param ignore logical; whether to ignore both .gitignore and rbuildignore
 # @param criterion *rprojroot* criterion.  See [rprojroot::find_root()]
-#' @param ... unused -- requires explicit naming for `git_ignore` and `rbuild_ignore`
-#' @param git_ignore logical; whether to put `cache` in `.gitignore` (DEFAULT: `TRUE`)
-#' @param rbuild_ignore logical; whether to put `cache` is `.Rbuildignore` (DEFAULT: `TRUE`)
-
+#' @param git_ignore logical; whether to put `cache` in `.gitignore`
+#'        (DEFAULT: `TRUE`)
+#' @param rbuild_ignore logical; whether to put `cache` is `.Rbuildignore`
+#'        (DEFAULT: `TRUE`)
+#' @param ... unused -- requires that `git_ignore` and `rbuild_ignore` be
+#'        explicitly named
+#'
 #' @details
 #'
 #' In most cases, all you need to do is `use_cache()`. This will:
@@ -27,8 +30,11 @@
 #' `rbuild_ignore` controls whether the cache is incorporated into the package
 #' build. The default is not to include them.
 #'
-#' `cache_use` is an alias for `use_cache` that has the conventions of this
-#' package rather than `devtools`.
+#' Both `git_ignore` and `rbuild_ignore` require explicit argument names.
+#'
+#'
+# `cache_use` is an alias for `use_cache` that has the conventions of this
+# package rather than `devtools`.
 #'
 #' @seealso
 #'  - [here::here()]

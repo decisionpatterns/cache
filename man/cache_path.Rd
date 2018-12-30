@@ -4,10 +4,12 @@
 \alias{cache_path}
 \title{Get/set the cache path}
 \usage{
-cache_path(path)
+cache_path(path, verbose = getOption("verbose", FALSE))
 }
 \arguments{
 \item{path}{path or string; location for the cache directory}
+
+\item{verbose}{whether to announce change of \code{path} (Default: \code{FALSE})}
 }
 \value{
 Always returns the value of \code{getOptions('cache.path')}

@@ -4,8 +4,11 @@ This document records design decisions for the *cache* package.skeleton
 
 ## Introduction 
 
-The cache package allows the user to save and restore files with only a few 
-simple commands regardless of the mechanism for doing so.
+The cache package allows the user to save and restore files *unambiguously* and 
+*robustly* with only a few simple commands regardless of the mechanism for 
+doing so. 
+
+At the heart of this is ensuring uniqueness of data files. 
 
 ## Goal(s)
 

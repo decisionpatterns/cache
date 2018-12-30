@@ -19,7 +19,7 @@ as_cached_file(x, ext = cache_ext())
 
 \method{as_cached_file}{default}(x, ext = cache_ext())
 
-\method{as_cached_file}{character}(x, ext = NULL)
+\method{as_cached_file}{character}(x, ext = cache_ext())
 
 \method{as_cached_file}{fs_path}(x, ext = NULL)
 
@@ -47,7 +47,7 @@ It is the filename without the path information.
 \examples{
 
  cached_file('iris.rds') # e.g. "iris.rds"
- as_cached_file('iris.rds')
+ as_cached_file('iris.rds')  # Warn: Don't include extension
  as_cached_file('iris', 'rds' )
  as_cached_file(iris)
 

@@ -7,7 +7,7 @@
 bg(x, fun, ...)
 }
 \arguments{
-\item{fun}{}
+\item{fun}{functon to execute in the background}
 
 \item{x;}{first}
 }

@@ -5,9 +5,9 @@
 \alias{cache_delete}
 \title{cache_rm}
 \usage{
-cache_rm(..., .cache = cache_find())
+cache_rm(..., .cache = cache_path())
 
-cache_delete(..., .cache = cache_find())
+cache_delete(..., .cache = cache_path())
 }
 \arguments{
 \item{...}{single character vector of object names or comma separated list of

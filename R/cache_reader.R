@@ -6,8 +6,8 @@
 #
 #' @details
 #'
-#' [cache_reader{}] and [cache_writer()] return the function for reading
-#' and writing based on a given path.
+#' `cache_reader{}` and `cache_writer()` return the function for reading
+#' and writing to/from the cache.
 #'
 #' @seealso
 #'  - [cache_backend()]

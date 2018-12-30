@@ -20,10 +20,11 @@ cache_create <- function(path) {
 
    path <- fs::path(path)  # If not path
 
-   # If an existing cache exists warn
+   # WARN if an existing cache found warn
    existing <- cache_find()
-   if( ! is.null(existing) && fs::path_abs(path) != existing )
+   if( ! is.null(existing) && fs::path_abs(path) != existing ) {
      warning("An existing cache has been found at: ", existing )
+   }
 
    if( fs::dir_exists(path) ) {
      stop( "Directory ", squote(path), " already exists. ",
@@ -32,6 +33,7 @@ cache_create <- function(path) {
    } else {
      message( "Creating cache : ", path )
      fs::dir_create( path, recursive = TRUE )
+     fs::dir_create( fs::path(path, ".meta") )
      cache_path( fs::path_rel(path) )    # Set cache as relative
      cache_name( fs::path_file(path) )
    }

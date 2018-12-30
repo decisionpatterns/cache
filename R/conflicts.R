@@ -82,12 +82,15 @@ conflict_msg <- function(x) {
 #'
 #' @seealso
 #'  [conflicts()]
+#' @rdname conflicts
 
 alternate_files <- function(name) {
   exts <- backend_exts() %>% setdiff( cache_ext() )
   paste0( name, ".", exts ) %>%
     fs::path()
 }
+
+#' @rdname conflicts
 
 alternate_paths <- function(name) {
   name %>%

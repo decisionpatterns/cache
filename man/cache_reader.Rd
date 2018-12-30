@@ -13,8 +13,8 @@ cache_writer()
 Get the read or write function for a path
 }
 \details{
-\link{cache_reader{}} and \code{\link[=cache_writer]{cache_writer()}} return the function for reading
-and writing based on a given path.
+\code{cache_reader{}} and \code{cache_writer()} return the function for reading
+and writing to/from the cache.
 }
 \seealso{
 \itemize{

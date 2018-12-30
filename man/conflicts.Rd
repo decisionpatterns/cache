@@ -2,9 +2,15 @@
 % Please edit documentation in R/conflicts.R
 \name{conflicts}
 \alias{conflicts}
+\alias{alternate_files}
+\alias{alternate_paths}
 \title{List cache conflicts}
 \usage{
 conflicts(name, ext = cache_ext())
+
+alternate_files(name)
+
+alternate_paths(name)
 }
 \arguments{
 \item{name}{quoted or unquoted name}
@@ -32,4 +38,7 @@ it will not be identified as conflict.
   has_conflict(iris)
   has_conflict('iris')
 
+}
+\seealso{
+\code{\link[=conflicts]{conflicts()}}
 }

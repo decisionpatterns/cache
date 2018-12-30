@@ -12,11 +12,14 @@ use_cache(path = cache_find(), ignore = TRUE, ...,
 
 \item{ignore}{logical; whether to ignore both .gitignore and rbuildignore}
 
-\item{...}{unused -- requires explicit naming for \code{git_ignore} and \code{rbuild_ignore}}
+\item{...}{unused -- requires that \code{git_ignore} and \code{rbuild_ignore} be
+explicitly named}
 
-\item{git_ignore}{logical; whether to put \code{cache} in \code{.gitignore} (DEFAULT: \code{TRUE})}
+\item{git_ignore}{logical; whether to put \code{cache} in \code{.gitignore}
+(DEFAULT: \code{TRUE})}
 
-\item{rbuild_ignore}{logical; whether to put \code{cache} is \code{.Rbuildignore} (DEFAULT: \code{TRUE})}
+\item{rbuild_ignore}{logical; whether to put \code{cache} is \code{.Rbuildignore}
+(DEFAULT: \code{TRUE})}
 }
 \description{
 Add a cache to a project
@@ -40,8 +43,7 @@ to commit the cache data to git as the cache is seen as a working directory.
 \code{rbuild_ignore} controls whether the cache is incorporated into the package
 build. The default is not to include them.
 
-\code{cache_use} is an alias for \code{use_cache} that has the conventions of this
-package rather than \code{devtools}.
+Both \code{git_ignore} and \code{rbuild_ignore} require explicit argument names.
 }
 \seealso{
 \itemize{

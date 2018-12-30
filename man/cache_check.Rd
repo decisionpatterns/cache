@@ -7,11 +7,16 @@
 cache_check(cache = cache_path())
 }
 \arguments{
-\item{cache}{}
+\item{cache}{string or path.  (Default: cache_path())}
 }
 \description{
 Check the cache for problems
 }
 \details{
 \code{cache_check} checks the cache for potential problems.
+}
+\seealso{
+\itemize{
+\item \code{\link[=cache_path]{cache_path()}}
+}
 }

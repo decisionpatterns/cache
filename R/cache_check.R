@@ -2,11 +2,15 @@
 #'
 #' Check the cache for problems
 #'
-#' @param cache
+#' @param cache string or path.  (Default: cache_path())
 #'
 #' @details
 #'
 #' `cache_check` checks the cache for potential problems.
+#'
+#' @seealso
+#'
+#'  - [cache_path()]
 #'
 #' @export
 
