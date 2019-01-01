@@ -14,6 +14,7 @@
 #' @examples
 #'
 #' \dontrun{
+#'
 #'   cache(iris)
 #'   cache_rm(iris)
 #'   cache(iris)
@@ -43,8 +44,11 @@ cache_rm <- function( ..., .cache=cache_path() ) {
 
   for( item in items ) {
     # Find cached item by name
-     path <- name_to_path(item)
+     # path <- name_to_path(item)
+     path <- cached_name(item) %>% as_cached_path()
      fs::file_delete(path)
+
+     manifest_rm(item)  # sife-effect remove from manifest
   }
 
 }

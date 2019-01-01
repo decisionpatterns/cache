@@ -95,8 +95,8 @@ cache <- function(
 
   #cache_write(name, cache, timestamp, envir, fun=fun )
   cache_write(
-    # object,
-      name=name, cache=cache
+     object
+    , name=name, cache=cache
     , ...
     , overwrite=overwrite
     , envir=envir
@@ -131,8 +131,9 @@ cache_write <- function(
   # , writer = cache_writer() # getOption( 'cache.write', cache_write_rds )
 ) {
 
-  writer <- backend_get(backend)$writer
-  ext <- backend_get(backend)$ext
+  be     <- backend_get(backend)
+  writer <- be$writer
+  ext    <- be$ext
 
   # object <- get( name, envir )  # Tricky
   # object <- structure( object, cache_time = Sys.time() )
@@ -161,7 +162,28 @@ cache_write <- function(
           , "\n  File ", path %>% squote, " exists and overwrite==FALSE."
     )
 
-  ret <- writer( object, path, ... )   # SIDE-AFFECT
+  # SIDE-AFFECTS
+  # - write object to cache
+  # - record manifest
+
+  ret <- writer( object, path, ... )
+
+  if( ! identical(ret,object) ) warning("Object returned from writer not identical.")
+
+  manifest <- manifest_get()
+  manifest[[name]] <- list(
+      name = name
+    , path = path
+    , pkg  = be$pkg
+    , backend = backend
+    , mtime = Sys.time() %>% format( tz="UTC" )
+  )
+
+  manifest_write(manifest)
+  # meta <- meta_get() readRDS( fs_path( cache_path(), ".meta", "objects" ) )
+  # meta['name'] <- list( name=name, path=path )
+  # meta_save(meta)
+
 
   invisible(object)             # PIPELINE ENABLED: ALWAYS RETURN OBJECT
 

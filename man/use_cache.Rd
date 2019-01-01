@@ -35,7 +35,8 @@ In most cases, all you need to do is \code{use_cache()}. This will:
 Arguments allow for fine tuning of the behaviors.
 
 \code{path} allows for the cache directory to be specified. If the
-directory does not exist, it is created.
+directory does not exist, it is created. The default is to use \code{\link[=cache_find]{cache_find()}}
+to search for a pre-existing cache. See \code{\link[=cache_find]{cache_find()}} for details.
 
 \code{git_ignore} controls whether the cache is ignored by git. The default is not
 to commit the cache data to git as the cache is seen as a working directory.

@@ -1,3 +1,12 @@
+# cache 0.3.0 
+ 
+ - meta:  now uses `.meta` directory
+   - cache_create() and cache_find() changed appropriately
+ - manifest: now uses `.meta/MANIFEST` file and `manifest_*()` functions.
+ - cache/uncache (interactive) and cache_write/cache_read (progromattic) 
+   support completely separate use cases.
+
+
 # cache 0.2.4
 
  - Add `key` argument to `cache_use_sodium()`

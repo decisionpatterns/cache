@@ -1,7 +1,10 @@
 # TODO
 
- - [ ] Metadata function for backend similar to `fst::metadata_fst()` but with
+ - [ ] uncache(file) on non-existant file errors should warn gracefully . 
+ 
+ - [ ] Backend metadata functions similar to `fst::metadata_fst()` but with
        a consistent interface?
+       metadata(iris) ... look in .meta, look in package
 
  - [?] Change `ext` to `fs_ext`
        Make it work with 
@@ -112,8 +115,7 @@
         X file_temp_push
         file_touch
 
- - [ ] cache_write should support object, name to enable something like:
-       
+ - [x] cache_write should support object, name to enable something like:
        cache_write( iris[1:4,], name='iris' )
  
  - [ ] Reorganize how packages are loaded.
@@ -124,8 +126,8 @@
        cache_register(sodium)
        
 
- - [ ] Allow *name* or *character* for backend reader and writer; this makes it
-       more transparent as what is happening.
+ - [ ] Allow *name* or *character* or *quote* for backend reader and writer; 
+       this makes it more transparent as what is happening.
        
  - [ ] supported_paths(), supported_files() 
  
@@ -206,7 +208,7 @@
  
  - [ ] Object should have a save type attribute
  
- - [ ] Implement metadata (as `cache_find()/.metadata` )
+ - [ ] Implement metadata (as `cache_find()/.meta` )
  
  - [ ] Use `.Rprofile` for ...
  

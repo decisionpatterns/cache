@@ -22,7 +22,8 @@
 #' Arguments allow for fine tuning of the behaviors.
 #'
 #' `path` allows for the cache directory to be specified. If the
-#' directory does not exist, it is created.
+#' directory does not exist, it is created. The default is to use [cache_find()]
+#' to search for a pre-existing cache. See [cache_find()] for details.
 #'
 #' `git_ignore` controls whether the cache is ignored by git. The default is not
 #' to commit the cache data to git as the cache is seen as a working directory.

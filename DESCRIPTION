@@ -1,6 +1,6 @@
 Package: cache
 Title: Intuitive and Comprehensive Cache
-Version: 0.2.9.9009
+Version: 0.2.9.9010
 Date: 2018-12-28
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),

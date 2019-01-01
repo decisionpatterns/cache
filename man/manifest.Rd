@@ -8,6 +8,7 @@
 \alias{manifest_write}
 \alias{manifest_get}
 \alias{manifest_rm}
+\alias{manifest_rebuild}
 \title{cache manifest}
 \usage{
 manifest_path()
@@ -23,6 +24,8 @@ manifest_write(object)
 manifest_get()
 
 manifest_rm(name)
+
+manifest_rebuild()
 }
 \description{
 An account of cached objects

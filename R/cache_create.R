@@ -20,9 +20,11 @@ cache_create <- function(path) {
 
    path <- fs::path(path)  # If not path
 
-   # WARN if an existing cache found warn
+   # WARN before creating a new cache if an existing one already exists
    existing <- cache_find()
-   if( ! is.null(existing) && fs::path_abs(path) != existing ) {
+   if( ! is.null(existing) &&
+       fs::path_abs(path) != existing
+   ) {
      warning("An existing cache has been found at: ", existing )
    }
 

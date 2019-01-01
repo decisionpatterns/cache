@@ -27,6 +27,7 @@ unquoted names.
 \examples{
 
 \dontrun{
+
   cache(iris)
   cache_rm(iris)
   cache(iris)

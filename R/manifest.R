@@ -75,3 +75,10 @@ manifest_rm <- function(name) {
     manifest_write(manifest)
 
 }
+
+#' @rdname manifest
+#' @export
+
+manifest_rebuild <- function() {
+  stop("Rebuilding of the manifest is not implemented yet.")
+}

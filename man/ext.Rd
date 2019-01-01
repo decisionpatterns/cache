@@ -20,7 +20,7 @@ as_ext(x, ...)
 should omitting the leading \code{.} (period)}
 }
 \description{
-A \strong{general} filename extensions
+A \strong{general} filename extension object
 }
 \details{
 \code{\link[=ext]{ext()}} provides a object for handling file/path extensions. This is simply
