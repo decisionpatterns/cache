@@ -50,7 +50,9 @@ manifest_create <- function( overwrite = FALSE ) {
 # manifest_write <- function( object, ...) write_rds(object, path=manifest_path(), ascii=TRUE, ... )
 
 #' @rdname manifest
+#' @importFrom yaml yaml.load_file
 #' @export
+
 manifest_read <- function() yaml.load_file( manifest_path() )
 
 #' @rdname manifest
