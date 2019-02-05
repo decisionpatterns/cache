@@ -1,6 +1,6 @@
 #' Name for cached object
 #'
-#' User friendly object name. It doesn't contain either path or ext information
+#' User-friendly object name. It doesn't contain either path or ext information
 #'
 #' @return a `cached_name` object
 #'

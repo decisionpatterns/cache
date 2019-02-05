@@ -8,7 +8,8 @@ manifest_name <- "MANIFEST"  # filename for the manifest; can be converted to
 #'
 #' @details
 #'
-#' The manifest is the record of cached objects. It is simply a list. Each
+#' The manifest is the record of cached objects. It is simply a named list. The
+#' names Each
 #' element is a list of attributes associated with the object and is given the
 #' same name as the object. The primary function of the manifest is to maintain
 #' a mapping of object names to filenames and is checked to maintain uniqueness.
@@ -57,15 +58,17 @@ manifest_read <- function() yaml.load_file( manifest_path() )
 
 #' @rdname manifest
 #' @export
-manifest_write <- function(object) yaml::write_yaml(object, manifest_path() )
-
-
-#' @rdname manifest
-#' @export
 manifest_get <- function()
   if( manifest_exists() )
     manifest_read() else
     list()
+
+#' @rdname manifest
+#' @export
+manifest_write <- function(object) yaml::write_yaml(object, manifest_path() )
+
+
+
 
 #' @rdname manifest
 #' @export
@@ -78,9 +81,47 @@ manifest_rm <- function(name) {
 
 }
 
+#' #' @param ... key-value pairs. The key should be the objects name and the value
+#' #'   the set of values that define the object.
+#' #'
+#' #' @details
+#' #' `manifest_add` writes an key-value object to the manifest. The key should be
+#' #' the name of the object.
+#' #'
+#' #' @rdname manifest
+#' #' @export
+#' manifest_add <- function(...) {
+#'
+#'   dots <- list(...)
+#'   manifest <- manifest_get()
+#'
+#'   for( i in 1:length(dots) )
+#'
+#'
+#' }
+#'
+#'
+#'   manifest <- manifest_get()
+#'   manifest[[name]] <- list(
+#'       name = name
+#'     , path = path
+#'     , pkg  = be$pkg
+#'     , backend = backend
+#'     , mtime = Sys.time() %>% format( tz="UTC" )
+#'   )
+#'
+#'   manifest_write(manifest)
+#'
+
+#' @details
+#'
+#' `manifest_rebuild` rebuilds the manifest by attempting to
 #' @rdname manifest
 #' @export
 
 manifest_rebuild <- function() {
-  stop("Rebuilding of the manifest is not implemented yet.")
+  # stop("Rebuilding of the manifest is not implemented yet.")
+
 }
+
+

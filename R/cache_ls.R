@@ -26,14 +26,15 @@ cache_ls <- function( cache=cache_path(), ... ) {
 
   fs::dir_ls( path=cache, ... ) ->.
     fs::path_file(.) ->.
-    path_to_name(.) -> .
+    as_cached_name(.) -> .
+    # path_to_name(.) -> .
     unname(.) -> .
     unique(.) -> .
     na.omit(.) -> .
     sort(.) -> .
     # fs::path_ext_remove(.) ->.
 
-  .
+  as_cached_name(.)
 }
 
 

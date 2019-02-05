@@ -64,18 +64,19 @@ cache_read <- function(
     stop( "cache does not exist: '", cache, "'" )
 
   # CHECK CONFLICTS
-  if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
+  # if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
+  if( has_conflict(name, name %>% as_cached_file() %>% as_cached_ext() ) ) {
     warning(
       "'", name, "'"
-      , " is used more than once in the cache. All cache names should be unique."
-      , "\n  Used: ", name_to_path(name) %>% sQuote()
+      , " already appears in the cache with a different type. All cache names should be unique."
+      , "\n  Used: ", cached_name(name) %>% sQuote()
       , "\n  Maybe remove: "
       , name %>% conflicts() %>% path( cache_path(), . ) %>% sQuote() %>% collapse_comma()
     )
   }
 
   # Find path based on name using registered backends
-  cached_path <- name_to_path(name)
+  cached_path <- as_cached_path(name) # name_to_path(name)
 
 
   if( fs::file_exists( cached_path ) ) {    # 1. Default Path (?)
@@ -94,7 +95,9 @@ cache_read <- function(
 
     path <- alt_paths
     reader <- path %>%         # Look up reader from path
-      path_to_ext() %>%
+      as_cached_path() %>%
+      as_cached_ext() %>%
+      # path_to_ext() %>%
       ext_to_backend() %>%
       backend_get() %>%
       .$reader

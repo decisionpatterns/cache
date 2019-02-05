@@ -43,9 +43,11 @@ cache_rm <- function( ..., .cache=cache_path() ) {
     items <- li[[1]]
 
   for( item in items ) {
-    # Find cached item by name
-     # path <- name_to_path(item)
-     path <- cached_name(item) %>% as_cached_path()
+     # Find cached item by name
+     path <-
+       cached_name(item) %>%
+       as_cached_path()
+
      fs::file_delete(path)
 
      manifest_rm(item)  # sife-effect remove from manifest

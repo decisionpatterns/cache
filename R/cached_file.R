@@ -65,9 +65,9 @@ as_cached_file.character <- function(x, ext=cache_ext() ) {
   # Try and be smart about what is being provided.
   if( is.null(ext) ) return( cached_file(x) )
   if( str_detect( x, as_regex(ext) ) )  { # Already has extension
-    warning(
-      squote(x), " already has the extension ", squote(ext), "\n"
-    )
+    # warning(
+    #   squote(x), " already has the extension ", squote(ext), "\n"
+    # )
     return( cached_file(x) )
   }
 

@@ -23,8 +23,7 @@
 #'   has_conflict('iris')
 #'
 #' @return
-#'
-#'  character vector of filenames -- conflicts
+#'  character vector of filenames that conflicts
 #'
 #  @export
 
