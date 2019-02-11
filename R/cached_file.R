@@ -11,22 +11,21 @@
 #' A `cached_file` is a subclass of `fs_path` object without the directory.
 #' It is the filename without the path information.
 #'
-#' @examples
+#' @return
+#' a `cached_file` (subclass of `fs::fs_path`) object of the filename. The extension
 #'
+#' @examples
 #'  cached_file('iris.rds') # e.g. "iris.rds"
 #'  as_cached_file('iris.rds')  # Warn: Don't include extension
 #'  as_cached_file('iris', 'rds' )
 #'  as_cached_file(iris)
-#'
-#' @return
-#' a `fs::fs_path` object of the filename. The extension
 #'
 #' @import stringr.tools
 # @export
 
 cached_file <- function(x)  {
   x <- as.character(x)
-  re <- backend_exts() %>% as_regex()
+  re <- backends_exts() %>% as_regex()
   wh <- x %>% str_grepv(re)
   if( length(wh)>0 )
     warning( "Files without registered extensions: ", x %>% squote %>% collapse_comma() )

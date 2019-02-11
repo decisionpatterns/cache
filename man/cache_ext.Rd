@@ -2,15 +2,18 @@
 % Please edit documentation in R/cache_ext.R
 \name{cache_ext}
 \alias{cache_ext}
-\title{extension for cache files}
+\alias{cache_ext.NULL}
+\title{Default cache extensions}
 \usage{
-cache_ext()
+cache_ext(x)
+
+\method{cache_ext}{NULL}(x)
 }
 \value{
 An \code{\link[=ext]{ext()}} object for the current backend.
 }
 \description{
-The filename extension used for the current backend.
+Get the file/path extension used for the current/defaul cache backend.
 }
 \details{
 \code{cache_ext()} returns the extensions associated with the default cache

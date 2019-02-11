@@ -16,7 +16,7 @@ alternate_paths(name)
 \item{name}{quoted or unquoted name}
 }
 \value{
-character vector of filenames -- conflicts
+character vector of filenames that conflicts
 }
 \description{
 List filenames that conflict with name

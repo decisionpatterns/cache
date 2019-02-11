@@ -25,7 +25,7 @@ as_cached_name(x)
 a \code{cached_name} object
 }
 \description{
-User friendly object name. It doesn't contain either path or ext information
+User-friendly object name. It doesn't contain either path or ext information
 }
 \details{
 \code{as_cached_name.fs_path} handles \code{cached_file} and \code{cached_path} objects

@@ -35,7 +35,7 @@ as_regex.default <- function(x, ... ) regex( pattern=x, ...)
 #'
 
 # collapse.regex?
-as_regex.ext <- function(x, ...) {
+as_regex.fs_ext <- function(x, ...) {
   re <- paste0( "\\.(", collapse(x, "|"), ")$" )
   regex(re, ...)
 }

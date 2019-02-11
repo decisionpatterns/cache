@@ -1,6 +1,6 @@
-#' extension for cache files
+#' Default cache extensions
 #'
-#' The filename extension used for the current backend.
+#' Get the file/path extension used for the current/defaul cache backend.
 #'
 #' @details
 #'
@@ -17,8 +17,14 @@
 #' @examples
 #'   cache_ext()
 #'
+#' @rdname cache_ext
 #' @export
 
-cache_ext <- function() {
-  ext( backend_ext( cache_backend() ) )
+cache_ext <- function(x) UseMethod('cache_ext')
+
+#' @rdname cache_ext
+#' @export
+cache_ext.NULL <- function(x) {
+  backend_get( cache_backend() )$ext
 }
+

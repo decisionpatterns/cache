@@ -2,10 +2,19 @@
 % Please edit documentation in R/cache_reader.R
 \name{cache_reader}
 \alias{cache_reader}
+\alias{cache_reader.NULL}
+\alias{cache_reader.fs_ext}
+\alias{cache_reader.fs_path}
 \alias{cache_writer}
 \title{cache_reader, cache_writer}
 \usage{
-cache_reader()
+cache_reader(x = NULL)
+
+\method{cache_reader}{NULL}(x)
+
+\method{cache_reader}{fs_ext}(x)
+
+\method{cache_reader}{fs_path}(x)
 
 cache_writer()
 }
@@ -13,8 +22,16 @@ cache_writer()
 Get the read or write function for a path
 }
 \details{
-\code{cache_reader{}} and \code{cache_writer()} return the function for reading
+\code{cache_reader()} and \code{cache_writer()} return the function for reading
 and writing to/from the cache.
+}
+\examples{
+  cache_reader()
+
+  cache_reader( fs_ext('rds') )
+
+  cache_reader( path( "cache/iris.rds") )
+
 }
 \seealso{
 \itemize{

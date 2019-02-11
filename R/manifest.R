@@ -121,7 +121,4 @@ manifest_rm <- function(name) {
 
 manifest_rebuild <- function() {
   # stop("Rebuilding of the manifest is not implemented yet.")
-
 }
-
-

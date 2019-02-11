@@ -16,7 +16,7 @@
 #'
 #' path_to_name <- function( path= fs::dir_ls( cache_path() ) ) {
 #'
-#'   exts <- backend_exts()        # Available backend extensions
+#'   exts <- backends_exts()        # Available backend extensions
 #'   exts <- exts[ exts %>% nchar() %>% order() %>% rev() ]  # Order by longest
 #'   exts.re <- ext_to_regex(exts) # Backend exts regular expressions
 #'   ret <- c()
@@ -50,7 +50,7 @@
 #' #' @importFrom stringr str_subset
 #'
 #' name_to_file <- function(name, cache=cache_path(), backend=cache_backend() ) {
-#'   exts <- backend_exts()
+#'   exts <- backends_exts()
 #'   re <- as_regex(exts)
 #'   files <- cache_dir(cache)
 #'   file <- stringr::str_subset( files, re)
@@ -74,7 +74,7 @@
 
 # #' Filter/grep files by exts
 #
-# filter_exts <- function( name, ext=backend_exts() )  {
+# filter_exts <- function( name, ext=backends_exts() )  {
 #   x <- path_to_name()
 #   path <- x[ x == name ] %>% na.omit %>% names()
 # }
@@ -87,9 +87,9 @@
 #'
 #' path_to_ext
 
-# path_to_ext <- function( path=fs::dir_ls(cache_path()), exts=backend_exts() ) {
+# path_to_ext <- function( path=fs::dir_ls(cache_path()), exts=backends_exts() ) {
 #
-#   # exts <- backend_exts()        # Available backend extensions
+#   # exts <- backends_exts()        # Available backend extensions
 #   exts <- exts[ exts %>% nchar() %>% order() %>% rev() ]  # Order by longest
 #
 #   for( p in path ) {         # For each path

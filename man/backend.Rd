@@ -22,6 +22,8 @@ backend_ext(backend = cache_backend())
 \item{ext}{string extension associated with this file without the period.}
 
 \item{...}{other name-value pairs that are stored as part of the definitions}
+
+\item{backend}{string; name for backend}
 }
 \value{
 list with subclass \code{backend}
@@ -35,6 +37,9 @@ An backend definitions
 A backend is the way cache reads and writes from the cache. This simply
 collects all the information associated with the backend in one list.
 
+A backend for a cache contains complete details about storing and
+retrieving files
+
 \code{backend_ext()} gives the extensions associated with a backend.
 }
 \examples{
@@ -44,6 +49,7 @@ collects all the information associated with the backend in one list.
 }
 \seealso{
 \itemize{
+\item \code{\link[=backends]{backends()}}
 \item \code{\link[cache:cache_register]{cache::cache_register()}}
 }
 

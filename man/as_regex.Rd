@@ -3,14 +3,14 @@
 \name{as_regex}
 \alias{as_regex}
 \alias{as_regex.default}
-\alias{as_regex.ext}
+\alias{as_regex.fs_ext}
 \title{Convert to a regular expressions}
 \usage{
 as_regex(x, ...)
 
 \method{as_regex}{default}(x, ...)
 
-\method{as_regex}{ext}(x, ...)
+\method{as_regex}{fs_ext}(x, ...)
 }
 \arguments{
 \item{x}{an object to convert to a regular expression}

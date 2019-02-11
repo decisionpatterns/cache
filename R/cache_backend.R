@@ -15,7 +15,7 @@
 #'
 #' @seealso
 #'  - [cache_register()]
-#'  - [backend_ls()]
+#'  - [backends_ls()]
 #'
 #' @export
 
@@ -25,20 +25,20 @@ cache_backend <- function(backend=NULL) {
     return( getOption('cache.backend') )
 
   #   stop( "You must supply the name of a backend:",
-  #         paste( backend_ls() %>% squote(), collapse=", " )
+  #         paste( backends_ls() %>% squote(), collapse=", " )
   #   )
 
   backend <- as.character( substitute(backend) )
 
   # Load package cache.backend
 
-  if( backend %!in% backend_ls() ) {
+  if( backend %!in% backends_ls() ) {
       stop(
         "\n"
         , "'", backend, "' is not an available backend."
         , "\n"
         , "Available backends: "
-        , paste( squote( backend_ls() ), collapse=", ")
+        , paste( squote( backends_ls() ), collapse=", ")
         , "\n"
         , "Use the available `register` method ("
         , paste0( 'cache_register_', backend, '?' )

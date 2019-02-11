@@ -25,6 +25,6 @@ those associated with that backend
 \seealso{
 \itemize{
 \item \code{\link[=cache_register]{cache_register()}}
-\item \code{\link[=backend_ls]{backend_ls()}}
+\item \code{\link[=backends_ls]{backends_ls()}}
 }
 }

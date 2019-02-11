@@ -50,7 +50,7 @@ uncache <- function(
 #' @export
 
 cache_read <- function(
-    name
+    name                            # string
   , cache = cache_path()
   , ...
   , reader = name_to_reader(name)
@@ -63,26 +63,25 @@ cache_read <- function(
   if( is.null(cache) || ! fs::dir_exists(cache) )
     stop( "cache does not exist: '", cache, "'" )
 
-  # CHECK CONFLICTS
-  # if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
-  if( has_conflict(name, name %>% as_cached_file() %>% as_cached_ext() ) ) {
-    warning(
-      "'", name, "'"
-      , " already appears in the cache with a different type. All cache names should be unique."
-      , "\n  Used: ", cached_name(name) %>% sQuote()
-      , "\n  Maybe remove: "
-      , name %>% conflicts() %>% path( cache_path(), . ) %>% sQuote() %>% collapse_comma()
-    )
-  }
+  # # CHECK CONFLICTS
+  # # if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
+  # if( has_conflict(name, name %>% as_cached_file() %>% fs_ext() ) ) {
+  #   warning(
+  #     "'", name, "'"
+  #     , " already appears in the cache with a different type. All cache names should be unique."
+  #     , "\n  Used: ", cached_name(name) %>% sQuote()
+  #     , "\n  Maybe remove: "
+  #     , name %>% conflicts() %>% path( cache_path(), . ) %>% sQuote() %>% collapse_comma()
+  #   )
+  # }
 
   # Find path based on name using registered backends
-  cached_path <- as_cached_path(name) # name_to_path(name)
+  pth <- as_cached_path(name) # name_to_path(name)
 
 
-  if( fs::file_exists( cached_path ) ) {    # 1. Default Path (?)
+  if( fs::file_exists( pth ) ) {    # 1. Default Path (?)
 
-    path <- cached_path
-    reader <- path_to_reader(path)
+    reader <- cache_reader(pth)
                                              # 2. Alternate Paths
   } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
 
@@ -98,7 +97,7 @@ cache_read <- function(
       as_cached_path() %>%
       as_cached_ext() %>%
       # path_to_ext() %>%
-      ext_to_backend() %>%
+      # ext_to_backend() %>%
       backend_get() %>%
       .$reader
 

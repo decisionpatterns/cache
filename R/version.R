@@ -1,0 +1,2 @@
+
+version <- function() packageVersion('cache')

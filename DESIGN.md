@@ -5,10 +5,21 @@ This document records design decisions for the *cache* package.skeleton
 ## Introduction 
 
 The cache package allows the user to save and restore files *unambiguously* and 
-*robustly* with only a few simple commands regardless of the mechanism for 
-doing so. 
+*robustly* with only a few simple commands regardless of the backend mechanism 
+for doing so. The files are written to a known location on the file system with
+easily recognizable names. 
 
-At the heart of this is ensuring uniqueness of data files. 
+An alternative solution would simply use the object name and not worry about 
+how they are written
+
+## Features
+
+ - Read and write by simple, intuitive commands with few arguments
+ - Abstracted away complexities of storage
+ - Object uniqueregardless of save/restore method
+ - Metadata (dim,length,etc) available without reading the files
+ - Provides one interface for all I/O
+ 
 
 ## Goal(s)
 
@@ -49,6 +60,34 @@ Examples:
 
      uncache(y)
 
+## How it works 
+
+### Writing to the cache
+
+When you write to the cache ...
+ - Determine backend/ext for the object. Look in:
+   - MANIFEST
+   - ON FILE SYSTEM
+   - IN DEFAULT BACKEND
+ - Create path
+ - Write using writer
+ 
+
+
+## Diagram 
+
+  /somepath/to/somefile.ext 
+ |-----------|/|file(name)
+ 
+ path - generic path to directory or file
+ directory - abs or relative path to directory
+ file(name) - name of file including the extension
+ basename - name of the file excluding the extension
+ extension - end of filename (preceeded by the period)
+
+ fs_path, fs_ext
+ 
+ name (object name) in the language 
 
 ## Relations of Things
 
@@ -176,3 +215,13 @@ A dimension table is often small and an update is a full collections
 Often the microcosm will be based on a sampled set of records from a given 
 dimension, such as users. The microcosm should use this to filter all other
 records.
+
+## Terms/Objects
+
+ - cache: path to directory 
+ - name: file basename of object
+ - ext: file/path extension of object
+ - backend: list of elements that fully encapsulate writing and retrieving of an object
+   - reader: backend-specific function for reading cached object
+   - writer: backend-specific function for writing cached object.
+

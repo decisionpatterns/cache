@@ -1,16 +1,20 @@
 # TODO
 
+ - [ ] cached_ext() is the same as ext()
+ - [?] Change `ext` to `fs_ext`
+       Make it work with fsd
+       - a list allowed extensions
+       - everything after the final `.` (fs default)
+       - `NA` if no `.`
+ 
+ - [ ] Function for interactive loading, e.g. cache() (without args) 
+       opens a ls and prompts users for which data to load.
+
  - [ ] uncache(file) on non-existant file errors should warn gracefully . 
  
  - [ ] Backend metadata functions similar to `fst::metadata_fst()` but with
        a consistent interface?
        metadata(iris) ... look in .meta, look in package
-
- - [?] Change `ext` to `fs_ext`
-       Make it work with 
-       - a list allowed extensions
-       - everything after the final `.` (fs default)
-       - `NA` if no `.`
 
  - [ ] cache_rm_all() 
        Remove all items from the cache

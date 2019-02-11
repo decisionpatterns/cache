@@ -92,7 +92,7 @@ as_cached_ext.character <- function(x, exts=NULL ) {
 #' @rdname cached_ext
 #' @export
 
-as_cached_ext.cached_path <- function(x, exts=backend_exts() ) {
+as_cached_ext.cached_path <- function(x, exts=backends_exts() ) {
 
   exts <- exts[ exts %>% nchar() %>% order() %>% rev() ]  # Sort  by longest ext
 
@@ -129,4 +129,4 @@ as_cached_ext.cached_path <- function(x, exts=backend_exts() ) {
 #' @rdname cached_ext
 #' @export
 
-as_cached_ext.cached_file <- as_cached_ext.cached_path # function( x, exts=backend_exts() ) {
+as_cached_ext.cached_file <- as_cached_ext.cached_path # function( x, exts=backends_exts() ) {

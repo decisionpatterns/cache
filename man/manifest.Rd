@@ -5,8 +5,8 @@
 \alias{manifest_exists}
 \alias{manifest_create}
 \alias{manifest_read}
-\alias{manifest_write}
 \alias{manifest_get}
+\alias{manifest_write}
 \alias{manifest_rm}
 \alias{manifest_rebuild}
 \title{cache manifest}
@@ -19,9 +19,9 @@ manifest_create(overwrite = FALSE)
 
 manifest_read()
 
-manifest_write(object)
-
 manifest_get()
+
+manifest_write(object)
 
 manifest_rm(name)
 
@@ -29,9 +29,13 @@ manifest_rebuild()
 }
 \description{
 An account of cached objects
+
+dots <- list(...)
+manifest <- manifest_get()
 }
 \details{
-The manifest is the record of cached objects. It is simply a list. Each
+The manifest is the record of cached objects. It is simply a named list. The
+names Each
 element is a list of attributes associated with the object and is given the
 same name as the object. The primary function of the manifest is to maintain
 a mapping of object names to filenames and is checked to maintain uniqueness.

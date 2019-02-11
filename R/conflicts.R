@@ -32,7 +32,7 @@ conflicts <- function(name, ext=cache_ext() ) {
   name. <- as.character( substitute(name) )
   if( ! is.character(name) ) name <- name.
 
-  exts <- backend_exts()
+  exts <- backends_exts()
   exts <- setdiff( exts, ext )
 
   exts.re <- paste0( '^', name, '\\.', exts, '$' ) # name_to_regex
@@ -84,7 +84,7 @@ conflict_msg <- function(x) {
 #' @rdname conflicts
 
 alternate_files <- function(name) {
-  exts <- backend_exts() %>% setdiff( cache_ext() )
+  exts <- backends_exts() %>% setdiff( cache_ext() )
   paste0( name, ".", exts ) %>%
     fs::path()
 }

@@ -28,7 +28,7 @@
 
 cached_path <- function(x) {
   x <- fs::path(x)
-  re <- backend_exts() %>% as_regex()
+  re <- backends_exts() %>% as_regex()
   wh <- ! str_detect(x,re)
   if( getOption('verbose', FALSE ) && length(wh)>0 )
     warning( "Paths without registered extensions: ", x[wh] %>% squote %>% collapse_comma() )

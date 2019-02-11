@@ -61,7 +61,7 @@ as_cached_name.character <- function(x) cached_name(x)
 
 as_cached_name.fs_path <- function(x) {
 
-  exts <- backend_exts()        # Available backend extensions
+  exts <- backends_exts()        # Available backend extensions
   exts <- exts[ exts %>% nchar() %>% order() %>% rev() ]  # Order by longest
   exts.re <- ext_to_regex(exts) # Backend exts regular expressions
   ret <- c()
