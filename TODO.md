@@ -1,6 +1,9 @@
 # TODO
 
- - [ ] put `bg` caching in another package
+ - [ ] meta_add to create `.meta` directory in `cache_path()` as part of upgrade
+       to newer version.
+       
+ - [?] put `bg` caching in another package
  
  - [x] Is `as_cached_ext.cached_path()` the same as `ext()`?
        No. They are subtly different.

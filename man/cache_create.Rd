@@ -17,5 +17,9 @@ Create a cache directory at \code{path}. If the path already exists, a warning i
 provided. If path does not exist it is created.
 }
 \note{
-\code{\link[=cache_create]{cache_create()}} is used to create a directory so that
+On Windows 7 & 10, it is possible to create a directory/folder \code{.meta}
+in File Explorer by typing the name as \code{.meta.} (ie. with a trailing period).
+\itemize{
+\item \href{https://superuser.com/a/1156507/479495}{SO:create-rename-a-file-folder-that-begins-with-a-dot-in-windows}
+}
 }

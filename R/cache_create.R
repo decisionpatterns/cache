@@ -10,8 +10,10 @@
 #' provided. If path does not exist it is created.
 #'
 #' @note
+#' On Windows 7 & 10, it is possible to create a directory/folder `.meta`
+#' in File Explorer by typing the name as `.meta.` (ie. with a trailing period).
 #'
-#' [cache_create()] is used to create a directory so that
+#'  - [SO:create-rename-a-file-folder-that-begins-with-a-dot-in-windows](https://superuser.com/a/1156507/479495)
 #'
 #' @importFrom here here
 #' @export
@@ -35,7 +37,7 @@ cache_create <- function(path) {
    } else {
      message( "Creating cache : ", path )
      fs::dir_create( path, recursive = TRUE )
-     fs::dir_create( fs::path(path, ".meta") )
+     fs::dir_create( fs::path(path, ".meta") )  # See note!
      cache_path( fs::path_rel(path) )    # Set cache as relative
      cache_name( fs::path_file(path) )
    }
