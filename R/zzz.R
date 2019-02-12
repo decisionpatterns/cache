@@ -17,7 +17,7 @@
       , domain = NA
     )
 
-  if( require(future) )future::plan(multiprocess)
+  # if( require(future) )future::plan(multiprocess)
 
   # USE rds WHEN NO BACKEND LOADED
   if( is.null( cache_backend() ) ) {
