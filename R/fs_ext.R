@@ -21,7 +21,7 @@
 #'   fs_ext( qw(one, two, three) )
 #'
 #' @importFrom fs path_ext
-#' @rdname ext
+#' @rdname fs_ext
 #' @export
 
 
@@ -30,7 +30,7 @@ fs_ext <- function(x=NULL)
 
 
 #' @importFrom crayon red
-#' @rdname ext
+#' @rdname fs_ext
 #' @export
 
 print.fs_ext <- function(x, ...) {

@@ -30,8 +30,9 @@ manifest_rm(name)
 manifest_rebuild()
 }
 \description{
-dots <- list(...)
-manifest <- manifest_get()
+cache manifest
+
+An account of cached objects
 }
 \details{
 The manifest is the record of cached objects. It is simply a named list. The
@@ -45,6 +46,8 @@ It should always match the objects saved in the cache directory.
 
 Internally, the manifest is stored as a YAML file and is located at
 \code{meta_path()\MANIFEST} usually \code{cache/.meta/MANIFEST}.
+
+\code{manifest_rebuild} rebuilds the manifest by attempting to
 }
 \seealso{
 \itemize{

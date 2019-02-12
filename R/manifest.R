@@ -21,7 +21,7 @@
 #'
 #' @rdname manifest
 #' @export
-#'
+
 manifest_path <- function() {
   path( meta_path(), manifest_name )
 }
@@ -78,37 +78,37 @@ manifest_rm <- function(name) {
 
 }
 
-#' #' @param ... key-value pairs. The key should be the objects name and the value
-#' #'   the set of values that define the object.
-#' #'
-#' #' @details
-#' #' `manifest_add` writes an key-value object to the manifest. The key should be
-#' #' the name of the object.
-#' #'
-#' #' @rdname manifest
-#' #' @export
-#' manifest_add <- function(...) {
-#'
-#'   dots <- list(...)
-#'   manifest <- manifest_get()
-#'
-#'   for( i in 1:length(dots) )
-#'
-#'
-#' }
-#'
-#'
-#'   manifest <- manifest_get()
-#'   manifest[[name]] <- list(
-#'       name = name
-#'     , path = path
-#'     , pkg  = be$pkg
-#'     , backend = backend
-#'     , mtime = Sys.time() %>% format( tz="UTC" )
-#'   )
-#'
-#'   manifest_write(manifest)
-#'
+# #' @param ... key-value pairs. The key should be the objects name and the value
+# #'   the set of values that define the object.
+# #'
+# #' @details
+# #' `manifest_add` writes an key-value object to the manifest. The key should be
+# #' the name of the object.
+# #'
+# #' @rdname manifest
+# #' @export
+# manifest_add <- function(...) {
+#
+#   dots <- list(...)
+#   manifest <- manifest_get()
+#
+#   for( i in 1:length(dots) )
+#
+#
+# }
+#
+#
+#   manifest <- manifest_get()
+#   manifest[[name]] <- list(
+#       name = name
+#     , path = path
+#     , pkg  = be$pkg
+#     , backend = backend
+#     , mtime = Sys.time() %>% format( tz="UTC" )
+#   )
+#
+#   manifest_write(manifest)
+#
 
 #' @details
 #' `manifest_rebuild` rebuilds the manifest by attempting to

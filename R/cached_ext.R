@@ -20,6 +20,8 @@
 #'   cached_ext("rds")
 #'   cached_ext(1)
 #'
+#' @import stringr
+#'
 #' @export
 
 cached_ext <- function( x=character() ) {
@@ -90,6 +92,7 @@ as_cached_ext.character <- function(x, exts=NULL ) {
 #'   as_cached_ext(path)
 #'
 #' @rdname cached_ext
+#' @import magrittr
 #' @export
 
 as_cached_ext.cached_path <- function(x, exts=backends_exts() ) {

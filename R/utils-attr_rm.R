@@ -4,8 +4,8 @@ attr_rm <- function(x, which) {
 }
 
 
-#' @rdname attr_rm
-#' @export
+# @rdname attr_rm
+# @export
 attr_rm_all <- function(x) {
 
  wh <- names( base::attributes(x) )

@@ -1,4 +1,4 @@
-#' @name filename/path extension object
+#' @title  filename/path extension object
 #'
 #' @description A filename extension object allowing for extensions
 #' containing `.`
@@ -21,7 +21,7 @@
 #'   fs_basename( qw(one, two, three) )
 #'
 #' @importFrom fs path_ext
-#' @rdname ext
+#' @rdname fs_basename
 #' @export
 
 fs_basename <- function(x=NULL)
@@ -29,7 +29,7 @@ fs_basename <- function(x=NULL)
 
 
 #' @importFrom crayon red
-#' @rdname ext
+#' @rdname fs_basename
 #' @export
 
 print.fs_basename <- function(x, ...) {
