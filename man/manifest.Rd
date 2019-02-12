@@ -45,7 +45,7 @@ Whenever objects are added or removed from the cache, the MANIFEST is updated.
 It should always match the objects saved in the cache directory.
 
 Internally, the manifest is stored as a YAML file and is located at
-\code{meta_path()\MANIFEST} usually \code{cache/.meta/MANIFEST}.
+\code{meta_path()/MANIFEST} usually \code{cache/.meta/MANIFEST}.
 
 \code{manifest_rebuild} rebuilds the manifest by attempting to
 }

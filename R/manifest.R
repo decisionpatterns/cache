@@ -14,7 +14,7 @@
 #' It should always match the objects saved in the cache directory.
 #'
 #' Internally, the manifest is stored as a YAML file and is located at
-#' `meta_path()\MANIFEST` usually `cache/.meta/MANIFEST`.
+#' `meta_path()/MANIFEST` usually `cache/.meta/MANIFEST`.
 #'
 #' @seealso
 #'  - [meta]
