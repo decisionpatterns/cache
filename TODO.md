@@ -1,11 +1,18 @@
 # TODO
 
- - [ ] cached_ext() is the same as ext()
- - [?] Change `ext` to `fs_ext`
-       Make it work with fsd
-       - a list allowed extensions
-       - everything after the final `.` (fs default)
-       - `NA` if no `.`
+ - [x] Is `as_cached_ext.cached_path()` the same as `ext()`?
+       No. They are subtly different.
+        - `cached_ext()` has the default of `exts=backends_exts()`
+        - cached_ext() represents a cached_ext object. 
+        - as_cached_ext() changes/coerces with ext=backend_exts() and special 
+          rules for getting the ext
+        
+         
+ - [x] Change `ext` to `fs_ext`
+       - [x] Make it work with `fs`
+       - [x] `exts`: a list allowed extensions
+       - [x] 'everything after the final `.` (fs default)
+       - [?] `""` if no extension is given
  
  - [ ] Function for interactive loading, e.g. cache() (without args) 
        opens a ls and prompts users for which data to load.
@@ -20,7 +27,7 @@
        Remove all items from the cache
        
  - [ ] Add command to backend?
-       Really command is a data-set level thing.
+       Really command is a data-set level thing and not a backend thing
  
  - [ ] In memory backend ... 
        store the data in a different process? sends the data to a different process?
@@ -128,8 +135,7 @@
        - register the sodium backend
        - cache_default(sodium)
        cache_register(sodium)
-       
-
+  
  - [ ] Allow *name* or *character* or *quote* for backend reader and writer; 
        this makes it more transparent as what is happening.
        

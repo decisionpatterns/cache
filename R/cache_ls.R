@@ -26,6 +26,8 @@ cache_ls <- function( cache=cache_path(), ... ) {
 
   re.exts <- backends_exts() %>% as_regex()
 
+  message( "cache backends: ", crayon::blue( collapse( backends_ls(), ", " ) ) )
+
   fs::dir_ls( path=cache, ... ) %>%
     # fs::path_file() %>%
     as_cached_name() %>%
@@ -33,8 +35,7 @@ cache_ls <- function( cache=cache_path(), ... ) {
     unique() %>%
     na.omit() %>%
     sort() %>%
-
-  as_cached_name(.)
+    as_cached_name()
 }
 
 

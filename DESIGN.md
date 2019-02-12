@@ -72,7 +72,15 @@ When you write to the cache ...
  - Create path
  - Write using writer
  
+ 
+## Identifying file and path from names
 
+Given a name of an object, the file or path will be:
+
+ - Any existing object with the names and the backend extensions
+ - 
+
+This affectes `cached_file`, `cached_path` etc.
 
 ## Diagram 
 
