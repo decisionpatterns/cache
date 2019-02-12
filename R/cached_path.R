@@ -59,7 +59,7 @@ as_cached_path.default <- function(x, cache=cache_path(), ext=NULL ) {
 
 #' @rdname cached_path
 #' @export
-as_cached_path.character <- function(x, cache=cache_path(), ext=cache_ext() ) {
+as_cached_path.character <- function(x, cache=cache_path(), ext=backends_exts() ) {
   file <- as_cached_file(x, ext=ext)
   as_cached_path( file, cache=cache )
 }

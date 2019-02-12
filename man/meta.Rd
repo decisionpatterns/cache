@@ -15,3 +15,6 @@ meta_exists()
 \description{
 The cache meta directory hold information about objects stoded in the cache
 }
+\details{
+\code{meta} is a directory for holding supplementary information
+}

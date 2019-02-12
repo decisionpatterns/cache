@@ -4,6 +4,7 @@
 \alias{as_regex}
 \alias{as_regex.default}
 \alias{as_regex.fs_ext}
+\alias{print.regex}
 \title{Convert to a regular expressions}
 \usage{
 as_regex(x, ...)
@@ -11,6 +12,8 @@ as_regex(x, ...)
 \method{as_regex}{default}(x, ...)
 
 \method{as_regex}{fs_ext}(x, ...)
+
+\method{print}{regex}(x, ...)
 }
 \arguments{
 \item{x}{an object to convert to a regular expression}

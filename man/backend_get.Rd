@@ -18,6 +18,9 @@ backend_get(x)
 
 \method{backend_get}{character}(x)
 }
+\arguments{
+\item{x}{argument used to get the backend with}
+}
 \value{
 \code{backend_get} returns a list for the backend.
 }
@@ -31,5 +34,6 @@ is a list that was created by \code{\link[=cache_register]{cache_register()}}.
 \seealso{
 \itemize{
 \item \code{\link[=backend]{backend()}}
+\item \code{\link[=as_backend]{as_backend()}}
 }
 }

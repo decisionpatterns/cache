@@ -4,6 +4,10 @@
 \alias{backend}
 \alias{print.backend}
 \alias{backend_ext}
+\alias{as_backend}
+\alias{as_backend.character}
+\alias{as_backend.fs_ext}
+\alias{as_backend.fs_path}
 \title{cache backend}
 \usage{
 backend(name, reader, writer, ext, ...)
@@ -11,6 +15,14 @@ backend(name, reader, writer, ext, ...)
 \method{print}{backend}(x, ...)
 
 backend_ext(backend = cache_backend())
+
+as_backend(x, ...)
+
+\method{as_backend}{character}(x, ...)
+
+\method{as_backend}{fs_ext}(x, ...)
+
+\method{as_backend}{fs_path}(x, ...)
 }
 \arguments{
 \item{name}{string; name of backend.}
@@ -29,6 +41,13 @@ backend_ext(backend = cache_backend())
 list with subclass \code{backend}
 
 A \code{ext()} object for the \code{backend}
+
+\code{as_backends} returns a backend object based on \code{x}:
+\itemize{
+\item character : backends named x
+\item fs_ext    : backend with x as its path extension
+\item fs_path   : backend that matches the same extension as the path
+}
 }
 \description{
 An backend definitions
@@ -41,10 +60,18 @@ A backend for a cache contains complete details about storing and
 retrieving files
 
 \code{backend_ext()} gives the extensions associated with a backend.
+
+\code{as_backend} retrieves the backend based on \code{x}. \code{x} can be the name of the
+backend, the extension associated with the backend or a file (with a known
+extension). In every case, a backend object is returned.
 }
 \examples{
 
   backend( name="rds", reader=function() NULL, writer=function() NULL, ext="rds" )
+
+  'rds' \%>\% fs_ext() \%>\% as_backend() \%>\% .$name
+
+  'cache/iris.rds' \%>\% fs_path() \%>\% as_backend() \%>\% .$name
 
 }
 \seealso{

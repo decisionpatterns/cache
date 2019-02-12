@@ -9,7 +9,9 @@
 \alias{manifest_write}
 \alias{manifest_rm}
 \alias{manifest_rebuild}
-\title{cache manifest}
+\title{cache manifest
+
+An account of cached objects}
 \usage{
 manifest_path()
 
@@ -28,8 +30,6 @@ manifest_rm(name)
 manifest_rebuild()
 }
 \description{
-An account of cached objects
-
 dots <- list(...)
 manifest <- manifest_get()
 }

@@ -27,7 +27,7 @@ cached_ext <- function( x=character() ) {
   if( ! is.character(x) ) x <- as.character(x)
   if( ! is.character(x) ) stop("Only character vectors can a  'cached_ext'")
 
-  x <- ext(x)
+  x <- fs_ext(x)
   x <- add_subclass(x, 'cached_ext')
   # class(x) <- c('cached_ext', "character")
   x
@@ -100,7 +100,7 @@ as_cached_ext.cached_path <- function(x, exts=backends_exts() ) {
   for( p in x ) {         # For each path
     for( ext in exts ) {   # Try each ext (in order)
 
-      re <- ext_to_regex(ext)        #
+      re <- ext %>% fs_ext() %>% as_regex()
       path.file <- fs::path_file(p)  # filename portion of path: as_cached_file(?)
 
       if( str_detect( path.file, re ) ) {
@@ -129,4 +129,4 @@ as_cached_ext.cached_path <- function(x, exts=backends_exts() ) {
 #' @rdname cached_ext
 #' @export
 
-as_cached_ext.cached_file <- as_cached_ext.cached_path # function( x, exts=backends_exts() ) {
+as_cached_ext.cached_file <- as_cached_ext.cached_path # same logic

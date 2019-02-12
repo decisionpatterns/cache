@@ -1,6 +1,6 @@
-#' filename/path extension object
+#' @name filename/path extension object
 #'
-#' A filename extension object allowing for extensions
+#' @description A filename extension object allowing for extensions
 #' containing `.`
 #'
 #' @param x object; values to be converted to character. Character values

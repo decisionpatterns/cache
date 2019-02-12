@@ -4,6 +4,7 @@
 #'
 #' @param path object such as character, vector, ; values to be converted to character. Character values
 #' should omitting the leading `.` (period)
+#' @param exts optional list of extensions, used when the extension contains a `.`
 #'
 #' @details
 #'
@@ -43,7 +44,7 @@ ext <- function(path, exts=getOption('fs.exts') ) {
   for( p in path ) {          # For each path
     for( ext in exts ) {   # Try each ext (in order)
 
-      re <- ext_to_regex(ext)        #
+      re <- ext %>% fs_ext() %>% as_regex()
       path.file <- fs::path_file(p)  # filename portion of path
 
       if( str_detect( path.file, re ) ) {

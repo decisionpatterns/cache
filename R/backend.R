@@ -69,9 +69,6 @@ print.backend <- function(x, ...) {
 #'
 
 
-
-
-
 #' @details
 #' `backend_ext()` gives the extensions associated with a backend.
 #'
@@ -87,41 +84,50 @@ print.backend <- function(x, ...) {
 backend_ext <- function( backend=cache_backend() )
   ext( backend_get(backend)$ext )
 
-
-#' #' Get backend name(s) from extension(s)
-#' #'
-#' #' @param ext string
-#' #'
-#' #' @examples
-#' #'
-#' #'  ext_to_backend("rds")  # 'rds'
-#' #'  ext_to_backend("none") # NULL
-#' #'
-#' #'  ext_to_backend( c('rds','sodium.rds') )
-#' #'
-#' #' @export
+#' @details
+#' `as_backend` retrieves the backend based on `x`. `x` can be the name of the
+#' backend, the extension associated with the backend or a file (with a known
+#' extension). In every case, a backend object is returned.
 #'
-#' ext_to_backend <- function(ext) {
+#' @return
+#' `as_backends` returns a backend object based on `x`:
 #'
-#'   # exts <- backends_exts()
-#'   backends() %>% Filter( function(x) x$ext == ext, . ) %>% .[[1]] %>% .$name
+#'  - character : backends named x
+#'  - fs_ext    : backend with x as its path extension
+#'  - fs_path   : backend that matches the same extension as the path
 #'
-#'   # backends <- exts[ exts == ext ] %>% names()
-#'   # if( length(backends) == 0 ) return(NULL)
-#'   # backends
-#'
-#' }
-
+#' @rdname backend
 #' @export
 
-name_to_reader <- function(name) {
-  backend <- name %>% as_cached_file() %>% as_cached_ext() %>% ext_to_backend()
-  backend_get(backend)$reader
+as_backend <- function(x, ...) UseMethod('as_backend')
 
+
+#' @rdname backend
+#' @export
+
+as_backend.character <- function(x, ... ) {
+  backends() %>% Filter( function(backend) backend$name == x, . ) %>% .[[1]]
 }
 
+
+#' @examples
+#'   'rds' %>% fs_ext() %>% as_backend() %>% .$name
+#'
+#' @rdname backend
 #' @export
 
-path_to_reader <- function(path) {
-  path %>% as_cached_path() %>% as_cached_name() %>% name_to_reader()
+as_backend.fs_ext <- function(x, ... ) {
+   backends() %>% Filter( function(backend) backend$ext == x, . ) %>% .[[1]]
+}
+
+
+#' @examples
+#'   'cache/iris.rds' %>% fs_path() %>% as_backend() %>% .$name
+#'
+#' @rdname backend
+#' @export
+
+as_backend.fs_path <- function(x, ... ) {
+   ext <- x %>% as_fs_ext(...)
+   as_backend(ext, ... )
 }

@@ -33,17 +33,30 @@ cache_reader.NULL <- function(x)
 #' @rdname cache_reader
 #' @export
 cache_reader.fs_ext <- function(x) {
-  backend_get(x)$reader
+  x %>% as_backend() %>% .$reader
 }
 
 #' @examples
-#'   cache_reader( path( "cache/iris.rds") )
+#'   path( "cache/iris.rds") %>% cache_reader()
 #'
 #' @rdname cache_reader
 #' @export
 cache_reader.fs_path <- function(x) {
-  backend_get(x)$reader
+  x %>% as_backend() %>% .$reader
 }
+
+
+#' @examples
+#'   'iris' %>% cached_name() %>% cache_reader()
+#'
+#' @rdname cache_reader
+#' @export
+cache_reader.cached_name <- function(x)
+  x %>% as_cached_path() %>% cache_reader()
+
+
+
+
 
 
 #' @rdname cache_reader

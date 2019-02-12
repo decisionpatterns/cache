@@ -2,7 +2,8 @@
 #'
 #' Get the cache backend
 #'
-#' @param x
+#' @param x argument used to get the backend with
+#'
 #' @details
 #' `backend_get` retrieves the definition for the cache backend. The definition
 #' is a list that was created by [cache_register()].
@@ -12,6 +13,7 @@
 #'
 #' @seealso
 #'  - [backend()]
+#'  - [as_backend()]
 #'
 #'@rdname backend_get
 #' @export

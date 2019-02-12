@@ -83,7 +83,7 @@ cache <- function(
     # , timestamp = getOption('timestamp')
     , overwrite = getOption('cache.overwrite', TRUE )
     , envir = parent.frame()
-    , backend = getOption("cache.backend")
+    , backend = cache_backend() # getOption("cache.backend")
 ) {
 
   if( is.character(object) ) {

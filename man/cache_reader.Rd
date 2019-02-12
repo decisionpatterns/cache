@@ -5,6 +5,7 @@
 \alias{cache_reader.NULL}
 \alias{cache_reader.fs_ext}
 \alias{cache_reader.fs_path}
+\alias{cache_reader.cached_name}
 \alias{cache_writer}
 \title{cache_reader, cache_writer}
 \usage{
@@ -15,6 +16,8 @@ cache_reader(x = NULL)
 \method{cache_reader}{fs_ext}(x)
 
 \method{cache_reader}{fs_path}(x)
+
+\method{cache_reader}{cached_name}(x)
 
 cache_writer()
 }
@@ -30,7 +33,9 @@ and writing to/from the cache.
 
   cache_reader( fs_ext('rds') )
 
-  cache_reader( path( "cache/iris.rds") )
+  path( "cache/iris.rds") \%>\% cache_reader()
+
+  'iris' \%>\% cached_name() \%>\% cache_reader()
 
 }
 \seealso{

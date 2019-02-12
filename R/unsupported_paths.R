@@ -36,7 +36,7 @@ unsupported_paths <- function( path=cache_path() ) {
 
   # CREATE REGEX LIKE: ".(ext1|ext2|ext3)$"
   exts.re <-
-    backends_exts() %>% # ext_to_regex()
+    backends_exts() %>%
     str_replace( fixed("."), "\\." ) %>%
     collapse("|") %>%
     paste0( "\\.(", ., ")$" )

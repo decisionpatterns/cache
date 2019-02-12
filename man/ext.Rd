@@ -2,6 +2,7 @@
 % Please edit documentation in R/ext.R, R/fs_basename.R, R/fs_ext.R
 \name{ext}
 \alias{ext}
+\alias{filename/path extension object}
 \alias{fs_basename}
 \alias{print.fs_basename}
 \alias{fs_ext}
@@ -21,6 +22,8 @@ fs_ext(x = NULL)
 \arguments{
 \item{path}{object such as character, vector, ; values to be converted to character. Character values
 should omitting the leading \code{.} (period)}
+
+\item{exts}{optional list of extensions, used when the extension contains a \code{.}}
 
 \item{x}{object; values to be converted to character. Character values
 should omitting the leading \code{.} (period)}

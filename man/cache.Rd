@@ -11,18 +11,17 @@
 \usage{
 cache(object, name = deparse(substitute(object)), cache = cache_path(),
   ..., overwrite = getOption("cache.overwrite", TRUE),
-  envir = parent.frame(), backend = getOption("cache.backend"))
+  envir = parent.frame(), backend = cache_backend())
 
 cache_write(object, name, cache = cache_path(), ...,
   overwrite = getOption("cache.overwrite", TRUE),
   envir = parent.frame(), backend = cache_backend())
 
 uncache(name, ..., envir = parent.frame(),
-  overwrite = getOption("uncache.overwrite", TRUE),
-  reader = cache_reader())
+  overwrite = getOption("uncache.overwrite", TRUE), reader,
+  backend = cache_backend() \%>\% as_backend())
 
-cache_read(name, cache = cache_path(), ...,
-  reader = name_to_reader(name))
+cache_read(name, cache = cache_path(), ..., reader, backend)
 
 uncache_(...)
 

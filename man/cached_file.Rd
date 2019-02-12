@@ -9,8 +9,9 @@
 \alias{as_cached_file.character}
 \alias{as_cached_file.fs_path}
 \alias{as_cached_file.cached_name}
+\alias{as_cached_name.NULL}
 \alias{as_cached_name.default}
-\title{Create a cached_file}
+\title{cached_file}
 \usage{
 \method{as_cached_ext}{default}(x, exts = NULL)
 
@@ -18,15 +19,17 @@ cached_file(x)
 
 \method{print}{cached_file}(x, ...)
 
-as_cached_file(x, ext = cache_ext())
+as_cached_file(x, ext = backend_exts())
 
-\method{as_cached_file}{default}(x, ext = cache_ext())
+\method{as_cached_file}{default}(x, ext = backend_exts())
 
-\method{as_cached_file}{character}(x, ext = cache_ext())
+\method{as_cached_file}{character}(x, ext = backends_exts())
 
 \method{as_cached_file}{fs_path}(x, ext = NULL)
 
-\method{as_cached_file}{cached_name}(x, ext = cache_ext())
+\method{as_cached_file}{cached_name}(x, ext = backends_exts())
+
+\method{as_cached_name}{NULL}(x)
 
 \method{as_cached_name}{default}(x)
 }
@@ -35,23 +38,47 @@ as_cached_file(x, ext = cache_ext())
 
 \item{...}{additional arguments}
 
-\item{ext}{ext or string used in the cache}
+\item{ext}{ext or character of allowable extensions. (Default:) or string used in the cache}
 }
 \value{
 a \code{cached_file} (subclass of \code{fs::fs_path}) object of the filename. The extension
 }
 \description{
-Create a name for an object.
+Object representing a file in the cache (does not have to exist.)
 }
 \details{
 A \code{cached_file} is a subclass of \code{fs_path} object without the directory.
 It is the filename without the path information.
+
+When \code{x} is a \strong{character} object, \code{as_cached_file} will:
+\itemize{
+\item convert it as-is if ending in a registered extension (may change)
+\item coerce it to existing cached_object name if an existing \code{file} exists in the cache
+\item use the default extension prodivide by \code{backend_exts()}
+
+or \strong{cached_name} object, cached_file
+is looked for as:
+\item an existing file in \code{cache_path()} with one of the backend extensions
+}
 }
 \examples{
  cached_file('iris.rds') # e.g. "iris.rds"
+
  as_cached_file('iris.rds')  # Warn: Don't include extension
  as_cached_file('iris', 'rds' )
  as_cached_file(iris)
 
+  "iris.rds" \%>\% cached_file()
+  "iris" \%>\% as_cached_file()
+
+
+  "cache/iris.rds" \%>\% cached_path() \%>\% as_cached_file()
+
   cached_name('iris') \%>\% as_cached_file()
+
+}
+\seealso{
+\itemize{
+\item \code{\link[fs:path]{fs::path()}}
+}
 }

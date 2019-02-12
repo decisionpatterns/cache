@@ -25,6 +25,6 @@ cache_ext <- function(x) UseMethod('cache_ext')
 #' @rdname cache_ext
 #' @export
 cache_ext.NULL <- function(x) {
-  backend_get( cache_backend() )$ext
+  cache_backend() %>% as_backend()  %>% .$extension %>% cached_ext()
 }
 

@@ -1,8 +1,4 @@
-manifest_name <- "MANIFEST"  # filename for the manifest; can be converted to
-                             # an option such with cache_name
-
-
-#' cache manifest
+#' @title cache manifest
 #'
 #' An account of cached objects
 #'
@@ -30,7 +26,6 @@ manifest_path <- function() {
   path( meta_path(), manifest_name )
 }
 
-
 #' @rdname manifest
 #' @export
 manifest_exists <- function() fs::file_exists( manifest_path() )
@@ -56,12 +51,14 @@ manifest_create <- function( overwrite = FALSE ) {
 
 manifest_read <- function() yaml.load_file( manifest_path() )
 
+
 #' @rdname manifest
 #' @export
 manifest_get <- function()
   if( manifest_exists() )
     manifest_read() else
     list()
+
 
 #' @rdname manifest
 #' @export
@@ -114,11 +111,16 @@ manifest_rm <- function(name) {
 #'
 
 #' @details
-#'
 #' `manifest_rebuild` rebuilds the manifest by attempting to
+#'
 #' @rdname manifest
 #' @export
 
 manifest_rebuild <- function() {
   # stop("Rebuilding of the manifest is not implemented yet.")
 }
+
+
+manifest_name <- "MANIFEST"  # filename for the manifest; can be converted to
+                             # an option such with cache_name
+

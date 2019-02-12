@@ -35,7 +35,7 @@ conflicts <- function(name, ext=cache_ext() ) {
   exts <- backends_exts()
   exts <- setdiff( exts, ext )
 
-  exts.re <- paste0( '^', name, '\\.', exts, '$' ) # name_to_regex
+  exts.re <- paste0( '^', name, '\\.', exts, '$' )
   files <- fs::dir_ls( cache_path() ) %>% fs::path_file()
   conflicts <- str_detect( files, exts.re )
 

@@ -12,7 +12,7 @@ cached_name(x)
 
 \method{print}{cached_name}(x, ...)
 
-as_cached_name(x)
+as_cached_name(x = NULL)
 
 \method{as_cached_name}{character}(x)
 
@@ -40,7 +40,7 @@ User-friendly object name. It doesn't contain either path or ext information
   as_cached_file("iris.rds") \%>\% as_cached_name()
 
   cached_file("iris.rds") \%>\% as_cached_name()
-  cached_path("iris.rds") \%>\% as_cached_name()
+  cached_path("iris.2.rds") \%>\% as_cached_name()
 
 }
 \seealso{

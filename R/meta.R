@@ -3,6 +3,8 @@
 #' The cache meta directory hold information about objects stoded in the cache
 #'
 #' @details
+#' `meta` is a directory for holding supplementary information
+#'
 #'
 #' @rdname meta
 #' @export

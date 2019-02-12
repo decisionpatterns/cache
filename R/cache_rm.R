@@ -42,18 +42,16 @@ cache_rm <- function( ..., .cache=cache_path() ) {
   if( length(li)==1 && is.character(li[[1]]) )
     items <- li[[1]]
 
-  for( item in items ) {
-     # Find cached item by name
-     path <-
-       cached_name(item) %>%
-       as_cached_path()
+  re.exts <- backends_exts() %>% as_regex()
 
-     fs::file_delete(path)
-
-     manifest_rm(item)  # sife-effect remove from manifest
-  }
+  items %>% as_cached_path() %>% fs::file_delete()
+  items %>% manifest_rm()
 
 }
+
+# cache_rm_this <- function(x, ...) UseMethod("cache_rm_this")
+# cache_rm_this.
+
 
 #' @details
 #' [cache_delete()] is an alias for [cache_rm()].

@@ -30,11 +30,18 @@ cached_name <- function(x) {
 #' @param ... additional arguments
 #' @rdname cached_name
 #' @export
-print.cached_name <- function(x,...) print( unclass(x), ...)
+#print.cached_name <- function(x,...) print( unclass(x), ...)
+print.cached_name <- function(x, ...) print_object(x, ... )
+
+
 
 #' @rdname cached_name
 #' @export
-as_cached_name <- function(x) UseMethod('as_cached_name')
+as_cached_name <- function(x=NULL) UseMethod('as_cached_name')
+
+#' @rdname cached_file
+#' @export
+as_cached_name.NULL <- function(x) cached_name( character(0))
 
 #' @rdname cached_file
 #' @export
@@ -54,7 +61,7 @@ as_cached_name.character <- function(x) cached_name(x)
 #'
 #' @examples
 #'   cached_file("iris.rds") %>% as_cached_name()
-#'   cached_path("iris.rds") %>% as_cached_name()
+#'   cached_path("iris.2.rds") %>% as_cached_name()
 #'
 #' @rdname cached_name
 #' @export
@@ -63,16 +70,16 @@ as_cached_name.fs_path <- function(x) {
 
   exts <- backends_exts()        # Available backend extensions
   exts <- exts[ exts %>% nchar() %>% order() %>% rev() ]  # Order by longest
-  exts.re <- ext_to_regex(exts) # Backend exts regular expressions
-  ret <- c()
+  exts.re <- exts %>% fs_ext() %>% as_regex() # Backend exts regular expressions
 
+  ret <- c()
   for( p in x ) {
     for( re in exts.re ) {
 
       path.file <- fs::path_file(p)  # filename portion of path
 
       if( str_detect( path.file, re ) ) {
-        nm <- stringr::str_replace( path.file, re, '' )
+        nm <- stringr::str_replace( path.file, re, '' )   # replace extension
         ret. <- structure( nm, names=path.file )
         break()  # FOUND IT
       }
@@ -89,5 +96,3 @@ as_cached_name.fs_path <- function(x) {
 
   as_cached_name( ret )
 }
-
-

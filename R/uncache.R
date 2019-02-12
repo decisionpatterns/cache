@@ -15,12 +15,16 @@ uncache <- function(
   , ...
   , envir = parent.frame()
   , overwrite = getOption('uncache.overwrite', TRUE)
-  , reader = cache_reader()
+  , reader
+  , backend = cache_backend() %>% as_backend()  # Default backend
 ) {
 
+  # GET STRING name
   name <- as.character(substitute(name))
 
-  cached <- cache_dir()
+  # cached <- cache_dir()
+  if( missing(reader) )
+    reader <- name %>% cached_name() %>% cache_reader()
 
   object <- cache_read(name, ..., reader=reader )
 
@@ -53,12 +57,18 @@ cache_read <- function(
     name                            # string
   , cache = cache_path()
   , ...
-  , reader = name_to_reader(name)
+  , reader  # defined by backend
+  , backend
   # , timestamp = getOption('timestamp')
 ) {
 
+  # GET STRING FOR name
   name. <- as.character( expr_find(name) )
   if( ! is.character(name) ) name <- name.
+
+  # GET cache_reader
+  if( missing(reader) )
+    reader <- name %>% cached_name() %>% cache_reader()
 
   if( is.null(cache) || ! fs::dir_exists(cache) )
     stop( "cache does not exist: '", cache, "'" )
@@ -76,11 +86,10 @@ cache_read <- function(
   # }
 
   # Find path based on name using registered backends
-  pth <- as_cached_path(name) # name_to_path(name)
+  pth <- as_cached_path(name) #
 
 
-  if( fs::file_exists( pth ) ) {    # 1. Default Path (?)
-
+  if( fs::file_exists(pth) ) {    # 1. Default Path (?)
     reader <- cache_reader(pth)
                                              # 2. Alternate Paths
   } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
@@ -96,8 +105,7 @@ cache_read <- function(
     reader <- path %>%         # Look up reader from path
       as_cached_path() %>%
       as_cached_ext() %>%
-      # path_to_ext() %>%
-      # ext_to_backend() %>%
+
       backend_get() %>%
       .$reader
 
@@ -123,7 +131,7 @@ cache_read <- function(
   }
 
   # Find reader ...
-  reader(path, ...)
+  reader(pth, ...)
 
 }
 
@@ -134,7 +142,6 @@ cache_read <- function(
 uncache_ <- function(...) {
 
   warning( "'uncache_' is deprecated. Use 'uncache' instead." )
-
   uncache(...)
 
 }

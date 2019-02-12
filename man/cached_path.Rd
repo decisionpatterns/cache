@@ -19,7 +19,7 @@ as_cached_path(x, cache = cache_path(), ext = cache_ext())
 \method{as_cached_path}{default}(x, cache = cache_path(), ext = NULL)
 
 \method{as_cached_path}{character}(x, cache = cache_path(),
-  ext = cache_ext())
+  ext = backends_exts())
 
 \method{as_cached_path}{cached_file}(x, cache = cache_path(),
   ext = NULL)
