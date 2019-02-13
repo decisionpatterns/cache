@@ -61,7 +61,7 @@ print.cache_list <- function(x, ... ) {
   }
   message( msg )
 
-  NextMethod('print')
+  print( unclass(x) )  # NextMethod('print')
 
 }
 

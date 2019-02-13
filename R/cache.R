@@ -152,7 +152,7 @@ cache_write <- function(
   # CHECK CONFLICTS: so tat th
   if( has_conflict(name, ext) )
     if( overwrite )
-      cache_rm( conflicts(name,ext)) else stop( conflict_msg(name) )
+      cache_rm( list=conflicts(name,ext)) else stop( conflict_msg(name) )
 
   path <- name %>% paste0(".", ext) %>% fs::path(cache, .)
 
