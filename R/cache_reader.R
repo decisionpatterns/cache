@@ -1,6 +1,6 @@
-#' cache_reader, cache_writer
+#' Get Caching Functions
 #'
-#' Get the read or write function for a path
+#' Get the reader or writer function for a path
 #'
 # @param path string; path to file.
 #

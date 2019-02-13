@@ -20,13 +20,22 @@
 #'  - [fs::dir_ls()]
 #'
 #' @import fs
+#' @import crayon
+#' @import base.tools parenthize
 #' @export
 
 cache_ls <- function( cache=cache_path(), ... ) {
 
   re.exts <- backends_exts() %>% as_regex()
 
-  message( "cache backends: ", crayon::blue( collapse( backends_ls(), ", " ) ) )
+  # Create meta informations
+  msg <- c( "default backend: ", crayon::green( cache_backend() ) )
+  if( ( backends_ls() %>% length() )  > 1 ) {
+    bes <- backends_ls() %>% setdiff( cache_backend() )
+    msg <- append( msg, ' ' )
+    msg <- append( msg, bes %>% collapse(', ') %>% parenthesize() )
+  }
+  message( msg )
 
   fs::dir_ls( path=cache, ... ) %>%
     # fs::path_file() %>%

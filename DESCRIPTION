@@ -1,7 +1,7 @@
 Package: cache
 Title: Intuitive and Comprehensive Cache
-Version: 0.2.15
-Date: 2019-02-11
+Version: 0.2.16
+Date: 2019-02-13
 Authors@R: c(
     person("Christopher", "Brown", , "chris.brown@decisionpatterns.com", c("aut", "cre") ),
     person("Decision Patterns", role = "cph")
@@ -17,7 +17,7 @@ Imports:
     rprojroot (>= 1.3.0),
     here (>= 0.1),
     stringr (>= 1.3.1),
-    stringr.tools (>= 0.2.1),
+    stringr.tools (>= 0.3.2),
     crayon (>= 1.3.4),
     magrittr,
     yaml

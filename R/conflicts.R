@@ -25,6 +25,7 @@
 #' @return
 #'  character vector of filenames that conflicts
 #'
+#' @importFrom stringr.tools str_escape_dot
 #  @export
 
 conflicts <- function(name, ext=cache_ext() ) {
@@ -35,12 +36,14 @@ conflicts <- function(name, ext=cache_ext() ) {
   exts <- backends_exts()
   exts <- setdiff( exts, ext )
 
-  exts.re <- paste0( '^', name, '\\.', exts, '$' )
-  files <- fs::dir_ls( cache_path() ) %>% fs::path_file()
-  conflicts <- str_detect( files, exts.re )
+  exts.re <- exts %>% str_escape_dot() %>% cached_ext() %>% as_regex()
+  files.re <-paste0( '^', name, exts.re )
 
-  files[ conflicts ] ->.
-  fs::path(.)
+  files <- fs::dir_ls( cache_path() ) %>% fs::path_file()
+  conflicts <- str_detect( files, files.re )
+
+  files[ conflicts ]  %>%
+    fs::path()
 
 }
 

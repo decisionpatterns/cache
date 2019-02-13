@@ -168,8 +168,10 @@ cache_write <- function(
 
   ret <- writer( object, path, ... )
 
+  # Note: this doesn't work for cache_sodium
   if( ! identical(ret,object) ) warning("Object returned from writer not identical.")
 
+  # UPDATE manifest
   manifest <- manifest_get()
   manifest[[name]] <- list(
       name = name
@@ -178,13 +180,8 @@ cache_write <- function(
     , backend = backend
     , mtime = Sys.time() %>% format( tz="UTC" )
   )
-
   manifest_write(manifest)
-  # meta <- meta_get() readRDS( fs_path( cache_path(), ".meta", "objects" ) )
-  # meta['name'] <- list( name=name, path=path )
-  # meta_save(meta)
 
 
   invisible(object)             # PIPELINE ENABLED: ALWAYS RETURN OBJECT
-
 }

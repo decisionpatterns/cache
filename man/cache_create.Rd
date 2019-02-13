@@ -4,7 +4,7 @@
 \alias{cache_create}
 \title{cache_create}
 \usage{
-cache_create(path)
+cache_create(path = NULL)
 }
 \arguments{
 \item{path}{path or sting to create cache directory}

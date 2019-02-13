@@ -15,18 +15,18 @@ uncache <- function(
   , ...
   , envir = parent.frame()
   , overwrite = getOption('uncache.overwrite', TRUE)
-  , reader
+  # , reader
   , backend = cache_backend() %>% as_backend()  # Default backend
 ) {
 
   # GET STRING name
   name <- as.character(substitute(name))
 
-  # cached <- cache_dir()
-  if( missing(reader) )
-    reader <- name %>% cached_name() %>% cache_reader()
+  # GET reader FROM the extension
+  # if( missing(reader) )
+  reader <- name %>% as_cached_ext() %>% cache_reader()
 
-  object <- cache_read(name, ..., reader=reader )
+  object <- cache_read(name, ..., backend=backend )
 
   # OVERWRITE! CHECK EXISTENCE
   if( ! overwrite &&  exists(name,envir=envir) ) {
@@ -57,8 +57,8 @@ cache_read <- function(
     name                            # string
   , cache = cache_path()
   , ...
-  , reader  # defined by backend
-  , backend
+  # , reader  # defined by backend
+  , backend  # Use non-default backend
   # , timestamp = getOption('timestamp')
 ) {
 
@@ -66,72 +66,19 @@ cache_read <- function(
   name. <- as.character( expr_find(name) )
   if( ! is.character(name) ) name <- name.
 
-  # GET cache_reader
-  if( missing(reader) )
-    reader <- name %>% cached_name() %>% cache_reader()
-
+  # TEST if cache exists
+  # - this is unnecessary as the file is tested below
   if( is.null(cache) || ! fs::dir_exists(cache) )
     stop( "cache does not exist: '", cache, "'" )
 
-  # # CHECK CONFLICTS
-  # # if( has_conflict(name, name %>% name_to_file() %>% file_to_ext() ) ) {
-  # if( has_conflict(name, name %>% as_cached_file() %>% fs_ext() ) ) {
-  #   warning(
-  #     "'", name, "'"
-  #     , " already appears in the cache with a different type. All cache names should be unique."
-  #     , "\n  Used: ", cached_name(name) %>% sQuote()
-  #     , "\n  Maybe remove: "
-  #     , name %>% conflicts() %>% path( cache_path(), . ) %>% sQuote() %>% collapse_comma()
-  #   )
-  # }
+  # FIND path FROM NAME
+  path <- as_cached_path(name) #
+  # TEST if file exists
+  if( ! fs::file_exists(path) ) stop( path, " does not exist")
 
-  # Find path based on name using registered backends
-  pth <- as_cached_path(name) #
-
-
-  if( fs::file_exists(pth) ) {    # 1. Default Path (?)
-    reader <- cache_reader(pth)
-                                             # 2. Alternate Paths
-  } else if( alternate_paths(name) %>% fs::file_exists() %>% any() ) {                                # 2. Alternate Paths
-
-    alt_paths <- alternate_paths(name)
-
-    if( length(alt_paths) > 1 )
-      stop("multiple files match: \n"
-           , alt_paths %>% sort() %>% sQuote() %>% paste0( " - ", . , "\n")
-          )
-
-    path <- alt_paths
-    reader <- path %>%         # Look up reader from path
-      as_cached_path() %>%
-      as_cached_ext() %>%
-
-      backend_get() %>%
-      .$reader
-
-  } else {                                  # 3. Unsupported paths?
-
-    unsupported <- unsupported_paths( path = cache )
-
-    wh <-
-      unsupported %>%
-        fs::path_file() %>%
-        str_detect( paste0("^", name))
-
-    unsuppored <- unsupported[ wh ]
-
-    if( length(unsupported) == 0 )
-      stop("There is no file associated with '", name, "'") else
-      stop(
-          "\nThere is no supported files associated with '", name, "'"
-        , "\n  perhaps you need to load backend(s) for:"
-        , unsupported %>% fs::path_file() %>% base.tools::squote() %>% collapse_comma()
-        )
-
-  }
-
-  # Find reader ...
-  reader(pth, ...)
+  # Find reader ..
+  reader <- path %>% as_cached_ext() %>% cache_reader()
+  reader(path, ...)
 
 }
 
@@ -140,8 +87,6 @@ cache_read <- function(
 #' @export
 
 uncache_ <- function(...) {
-
   warning( "'uncache_' is deprecated. Use 'uncache' instead." )
   uncache(...)
-
 }

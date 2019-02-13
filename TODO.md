@@ -1,5 +1,15 @@
 # TODO
 
+ - [ ] decide if/whether:
+       the default (cache_backend) or existing (as_cached_ext() %>% as_backend() )
+       is used to save the file.  This should probably be a setting.  
+       
+ - [ ] change specification of `backend` to string
+ - [ ] change specification of `reader`/`writer` to string object in backend. 
+ 
+ - [ ] convert cache/uncache and cache_write/cache_read to use backend argument 
+       instead of ... 
+       
  - [ ] meta_add to create `.meta` directory in `cache_path()` as part of upgrade
        to newer version.
        

@@ -18,7 +18,7 @@
 #' @importFrom here here
 #' @export
 
-cache_create <- function(path) {
+cache_create <- function( path=NULL ) {
 
    path <- fs::path(path)  # If not path
 

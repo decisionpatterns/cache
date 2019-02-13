@@ -5,75 +5,80 @@ This document records design decisions for the *cache* package.skeleton
 ## Introduction 
 
 The cache package allows the user to save and restore files *unambiguously* and 
-*robustly* with only a few simple commands regardless of the backend mechanism 
+*robustly* with only a few simple commands regardless of the *backend* mechanism 
 for doing so. The files are written to a known location on the file system with
-easily recognizable names. 
-
-An alternative solution would simply use the object name and not worry about 
-how they are written
+easily recognizable names and extensions. It hides *almost* all the complexity 
+of saving and restoring data.
+*
 
 ## Features
 
- - Read and write by simple, intuitive commands with few arguments
- - Abstracted away complexities of storage
- - Object uniqueregardless of save/restore method
- - Metadata (dim,length,etc) available without reading the files
- - Provides one interface for all I/O
+ - Read and write by simple, intuitive commands with few arguments, if any.
+ - Standarization of persistence of data.
+ - Abstracted complexities of persistent/storage.
+ - Plugable, extensible backends.
+ - Guaranteed uniqueness of object across all storage backends.  
+ - Provides single interface for all persitence.
+ - Database-like coupling to R with multiple storage backends, similar to the
+   way MySQL/MariaDB uses various storage engines.
+ - [-tk] Metadata (dim,length,etc) available without reading the files.
  
 
 ## Goal(s)
 
  - Create pragmas for managing data (tables)
- - Hide complexity of paths and naming
+ - Hide complexity of paths and naming; use standard defaults or set once
  - Provide mechanism for all I/O and saving
- - replace `save`
- - Provide metadata data
- - Mimic functions of fs::
- - Create **infrastructure** for update/sync of data
- - Create **infrastructure** for supporting models esp. offline features.
-
-The goal is to have the developer or program work with names and not worry about
-paths, extension, i/o, etc.   
+ - Replace `save`
+ - Extends function of *fs* package
+ - [-tk] Provide metadata data
+ - [-tk] Create **infrastructure** for update/sync of data
+ - [-tk] Create **infrastructure** for supporting models esp. offline features.
 
 
-## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
+The goal of *cache* is to have the developer or program work only with the names
+and not worry about paths, extension, i/o, etc. This is done by enforcing a 
+uniqueness
 
-This package delineates the difference between `write`/`read`` and
-`save`/`load`. This mostly comports to existing distinctions.
-
- - `save` and `load` refers to storing as a binary/non-editable file.
- - `write` and `read` refers to storing as a human-readable file.
- - `cache`/`uncache` referes to a universal storing of an object.
 
 
 ## Cache usage
 
 Examples:
 
-     create_cache() 
+     cache_create(...)  # create a cache 
+     cache_path()       # show where the cache is located
      
+     # Standard Evaluation
+     cache_write(iris, name="iris")
+     cache_read('iris')
+     
+     # Non-Standard Evaluation / Interactive
      cache(x)
-     cache('x')
-     cache(x, file="cache-file" )
-     cache_rds(x)    # If supplied
-     cache_sodium(x)
-
-     uncache(y)
+     uncache(x)
+     
 
 ## How it works 
 
+*cache* works by: 
+
+ - Standardizing the storage location of objects to a single directory: `[PROJ_ROOT]/cache`
+ - Registering backends that map file extensions to read/write method
+ - Enforcing uniqueness based on the backends.
+
 ### Writing to the cache
 
-When you write to the cache ...
- - Determine backend/ext for the object. Look in:
-   - MANIFEST
-   - ON FILE SYSTEM
+When you write to the cache the following happens:
+
+ - Backend and ext for the object. Look in:
+   - [-tk] MANIFEST
+   - Existing files () ...
    - IN DEFAULT BACKEND
  - Create path
  - Write using writer
  
  
-## Identifying file and path from names
+## Identifying backend name, file or path 
 
 Given a name of an object, the file or path will be:
 
@@ -233,3 +238,16 @@ records.
    - reader: backend-specific function for reading cached object
    - writer: backend-specific function for writing cached object.
 
+
+# Appendix
+
+
+## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
+
+This package does not delineates the difference between `write`/`read`` and
+`save`/`load`. The existing distinctions distinction seems to be that:
+
+ - `save` and `load` refers to storing as a binary/non-editable file.
+ - `write` and `read` refers to storing as a human-readable file.
+ - `cache`/`uncache` referes to a universal storing of an object regardless of
+   the persitence format. 
