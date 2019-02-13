@@ -44,7 +44,9 @@ cache_rm <- function ( ..., list = character() ) {
        && !all(
             vapply(
                 dots
-              , function(x) is.symbol(x) || is.character(x), NA, USE.NAMES = FALSE
+              , function(x) is.symbol(x) || is.character(x)
+              , NA
+              , USE.NAMES = FALSE
             )
          )
   ) stop("... must contain names or character strings")
@@ -55,11 +57,11 @@ cache_rm <- function ( ..., list = character() ) {
 
   # ABOVE HERE: This is beginning to the `base::rm()` function
 
-  items <- c( names, list )
-  items <- as_cached_path(items)
+  names <- c( names, list )
+  paths <- as_cached_path(names)
 
-  fs::file_delete(items)
-  manifest_rm(items)
+  fs::file_delete( as_cached_path(names) )
+  manifest_rm( names )
 
 }
 
@@ -67,8 +69,10 @@ cache_rm <- function ( ..., list = character() ) {
 #' @rdname cache_rm
 #' @export
 
-cache_rm_all <- function()
-  cache_rm( cache_ls() )
+cache_rm_all <- function() {
+  cache_rm( list=cache_ls() )
+}
+
 
 # Previous definition
 

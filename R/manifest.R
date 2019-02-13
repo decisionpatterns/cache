@@ -73,9 +73,11 @@ manifest_rm <- function(name) {
 
     manifest <- manifest_get()
 
-    manifest[[name]] <- NULL
-    manifest_write(manifest)
+    for( nm in name ) {
+      manifest[[nm]] <- NULL
+    }
 
+    manifest_write(manifest)
 }
 
 # #' @param ... key-value pairs. The key should be the objects name and the value

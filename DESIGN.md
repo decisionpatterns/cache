@@ -23,7 +23,8 @@ of saving and restoring data.
  - Database-like coupling to R with multiple storage backends, similar to the
    way MySQL/MariaDB uses various storage engines.
  - [-tk] Metadata (dim,length,etc) available without reading the files.
- 
+ - Handles all types of objects
+
 
 ## Goal(s)
 
@@ -239,9 +240,12 @@ records.
    - reader: backend-specific function for reading cached object
    - writer: backend-specific function for writing cached object.
 
+# FAQ 
+
+Q: Why not just use a redis server?
+A: Locality. Abtrary R objects. Etc.  
 
 # Appendix
-
 
 ## `write`/`read` vs. `save`/`load` vs. `cache`/`uncache`
 

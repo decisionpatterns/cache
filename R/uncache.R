@@ -20,7 +20,9 @@ uncache <- function(
 ) {
 
   # GET STRING name
-  name <- as.character(substitute(name))
+  name. <- as.character(substitute(name))
+  if( ! is.character(name) ) name <- name.
+
 
   # GET reader FROM the extension
   # if( missing(reader) )

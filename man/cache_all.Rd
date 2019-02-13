@@ -7,7 +7,7 @@
 cache_all(..., envir = parent.frame())
 }
 \arguments{
-\item{...}{additional arguments passed to \code{\link[=cache]{cache()}}}
+\item{...}{additional arguments passed to \code{\link[=cache_write]{cache_write()}}}
 
 \item{envir}{environment from which to find objects to save.}
 }
