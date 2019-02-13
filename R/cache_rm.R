@@ -2,14 +2,16 @@
 #'
 #' Remove item(s) from the cache
 #'
-#' @param ... single character vector of object names or comma separated list of
-#'            unquoted names.
-#' @param .cache path; cache directory
+#' @param ... objects to be removed as names (unqoted) or character strings
+#'            (quoted).
+#' @param list character vector naming objects to be removed.
+# @param .cache path; cache directory
 #'
 #' @details
 #'
-#' [cache_rm()] accepts either a character vector -or- a comma-separated list of
-#' unquoted names.
+#' [cache_rm()] removes objects from the cache.  Objects can be expressed as
+#' character strings, or in the argument `list` or through a combination of
+#' both.
 #'
 #' @examples
 #'
@@ -34,29 +36,56 @@
 #' @md
 #' @export
 
-cache_rm <- function( ..., .cache=cache_path() ) {
+cache_rm <- function ( ..., list = character() ) {
 
-  items <- as.character( substitute( list(...) ))[-1]
+  dots <- match.call(expand.dots = FALSE)$...
 
-  li <- list(...)
-  if( length(li)==1 && is.character(li[[1]]) )
-    items <- li[[1]]
+  if( length(dots)
+       && !all(
+            vapply(
+                dots
+              , function(x) is.symbol(x) || is.character(x), NA, USE.NAMES = FALSE
+            )
+         )
+  ) stop("... must contain names or character strings")
 
-  re.exts <- backends_exts() %>% as_regex()
+  names <- vapply(dots, as.character, "")
+  if (length(names) == 0L) names <- character()
 
-  items %>% as_cached_path() %>% fs::file_delete()
-  items %>% manifest_rm()
+
+  # ABOVE HERE: This is beginning to the `base::rm()` function
+
+  items <- c( names, list )
+  items <- as_cached_path(items)
+
+  fs::file_delete(items)
+  manifest_rm(items)
 
 }
 
-# cache_rm_this <- function(x, ...) UseMethod("cache_rm_this")
-# cache_rm_this.
 
-
-#' @details
-#' [cache_delete()] is an alias for [cache_rm()].
-#'
 #' @rdname cache_rm
 #' @export
 
-cache_delete <- cache_rm
+cache_rm_all <- function()
+  cache_rm( cache_ls() )
+
+# Previous definition
+
+# cache_rm <- function( ..., .cache=cache_path() ) {
+#
+#   items <- as.character( substitute( list(...) ))[-1]
+#
+#   li <- list(...)
+#   if( length(li)==1 && is.character(li[[1]]) )
+#     items <- li[[1]]
+#
+#   # re.exts <- backends_exts() %>% as_regex()
+#
+#   items %>% as_cached_path() %>% fs::file_delete()
+#   items %>% manifest_rm()
+#
+# }
+
+
+

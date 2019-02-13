@@ -2,27 +2,26 @@
 % Please edit documentation in R/cache_rm.R
 \name{cache_rm}
 \alias{cache_rm}
-\alias{cache_delete}
+\alias{cache_rm_all}
 \title{cache_rm}
 \usage{
-cache_rm(..., .cache = cache_path())
+cache_rm(..., list = character())
 
-cache_delete(..., .cache = cache_path())
+cache_rm_all()
 }
 \arguments{
-\item{...}{single character vector of object names or comma separated list of
-unquoted names.}
+\item{...}{objects to be removed as names (unqoted) or character strings
+(quoted).}
 
-\item{.cache}{path; cache directory}
+\item{list}{character vector naming objects to be removed.}
 }
 \description{
 Remove item(s) from the cache
 }
 \details{
-\code{\link[=cache_rm]{cache_rm()}} accepts either a character vector -or- a comma-separated list of
-unquoted names.
-
-\code{\link[=cache_delete]{cache_delete()}} is an alias for \code{\link[=cache_rm]{cache_rm()}}.
+\code{\link[=cache_rm]{cache_rm()}} removes objects from the cache.  Objects can be expressed as
+character strings, or in the argument \code{list} or through a combination of
+both.
 }
 \examples{
 

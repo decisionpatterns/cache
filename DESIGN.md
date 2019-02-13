@@ -13,12 +13,13 @@ of saving and restoring data.
 
 ## Features
 
- - Read and write by simple, intuitive commands with few arguments, if any.
- - Standarization of persistence of data.
  - Abstracted complexities of persistent/storage.
+   - Single persistence interface.
+   - Standarized persistence of data
+   - Save and restore data by only very limited number of methods with simple, 
+     intuitive commands of few arguments, if any.
  - Plugable, extensible backends.
- - Guaranteed uniqueness of object across all storage backends.  
- - Provides single interface for all persitence.
+ - **Uniqueness** of object (names) across all storage backends.  
  - Database-like coupling to R with multiple storage backends, similar to the
    way MySQL/MariaDB uses various storage engines.
  - [-tk] Metadata (dim,length,etc) available without reading the files.
@@ -26,7 +27,7 @@ of saving and restoring data.
 
 ## Goal(s)
 
- - Create pragmas for managing data (tables)
+ - Create pragmas for persisting data  
  - Hide complexity of paths and naming; use standard defaults or set once
  - Provide mechanism for all I/O and saving
  - Replace `save`

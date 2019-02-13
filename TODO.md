@@ -1,10 +1,14 @@
 # TODO
 
+ - [ ] create a cache_list object that has a print method with messages so that
+       cache_ls can be used as getting names from the 
+ 
+ 
  - [ ] decide if/whether:
        the default (cache_backend) or existing (as_cached_ext() %>% as_backend() )
        is used to save the file.  This should probably be a setting.  
        
- - [ ] change specification of `backend` to string
+ - [ ] change specification of `abackend` to string
  - [ ] change specification of `reader`/`writer` to string object in backend. 
  
  - [ ] convert cache/uncache and cache_write/cache_read to use backend argument 

@@ -21,12 +21,36 @@
 #'
 #' @import fs
 #' @import crayon
-#' @import base.tools parenthize
 #' @export
 
 cache_ls <- function( cache=cache_path(), ... ) {
 
-  re.exts <- backends_exts() %>% as_regex()
+  fs::dir_ls( path=cache, ... ) %>%
+    as_cached_name() %>%
+    unname() %>%
+    unique() %>%
+    na.omit() %>%
+    sort() %>%
+    # as_cached_name() %>%
+    cache_list()
+}
+
+# Note we create a separate class list object so that we can have a
+# print.cache_list method that provides additional information
+
+#' @details
+#' `cache_list` creates a cache_list object for which a print method can exist.
+#'
+#' @rdname cache_ls
+#' @export
+
+cache_list <- function(x) add_subclass(x, "cache_list")
+
+#' @importFrom base.tools parenthesize
+#' @rdname cache_ls
+#' @export
+
+print.cache_list <- function(x, ... ) {
 
   # Create meta informations
   msg <- c( "default backend: ", crayon::green( cache_backend() ) )
@@ -37,15 +61,10 @@ cache_ls <- function( cache=cache_path(), ... ) {
   }
   message( msg )
 
-  fs::dir_ls( path=cache, ... ) %>%
-    # fs::path_file() %>%
-    as_cached_name() %>%
-    unname() %>%
-    unique() %>%
-    na.omit() %>%
-    sort() %>%
-    as_cached_name()
+  NextMethod('print')
+
 }
+
 
 
 #' @details
@@ -59,6 +78,7 @@ cache_dir <- function( path=cache_path(), ... ) {
   fs::dir_ls(path, ...) ->.
   fs::path_file(.)
 }
+
 
 #' @export
 #' @rdname cache_ls

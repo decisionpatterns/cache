@@ -7,7 +7,7 @@
 \alias{cache_reader.fs_path}
 \alias{cache_reader.cached_name}
 \alias{cache_writer}
-\title{cache_reader, cache_writer}
+\title{Get Caching Functions}
 \usage{
 cache_reader(x = NULL)
 
@@ -22,7 +22,7 @@ cache_reader(x = NULL)
 cache_writer()
 }
 \description{
-Get the read or write function for a path
+Get the reader or writer function for a path
 }
 \details{
 \code{cache_reader()} and \code{cache_writer()} return the function for reading

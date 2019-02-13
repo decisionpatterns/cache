@@ -2,11 +2,17 @@
 % Please edit documentation in R/cache_ls.R
 \name{cache_ls}
 \alias{cache_ls}
+\alias{cache_list}
+\alias{print.cache_list}
 \alias{cache_dir}
 \alias{cache_info}
 \title{cache_ls}
 \usage{
 cache_ls(cache = cache_path(), ...)
+
+cache_list(x)
+
+\method{print}{cache_list}(x, ...)
 
 cache_dir(path = cache_path(), ...)
 
@@ -26,6 +32,8 @@ List cached files
 \details{
 Similar to \code{ls} but lists the objects in the cache directory that can be
 loaded.
+
+\code{cache_list} creates a cache_list object for which a print method can exist.
 
 \code{\link[=cache_dir]{cache_dir()}} lists all files in the cache, supported or not.
 }
