@@ -4,10 +4,12 @@
 \alias{cache_delete}
 \title{Delete cache directory}
 \usage{
-cache_delete(path = cache_path())
+cache_delete(path = cache_path(), warn = FALSE)
 }
 \arguments{
 \item{path}{cache directory path; defaults to \code{\link[=cache_path]{cache_path()}}}
+
+\item{warn}{logical; enable warnings}
 }
 \description{
 Delete cache directory including all persisted files and metadata

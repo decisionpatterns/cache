@@ -5,6 +5,7 @@
  - manifest: now uses `.meta/MANIFEST` file and `manifest_*()` functions.
  - cache/uncache (interactive) and cache_write/cache_read (progromattic) 
    support completely separate use cases.
+ - cache_delete() now takes `path` and `warn` arguments
 
 
 # cache 0.2.4
