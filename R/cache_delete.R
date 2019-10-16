@@ -2,6 +2,9 @@
 #'
 #' Delete cache directory including all persisted files and metadata
 #'
+#' @param path cache directory path; defaults to [cache_path()]
+#' @param warn logical; enable warnings
+#'
 #' @details
 #'
 #' `cache_delete` unceremoniously deletes the cache including all persisted
@@ -14,5 +17,16 @@
 #'
 #' @export
 
-cache_delete <- function()
-  fs::dir_delete( path = cache_path() )
+cache_delete <- function( path=cache_path(), warn=FALSE ) {
+
+  if( is.null(path) ) {
+    if( warn )
+      warning("Attempt to delete an undefined cache. ",
+              "You can define it with `use_cache` or `cache_path`.")
+  } else {
+    if( fs::dir_exists(path) )
+      fs::dir_delete( path=path )
+    else if(warn) warning("Cache path, ", path, ", does not exist" )
+  }
+
+}

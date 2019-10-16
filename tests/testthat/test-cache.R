@@ -2,7 +2,8 @@ library(fs)
 
 context("test-cache")
 
-if( dir_exists("cache") ) dir_delete('cache')
+cache_delete()
+# if( dir_exists("cache") ) dir_delete('cache')
 
 #print( getwd() )
 # message( getwd() )

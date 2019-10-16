@@ -18,9 +18,10 @@ cache_write(object, name, cache = cache_path(), ...,
 
 uncache(name, ..., envir = parent.frame(),
   overwrite = getOption("uncache.overwrite", TRUE),
-  backend = cache_backend() \%>\% as_backend())
+  reader = cache_reader())
 
-cache_read(name, cache = cache_path(), ..., backend)
+cache_read(name, cache = cache_path(), ...,
+  reader = name_to_reader(name))
 
 uncache_(...)
 }
