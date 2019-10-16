@@ -46,7 +46,7 @@ cache_ls <- function( cache=cache_path(), ... ) {
 
 cache_list <- function(x) add_subclass(x, "cache_list")
 
-#' @importFrom base.tools parenthesize
+
 #' @rdname cache_ls
 #' @export
 

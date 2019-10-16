@@ -118,7 +118,7 @@ cache_read <- function(
       stop(
           "\nThere is no supported files associated with '", name, "'"
         , "\n  perhaps you need to load backend(s) for:"
-        , unsupported %>% fs::path_file() %>% base.tools::squote() %>% collapse_comma()
+        , unsupported %>% fs::path_file() %>% sQuote %>% collapse_comma()
         )
 
   }
