@@ -18,7 +18,7 @@
 #' @importFrom here here
 #' @export
 
-cache_create <- function( path=NULL ) {
+cache_create <- function(path=NULL ) {
 
    path <- fs::path(path)  # If not path
 
@@ -36,7 +36,7 @@ cache_create <- function( path=NULL ) {
            )
    } else {
      message( "Creating cache : ", path )
-     fs::dir_create( path, recursive = TRUE )
+     fs::dir_create( path, recurse = TRUE )
      fs::dir_create( fs::path(path, ".meta") )  # See note!
      cache_path( fs::path_rel(path) )    # Set cache as relative
      cache_name( fs::path_file(path) )

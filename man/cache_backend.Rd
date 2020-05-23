@@ -2,9 +2,12 @@
 % Please edit documentation in R/cache_backend.R
 \name{cache_backend}
 \alias{cache_backend}
+\alias{cache_use_backend}
 \title{Get/Set the default cache backend}
 \usage{
 cache_backend(backend = NULL)
+
+cache_use_backend(backend)
 }
 \arguments{
 \item{backend}{string; name for the backend.  Note this is not
@@ -21,6 +24,16 @@ those associated with that backend
 
 \code{cache_backend()} throws an error if no backend is registered for the
 \code{backend} argument. Register that backend with \code{\link[=cache_register]{cache_register()}} first.
+
+\code{cache_use_backend()} requires a \code{backend} string to be provided but
+otherwise works as \code{cache_backend()}
+}
+\examples{
+ cache_use_backend('rds')
+
+ cache_backend('rds')  # same
+ cache_backend()
+
 }
 \seealso{
 \itemize{

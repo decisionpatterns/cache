@@ -8,20 +8,35 @@
 \alias{uncache_}
 \title{Cache and uncache an object}
 \usage{
-cache(object, name = deparse(substitute(object)), cache = cache_path(),
-  ..., overwrite = getOption("cache.overwrite", TRUE),
-  envir = parent.frame(), backend = cache_backend())
-
-cache_write(object, name, cache = cache_path(), ...,
+cache(
+  object,
+  name = deparse(substitute(object)),
+  cache = cache_path(),
+  ...,
   overwrite = getOption("cache.overwrite", TRUE),
-  envir = parent.frame(), backend = cache_backend())
+  envir = parent.frame(),
+  backend = cache_backend()
+)
 
-uncache(name, ..., envir = parent.frame(),
+cache_write(
+  object,
+  name,
+  cache = cache_path(),
+  ...,
+  overwrite = getOption("cache.overwrite", TRUE),
+  envir = parent.frame(),
+  backend = cache_backend()
+)
+
+uncache(
+  name,
+  ...,
+  envir = parent.frame(),
   overwrite = getOption("uncache.overwrite", TRUE),
-  reader = cache_reader())
+  reader = cache_reader()
+)
 
-cache_read(name, cache = cache_path(), ...,
-  reader = name_to_reader(name))
+cache_read(name, cache = cache_path(), ..., reader = name_to_reader(name))
 
 uncache_(...)
 }
@@ -44,7 +59,7 @@ be uncached. Defaults to the \code{parent.frame()}}
 
 \item{backend}{string; (name of) the backend used.
 
-\code{cache}/\code{cache_write} and \code{uncache}/\code{cache_read`` save and restore single objects to the }cache\code{directory.}cache(obj)\code{and}uncache(obj)` are NSE
+\code{cache}/\code{cache_write} and \code{uncache}/\verb{cache_read`` save and restore single objects to the }cache\code{directory.}cache(obj)\code{and}uncache(obj)` are NSE
 versions that accept an unquoted name. These are mostly for interactive
 use.
 

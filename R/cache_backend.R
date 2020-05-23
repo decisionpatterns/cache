@@ -13,9 +13,18 @@
 #' `cache_backend()` throws an error if no backend is registered for the
 #' `backend` argument. Register that backend with [cache_register()] first.
 #'
+#' `cache_use_backend()` requires a `backend` string to be provided but
+#' otherwise works as `cache_backend()`
+#'
 #' @seealso
 #'  - [cache_register()]
 #'  - [backends_ls()]
+#'
+#' @examples
+#'  cache_use_backend('rds')
+#'
+#'  cache_backend('rds')  # same
+#'  cache_backend()
 #'
 #' @export
 
@@ -47,7 +56,16 @@ cache_backend <- function(backend=NULL) {
   }
 
   options( cache.backend = backend )
+
+
   backend
+}
+
+#' @rdname cache_backend
+#' @export
+cache_use_backend <- function(backend) {
+  if( missing(backend) ) stop("You must supply the name of a backend in order to use it.")
+  cache_backend(backend)
 }
 
 #

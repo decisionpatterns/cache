@@ -4,7 +4,9 @@
 \name{is_cache_root}
 \alias{is_cache_root}
 \title{is_cache_root}
-\format{An object of class \code{root_criterion} of length 5.}
+\format{
+An object of class \code{root_criterion} of length 5.
+}
 \usage{
 is_cache_root
 }

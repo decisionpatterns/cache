@@ -16,7 +16,7 @@ as_fs_ext(x, ...)
 
 \method{as_fs_ext}{default}(x, ...)
 
-\method{as_fs_ext}{fs_path}(x, exts = getOption("fs.exts"))
+\method{as_fs_ext}{fs_path}(x, exts = backends_exts())
 }
 \arguments{
 \item{x}{object; values to be converted to character. Character values

@@ -19,7 +19,7 @@ named by \code{cache_name()}.
 }
 \details{
 The default name of the cache directory is \code{cache}, but can be changed with:
-\code{options(cache.name=*name*)}.
+\verb{options(cache.name=*name*)}.
 }
 \seealso{
 \code{\link[rprojroot:find_root]{rprojroot::find_root()}}

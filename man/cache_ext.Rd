@@ -7,7 +7,7 @@
 \usage{
 cache_ext(x)
 
-\method{cache_ext}{NULL}(x)
+\method{cache_ext}{`NULL`}(x)
 }
 \value{
 An \code{\link[=ext]{ext()}} object for the current backend.

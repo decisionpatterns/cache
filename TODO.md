@@ -1,5 +1,8 @@
 # TODO
-
+ - [ ] cache::cache_create() warns on higher level cache.  
+       This is maybe not the best behavior and blocks testing.  
+       Maybe provide interactivity.
+ 
  - [ ] make `cache`/`uncache` behave more like `cache_rm`/`rm`
  
  - [ ] default for `cache_create()`

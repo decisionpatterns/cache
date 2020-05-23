@@ -10,7 +10,7 @@
 \usage{
 backend_get(x)
 
-\method{backend_get}{NULL}(x)
+\method{backend_get}{`NULL`}(x)
 
 \method{backend_get}{fs_ext}(x)
 

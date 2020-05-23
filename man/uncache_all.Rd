@@ -4,8 +4,10 @@
 \alias{uncache_all}
 \title{Uncache all objects}
 \usage{
-uncache_all(envir = parent.frame(),
-  overwrite = getOption("uncache.overwrite", TRUE))
+uncache_all(
+  envir = parent.frame(),
+  overwrite = getOption("uncache.overwrite", TRUE)
+)
 }
 \arguments{
 \item{envir}{where to uncache the objects (Default: parent.frame()}

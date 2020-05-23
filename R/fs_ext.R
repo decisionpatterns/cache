@@ -87,6 +87,7 @@ as_fs_ext.default <- function(x, ... ) {
 
 #' @rdname fs_ext
 #' @export
-as_fs_ext.fs_path <- function(x, exts=getOption('fs.exts') )
+# as_fs_ext.fs_path <- function(x, exts=get_option('fs.exts') )
+as_fs_ext.fs_path <- function(x, exts=backends_exts() )
   ext(x, exts)
 

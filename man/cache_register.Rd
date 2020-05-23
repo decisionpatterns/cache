@@ -5,11 +5,21 @@
 \alias{cache_backend_register}
 \title{Register cache backend}
 \usage{
-cache_register(name, reader = get(paste0("cache_read_", name)),
-  writer = get(paste0("cache_write_", name)), ext = name, ...)
+cache_register(
+  name,
+  reader = get(paste0("cache_read_", name)),
+  writer = get(paste0("cache_write_", name)),
+  ext = name,
+  ...
+)
 
-cache_backend_register(name, reader = get(paste0("cache_read_", name)),
-  writer = get(paste0("cache_write_", name)), ext = name, ...)
+cache_backend_register(
+  name,
+  reader = get(paste0("cache_read_", name)),
+  writer = get(paste0("cache_write_", name)),
+  ext = name,
+  ...
+)
 }
 \arguments{
 \item{name}{string; name for the backend.}

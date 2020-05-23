@@ -29,7 +29,7 @@ as_cached_file(x, ext = backend_exts())
 
 \method{as_cached_file}{cached_name}(x, ext = backends_exts())
 
-\method{as_cached_name}{NULL}(x)
+\method{as_cached_name}{`NULL`}(x)
 
 \method{as_cached_name}{default}(x)
 }

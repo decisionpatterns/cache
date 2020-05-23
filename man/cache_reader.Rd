@@ -11,7 +11,7 @@
 \usage{
 cache_reader(x = NULL)
 
-\method{cache_reader}{NULL}(x)
+\method{cache_reader}{`NULL`}(x)
 
 \method{cache_reader}{fs_ext}(x)
 
